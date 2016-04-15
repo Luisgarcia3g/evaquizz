@@ -61,4 +61,15 @@ root 'welcome#index'
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  namespace :admin do
+    get '/', to: 'dashboard#index'
+  end
+  namespace :maestro do
+    get '/', to: 'dashboard#index'
+  end
+  namespace :alumno do
+    get '/', to: 'dashboard#index'
+  end
+
 end
