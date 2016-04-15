@@ -9,3 +9,5 @@
 
 "hola soy kendra y esto funciona"
 "ultimo intento"
+"kendra aqui"
+"kendra estuvo aqui"
