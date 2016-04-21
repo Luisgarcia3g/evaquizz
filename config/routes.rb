@@ -13,6 +13,9 @@ root 'welcome#index'
 
   get "inicio/maestro"
 
+get 'admin/pregunta_nueva'
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -64,6 +67,7 @@ root 'welcome#index'
 
   namespace :admin do
     get '/', to: 'dashboard#index'
+
   end
   namespace :maestro do
     get '/', to: 'dashboard#index'
