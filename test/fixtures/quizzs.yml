@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  IdQuizz: 1
+  Pregunta: MyText
+  Disponible: false
+  Tema: 
+
+two:
+  IdQuizz: 1
+  Pregunta: MyText
+  Disponible: false
+  Tema: 

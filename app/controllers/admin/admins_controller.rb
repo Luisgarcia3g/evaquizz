@@ -4,6 +4,8 @@ def index
 end
 
 def show
-    @message="Hola Administrador tal"
+    @message= "Hola"
+    
+
 end
 end

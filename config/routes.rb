@@ -75,6 +75,7 @@ post "welcome" => "welcome#validar"
   end
   namespace :alumno do
     get '/', to: 'dashboard#index'
+    post 'codigo', to: 'dashboard#validarCodigo'
   end
 
 end

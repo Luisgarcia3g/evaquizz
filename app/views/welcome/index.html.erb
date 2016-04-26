@@ -1,5 +1,10 @@
 <h1>Bienvenido a QQ</h1>
   <h3><%= @mensaje %></h3>
+  <img src="logo_nuevo.png" >
+
+  <% if flash[:notice] %>
+     <div class="notice"><%= flash[:notice] %></div>
+   <% end %>
 <%= form_for :welcome, :url => { :action => :validar} do |f| %>
 
   <p>
