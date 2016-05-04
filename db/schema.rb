@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426163221) do
+ActiveRecord::Schema.define(version: 20160504132150) do
 
-  create_table "grupos", force: :cascade do |t|
-    t.text     "NombreGrupo"
-    t.text     "Maestro"
-    t.integer  "Temario"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "pregunta", force: :cascade do |t|
+    t.text     "texto"
+    t.text     "respuesta1"
+    t.text     "respuesta2"
+    t.text     "respuesta3"
+    t.text     "respuesta4"
+    t.integer  "tiempo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

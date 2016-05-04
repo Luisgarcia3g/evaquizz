@@ -1,0 +1,41 @@
+
+<h1>Nueva Pregunta</h1>
+
+
+<%= form_for :pregunta, :url => { :action => :create} do |f| %>
+
+  <p>
+
+    <%= f.text_field :textopregunta, :placeholder => "Introduzca el texto de la pregunta" %>
+  </p>
+
+
+  <p>
+
+    <%= f.text_field :r1, :placeholder => "Introduzca la respuesta 1" %>
+  </p>
+  <p>
+
+    <%= f.text_field :r2, :placeholder => "Introduzca la respuesta 2" %>
+  </p>
+  <p>
+
+    <%= f.text_field :r3, :placeholder => "Introduzca la respuesta 3" %>
+  </p>
+
+  <p>
+
+    <%= f.text_field :r4, :placeholder => "Introduzca la respuesta 4" %>
+  </p>
+
+  <p>
+
+    <%= f.number_field :tiempo,:value => 10,  in:10..30  %>
+  </p>
+
+
+  <p>
+    <%= f.submit "Crear" %>
+  </p>
+
+  <% end %>
