@@ -1,14 +1,24 @@
-<h1>Moodle test web service</h1>
-<% if @message.nil? %>
-<p>
-  <b>Search all users: </b>
-<br>
-  <i>Array: <%= @user%></i>
+<h1>Bienvenido a QQ</h1>
+  <h3><%= @mensaje %></h3>
+  <img src="logo_nuevo.png" >
 
+  <% if flash[:notice] %>
+     <div class="notice"><%= flash[:notice] %></div>
+   <% end %>
+<%= form_for :welcome, :url => { :action => :validar} do |f| %>
 
-<% else %>
+  <p>
 
-<h3><%= @message %></h3>
-<h4><%= @configuration %></h4>
+    <%= f.text_field :usuarios, :placeholder => "Nombre de usuario" %>
+  </p>
 
-<% end %>
+  <p>
+
+    <%= f.password_field :contraseñas,:placeholder => "Contraseña" %>
+  </p>
+
+  <p>
+    <%= f.submit "Entrar" %>
+  </p>
+
+  <% end %>

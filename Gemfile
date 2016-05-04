@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'moodle', '0.1.1'
+gem 'moodle-api'
+gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
@@ -18,6 +19,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'moodle-api'
 gem 'pry'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

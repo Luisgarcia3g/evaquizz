@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  NombreGrupo: MyText
+  Maestro: 
+  Temario: 1
+
+two:
+  NombreGrupo: MyText
+  Maestro: 
+  Temario: 1

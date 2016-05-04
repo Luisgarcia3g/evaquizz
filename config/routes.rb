@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  get "administrador/inicio"
 
   #get 'welcome/index'
 
@@ -13,9 +12,9 @@ root 'welcome#index'
 
   get "inicio/maestro"
 
-get 'admin/pregunta_nueva'
 
 
+post "welcome" => "welcome#validar"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -66,14 +65,20 @@ get 'admin/pregunta_nueva'
   #   end
 
   namespace :admin do
+    resource :pregunta
     get '/', to: 'dashboard#index'
-
+    get '/usuarios', to: 'admins#show'
+    get 'pregunta/nueva', to: 'pregunta#nueva'
+    post "pregunta" => "pregunta#create"
+    get "pregunta/:id" => "pregunta#show"
+    resource :admin
   end
   namespace :maestro do
     get '/', to: 'dashboard#index'
   end
   namespace :alumno do
     get '/', to: 'dashboard#index'
+    post 'codigo', to: 'dashboard#validarCodigo'
   end
 
 end

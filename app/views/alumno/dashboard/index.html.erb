@@ -1,6 +1,29 @@
 <div class="row">
   <div class="col-sm-12 text-center bootstrap-welcome">
     <h1><%= @saludo %></h1>
-    <p class="lead">Go ahead and build your awesome app now.</p>
+      <h1><%= $usuarioNombre %></h1>
+
+
+        <img src="logo_nuevo.png" >
+         <br> <br>
+        <% if flash[:notice] %>
+           <div class="notice"><%= flash[:notice] %></div>
+         <% end %>
+         <br> <br>
+      <%= form_for :dashboard, :url => { :action => :validarCodigo} do |f| %>
+
+        <p>
+
+
+ <%= f.label :"Introduzca el código" %><br>
+          <%= f.text_field :codigo,:placeholder => "Código" %>
+        </p>
+
+        <p>
+          <%= f.submit "Entrar" %>
+        </p>
+
+        <% end %>
+
   </div>
 </div>
