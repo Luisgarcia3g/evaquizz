@@ -1,0 +1,40 @@
+<%= form_for :pregunta, :url => { :action => :create} do |f| %>
+  <% if @pregunta.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pregunta.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <ul>
+      <% @pregunta.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :texto %><br>
+    <%= f.text_field :texto %>
+  </div>
+  <div class="field">
+    <%= f.label :respuesta1 %><br>
+    <%= f.text_field :respuesta1 %>
+  </div>
+  <div class="field">
+    <%= f.label :respuesta2 %><br>
+    <%= f.text_field :respuesta2 %>
+  </div>
+  <div class="field">
+    <%= f.label :respuesta3 %><br>
+    <%= f.text_field :respuesta3 %>
+  </div>
+  <div class="field">
+    <%= f.label :respuesta4 %><br>
+    <%= f.text_field :respuesta4 %>
+  </div>
+  <div class="field">
+    <%= f.label :tiempo %><br>
+    <%= f.number_field :tiempo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
