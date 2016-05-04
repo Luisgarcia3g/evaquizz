@@ -65,12 +65,13 @@ post "welcome" => "welcome#validar"
   #   end
 
   namespace :admin do
-    resource :pregunta
+    #resource :pregunta
     get '/', to: 'dashboard#index'
     get '/usuarios', to: 'admins#show'
-    get 'pregunta/nueva', to: 'pregunta#nueva'
-    post "pregunta" => "pregunta#create"
-    get "pregunta/:id" => "pregunta#show"
+    # get 'pregunta/nueva', to: 'pregunta#nueva'
+    # post "pregunta" => "pregunta#create"
+    # get "pregunta/:id" => "pregunta#show"
+    resources :preguntas
     resource :admin
   end
   namespace :maestro do

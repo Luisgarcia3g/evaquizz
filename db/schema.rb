@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20160504132150) do
 
   create_table "pregunta", force: :cascade do |t|
-    t.text     "texto"
-    t.text     "respuesta1"
-    t.text     "respuesta2"
-    t.text     "respuesta3"
-    t.text     "respuesta4"
-    t.integer  "tiempo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "texto",      limit: 65535
+    t.text     "respuesta1", limit: 65535
+    t.text     "respuesta2", limit: 65535
+    t.text     "respuesta3", limit: 65535
+    t.text     "respuesta4", limit: 65535
+    t.integer  "tiempo",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
 end
