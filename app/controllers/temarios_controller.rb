@@ -1,0 +1,2 @@
+class TemariosController < ApplicationController
+end

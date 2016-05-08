@@ -1,3 +1,6 @@
+<h1>Grupo</h1>
+
+
 <div class="row">
   <div class="col-sm-12 text-center bootstrap-welcome">
     <h1><%= @saludo %></h1>
@@ -5,7 +8,7 @@
         <br>
 
         <br>
-  <%= link_to "<button>Ver Grupo</button>".html_safe, "maestro/grupo" %>
+  <%= link_to "<button>Temario</button>".html_safe, "/maestro" %>
 
   </div>
 </div>
@@ -34,29 +37,30 @@ table.GeneratedTable thead {
 }
 </style>
 
-<!-- HTML Code -->
+
 <table class="GeneratedTable">
 <thead>
   <tr>
-  <th>Estatus</th>
-  <th>Nombre</th>
-  <th>Tema</th>
-  <th>Fecha de inicio</th>
-  <th>Resultados</th>
-  <th>Nivel de Aprobación</th>
-  <th>Ver Quizz</th>
+  <th>alumno</th>
+  <th>Quizz 1</th>
+  <th>Quizz 2</th>
+  <th>Quizz 3</th>
+  <th>Quizz 4</th>
+  <th>Quizz 5</th>
+  <th>Gráfica</th>
   </tr>
   </thead>
   <tbody>
   <tr>
-  <td>Terminado</td>
-  <td>Introducción</td>
-  <td>1</td>
-  <td>30/08/16 10:00 am</td>
-  <td>Resultados</td>
-  <td>95%</td>
-  <td>Ver</td>
+  <td>Luis</td>
+  <td>100</td>
+  <td>90</td>
+  <td>80</td>
+  <td>70</td>
+  <td>70</td>
+  <td><%= link_to 'Ver', :action => :grafica %></td>
 
   </tr>
+
 </tbody>
 </table>

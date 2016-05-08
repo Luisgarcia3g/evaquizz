@@ -7,15 +7,29 @@ class Alumno::DashboardController < ApplicationController
      @codigo = params[:dashboard][:codigo]
 
      if(@codigo=="XYZ123")
-       flash[:notice] = "Código Correcto"
+      redirect_to :action => :esperar
 
      else
 
         flash[:notice] = "Código Incorrecto"
+             redirect_to :back
 end
-       redirect_to :back
 
+  end
+  def esperar
 
 
   end
+def respuestas
+
+end
+
+def enviada
+
+end
+
+def puntaje
+
+end
+
 end

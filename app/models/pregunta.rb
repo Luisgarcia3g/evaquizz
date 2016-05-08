@@ -1,4 +1,4 @@
 class Pregunta < ActiveRecord::Base
+ has_and_belongs_to_many :quizzs
 
-#attr_accessor :texto, :respuesta1, :respuesta2
 end

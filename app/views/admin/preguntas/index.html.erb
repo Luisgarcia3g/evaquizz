@@ -6,6 +6,11 @@
   <thead>
     <tr>
       <th>Texto</th>
+        <th>Respuesta 1</th>
+          <th>Respuesta 2 </th>
+            <th>Respuesta 3 </th>
+              <th>Respuesta 4 </th>
+
       <th>Tiempo</th>
       <th colspan="3"></th>
     </tr>
@@ -15,6 +20,11 @@
     <% @preguntas.each do |pregunta| %>
       <tr>
         <td><%= pregunta.texto %></td>
+          <td><%= pregunta.respuesta1 %></td>
+            <td><%= pregunta.respuesta2 %></td>
+              <td><%= pregunta.respuesta3 %></td>
+                <td><%= pregunta.respuesta4 %></td>
+
         <td><%= pregunta.tiempo %></td>
         <td><%= link_to 'Show', admin_pregunta_path(pregunta) %></td>
         <td><%= link_to 'Edit', edit_admin_pregunta_path(pregunta) %></td>

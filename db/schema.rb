@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504132150) do
+ActiveRecord::Schema.define(version: 20160507065828) do
 
   create_table "pregunta", force: :cascade do |t|
     t.text     "texto",      limit: 65535
@@ -20,6 +20,28 @@ ActiveRecord::Schema.define(version: 20160504132150) do
     t.text     "respuesta3", limit: 65535
     t.text     "respuesta4", limit: 65535
     t.integer  "tiempo",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "quizzs", force: :cascade do |t|
+    t.integer  "pregunta",   limit: 4
+    t.boolean  "disponible"
+    t.text     "tema",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "temarios", force: :cascade do |t|
+    t.text     "temas",      limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "temas", force: :cascade do |t|
+    t.text     "nombretema", limit: 65535
+    t.integer  "quizz",      limit: 4
+    t.integer  "temario",    limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
