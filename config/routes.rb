@@ -81,6 +81,7 @@ post "welcome" => "welcome#validar"
     get '/', to: 'dashboard#index'
     get '/grupo', to: 'dashboard#grupo'
       get '/grafica', to: 'dashboard#grafica'
+      get '/gestion', to: "dashboard#gestion"
   end
   namespace :alumno do
     get '/', to: 'dashboard#index'

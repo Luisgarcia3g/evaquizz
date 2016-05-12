@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+
+
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.3'
+
 gem 'moodle-api'
 gem 'pry'
 gem 'lazy_high_charts'

@@ -45,6 +45,44 @@ end
 
   end
 
+def gestion
+  @chart2 = LazyHighCharts::HighChart.new('graph') do |f|
+f.title(text: "Resultados pregunta 1")
+  f.xAxis(categories: ["120N","110N","100N","130N"])
 
+f.series(name: "Cantidad de alumnos ", yAxis: 0, data: [8,3,4,3])
+
+#f.series(name: "Population in Millions", yAxis: 1, data: [310, 127, 1340, 81, 65])
+
+f.yAxis [
+  {title: {text: "Alumnos", margin: 70} }
+  #{title: {text: "Population in Millions"}, opposite: true},
+]
+
+f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
+f.chart({defaultSeriesType: "column"})
+end
+
+@chart_globals = LazyHighCharts::HighChartGlobals.new do |f|
+f.global(useUTC: false)
+f.chart(
+  backgroundColor: {
+    linearGradient: [0, 0, 500, 500],
+    stops: [
+      [0, "rgb(255, 255, 255)"],
+      [1, "rgb(240, 240, 255)"]
+    ]
+  },
+  borderWidth: 2,
+  plotBackgroundColor: "rgba(255, 255, 255, .9)",
+  plotShadow: true,
+  plotBorderWidth: 1
+)
+f.lang(thousandsSep: ",,")
+f.colors(["#90ed7d", "#ff0000", "#FF0000", "#FF0000"])
+end
+
+
+end
 
 end

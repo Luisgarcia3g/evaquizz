@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507065828) do
+ActiveRecord::Schema.define(version: 20160512154737) do
 
   create_table "pregunta", force: :cascade do |t|
     t.text     "texto",      limit: 65535
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160507065828) do
     t.integer  "tiempo",     limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "image",      limit: 255
   end
 
   create_table "quizzs", force: :cascade do |t|

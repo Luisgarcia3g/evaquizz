@@ -30,7 +30,7 @@ class Admin::PreguntasController < ApplicationController
 
    private
      def pregunta_params
-       params.require(:pregunta).permit(:texto,:respuesta1,:respuesta2, :respuesta3, :respuesta4, :tiempo)
+       params.require(:pregunta).permit(:texto,:respuesta1,:respuesta2, :respuesta3, :respuesta4, :tiempo, :image)
      end
 
 

@@ -3,7 +3,7 @@
     <h1><%= @saludo %></h1>
         <h1><%= $usuarioNombre %></h1>
         <br>
-
+        <h1>Gestión de Quizzes</h1>
         <br>
   <%= link_to "<button>Ver Grupo</button>".html_safe, "maestro/grupo" %>
 
@@ -53,7 +53,7 @@ table.GeneratedTable thead {
   <td>Introducción</td>
   <td>1</td>
   <td>30/08/16 10:00 am</td>
-  <td>Resultados</td>
+  <td><%= link_to 'Resultados', :action => :gestion %></td>
   <td>95%</td>
   <td>Ver</td>
 
