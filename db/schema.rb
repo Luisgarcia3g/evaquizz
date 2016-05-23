@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512154737) do
+ActiveRecord::Schema.define(version: 20160523034511) do
 
   create_table "pregunta", force: :cascade do |t|
     t.text     "texto",      limit: 65535
@@ -25,12 +25,20 @@ ActiveRecord::Schema.define(version: 20160512154737) do
     t.string   "image",      limit: 255
   end
 
+  create_table "pregunta_quizzs", id: false, force: :cascade do |t|
+    t.integer "Id_Pregunta", limit: 4, null: false
+    t.integer "IdQuizz",     limit: 4, null: false
+  end
+
+  add_index "pregunta_quizzs", ["IdQuizz"], name: "IdQuizz", using: :btree
+
   create_table "quizzs", force: :cascade do |t|
-    t.integer  "pregunta",   limit: 4
     t.boolean  "disponible"
-    t.text     "tema",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "tema",         limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "nombre",       limit: 255
+    t.text     "preguntas_id", limit: 65535, null: false
   end
 
   create_table "temarios", force: :cascade do |t|
@@ -47,4 +55,5 @@ ActiveRecord::Schema.define(version: 20160512154737) do
     t.datetime "updated_at",               null: false
   end
 
+  add_foreign_key "pregunta_quizzs", "pregunta", column: "Id_Pregunta", name: "pregunta_quizzs_ibfk_1"
 end

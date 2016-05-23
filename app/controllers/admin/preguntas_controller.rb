@@ -1,7 +1,7 @@
 class Admin::PreguntasController < ApplicationController
 
   def index
-    @preguntas = Pregunta.all
+    @preguntas = Pregunta.all.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -30,7 +30,7 @@ class Admin::PreguntasController < ApplicationController
 
    private
      def pregunta_params
-       params.require(:pregunta).permit(:texto,:respuesta1,:respuesta2, :respuesta3, :respuesta4, :tiempo, :image)
+       params.require(:pregunta).permit(:image, :texto,  :respuesta1,:respuesta2, :respuesta3, :respuesta4, :tiempo)
      end
 
 

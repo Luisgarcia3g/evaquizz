@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
-
+gem 'will_paginate'
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+gem 'subexec'
 gem 'moodle-api'
 gem 'pry'
 gem 'lazy_high_charts'
@@ -22,6 +24,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'bootstrap-sass', '~> 3.2.0'
+
 gem 'autoprefixer-rails'
 #gem 'moodle-api'
 #gem 'pry'

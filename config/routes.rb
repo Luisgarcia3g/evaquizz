@@ -71,6 +71,8 @@ post "welcome" => "welcome#validar"
      get 'pregunta/nueva', to: 'preguntas#new'
      post "pregunta" => "preguntas#create"
      get "pregunta/:id" => "preguntas#show"
+
+     get'quizz/nuevo', to: 'quizzs#new'
     resources :preguntas
     resource :admin
     resources :quizzs
