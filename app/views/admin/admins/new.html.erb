@@ -1,0 +1,26 @@
+<h1>crear nuevo admin</h1>
+
+
+<%= form_for :admin, :url => { :action => :create} do |f| %>
+
+  <div class="field">
+    <%= f.label "Introduzca su nombre de usuario" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Introduzca su email" %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label "Introduzca la contraseña" %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label "Repita la contraseña" %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar Administrador" %>
+  </div>
+<% end %>

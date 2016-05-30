@@ -11,13 +11,20 @@
   <%= f.check_box :disponible %>
 </div>
 <div class="field">
+
+  <%= f.label "Elija un tema" %>
+    <%= f.select(:temaid,@tema_options) %>
+</div>
+<div class="field">
+  <br>
+  <br>
   <% @preguntas.each do |pre| %>
       <div>
   <%= check_box_tag :preguntas_id -%>
   <%= label_tag :preguntas, pre.texto-%>
       </div>
-    <% end -%>
-    <%= will_paginate @preguntas,  :previous_label => 'Atrás', :next_label => 'Adelante'%>
+    <% end %>
+  
   </div>
   <div class="actions">
     <%= f.submit "Guardar Quizz" %>

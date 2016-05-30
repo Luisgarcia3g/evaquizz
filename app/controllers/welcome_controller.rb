@@ -1,11 +1,13 @@
 class WelcomeController < ApplicationController
     def validar
-
+@admins=Admin.all
  @usuario = params[:welcome][:usuarios]
  $usuarioNombre=@usuario
 @contraseña = params[:welcome][:contraseñas]
 @tokencreado=nil
-if(@usuario=="Evelin")
+if (Admin.exists?(name: @usuario))
+
+
   redirect_to :admin
 else
 host = 'http://evafisica.com/learn'

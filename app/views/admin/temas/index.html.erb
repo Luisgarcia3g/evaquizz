@@ -1,0 +1,34 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Temas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre del tema</th>
+        <th>Descripción</th>
+
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tema.each do |tema| %>
+      <tr>
+        <td><%= tema.nombretema %></td>
+          <td><%= tema.descripcion %></td>
+
+
+      
+        <td><%= link_to 'Editar', edit_admin_tema_path(tema) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @tema,  :previous_label => 'Atrás', :next_label => 'Adelante'%>
+<br>
+
+<%= link_to 'Nuevo tema', new_admin_tema_path %>

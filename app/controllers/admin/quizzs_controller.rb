@@ -2,10 +2,13 @@ class Admin::QuizzsController < ApplicationController
 
   def index
     @quizzes = Quizz.all
+    @temas=Tema.all
+
   end
 
 def new
-    @preguntas = Pregunta.all.paginate(page: params[:page], per_page: 2)
+ @tema_options = Tema.all.map{ |t| [ t.nombretema, t.id ] }
+    @preguntas = Pregunta.all
   @path_prefix = :admin
   @quizz = Quizz.new
 end
@@ -29,12 +32,13 @@ end
 def edit
 
 @quizz = Quizz.find(params[:id])
-
+@tema_options = Tema.all.map{ |t| [ t.nombretema, t.id ] }
+   @preguntas = Pregunta.all
 end
 
 private
   def quizz_params
-    params.require(:quizz).permit(:nombre, :disponible)
+   params.require(:quizz).permit(:nombre, :disponible, :temaid)
   end
 
 

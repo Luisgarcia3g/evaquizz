@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523034511) do
+ActiveRecord::Schema.define(version: 20160526194827) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "password_digest", limit: 255
+  end
 
   create_table "pregunta", force: :cascade do |t|
     t.text     "texto",      limit: 65535
@@ -34,11 +42,10 @@ ActiveRecord::Schema.define(version: 20160523034511) do
 
   create_table "quizzs", force: :cascade do |t|
     t.boolean  "disponible"
-    t.text     "tema",         limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "nombre",       limit: 255
-    t.text     "preguntas_id", limit: 65535, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "nombre",     limit: 255
+    t.integer  "temaid",     limit: 4
   end
 
   create_table "temarios", force: :cascade do |t|
@@ -48,12 +55,13 @@ ActiveRecord::Schema.define(version: 20160523034511) do
   end
 
   create_table "temas", force: :cascade do |t|
-    t.text     "nombretema", limit: 65535
-    t.integer  "quizz",      limit: 4
-    t.integer  "temario",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "nombretema",  limit: 255
+    t.integer  "temario",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.text     "descripcion", limit: 65535
   end
 
-  add_foreign_key "pregunta_quizzs", "pregunta", column: "Id_Pregunta", name: "pregunta_quizzs_ibfk_1"
+  add_index "temas", ["nombretema"], name: "index_temas_on_nombretema", unique: true, using: :btree
+
 end
