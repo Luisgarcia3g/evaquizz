@@ -5,10 +5,11 @@
 <h1>Quizzes</h1>
 
 
-<table>
+<table border="1">
   <col width="150">
   <col width="160">
   <col width="150">
+  <col width="50">
   <thead>
     <tr>
       <th>Nombre del quizz</th>
@@ -38,6 +39,7 @@
 
   <% end %>
                         <% end %>
+                          <td><%= link_to 'Show', controller: "quizzs", action: "show", id: q.id  %></td>
   <td><%= link_to 'Edit', edit_admin_quizz_path(q) %></td>
 
 

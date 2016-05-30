@@ -80,13 +80,18 @@ get'quizz/', to: 'quizzs#index'
     get'tema/mostrar', to: 'temas#show'
         get'tema/', to: 'temas#index'
 
+  post 'tema/actualizar', to: 'temas#update'
+        get'temario/nuevo', to: 'temario#new'
 
+       get'temario/editar', to: 'temarios#edit'
+       get'temario/mostrar', to: 'temarios#show'
+           get'temario/', to: 'temarios#index'
 
     resources :preguntas
     resource :admin
     resources :quizzs
     resources :temas
-    resources :temario
+    resources :temarios
   end
   namespace :maestro do
     get '/', to: 'dashboard#index'

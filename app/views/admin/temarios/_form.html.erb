@@ -1,0 +1,26 @@
+<%= form_for :temario, :url => { :action => :create} do |f| %>
+  <% if @temario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@temario.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <ul>
+      <% @temario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Escriba el nombre del temario" %><br>
+    <%= f.text_field :nombretemario %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Escriba la descripción del temario" %><br>
+    <%= f.text_field :descripcion %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar Temario" %>
+  </div>
+<% end %>

@@ -1,2 +1,0 @@
-class TemariosController < ApplicationController
-end

@@ -18,8 +18,16 @@
   <div class="field">
     <%= f.label "Escriba la descripción del tema" %><br>
     <%= f.text_field :descripcion %>
-  </div>
 
+  </div>
+  <br>
+  <div class="field">
+
+    <%= f.label "Elija un temario" %>
+      <br>
+      <%= f.select(:temarioid,Temario.all.map{ |te| [ te.nombretemario, te.id ] }) %>
+  </div>
+    <br>
   <div class="actions">
     <%= f.submit "Guardar Tema" %>
   </div>

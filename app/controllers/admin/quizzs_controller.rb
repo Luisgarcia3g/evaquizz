@@ -16,6 +16,7 @@ end
 def show
 
     @quizz = Quizz.find(params[:id])
+      @temas=Tema.all
 end
 
 def create

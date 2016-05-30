@@ -26,6 +26,8 @@ class Admin::PreguntasController < ApplicationController
   def edit
     # @path_prefix = :admin
     @pregunta = Pregunta.find(params[:id])
+
+
   end
 
    private

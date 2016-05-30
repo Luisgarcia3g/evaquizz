@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
 gem 'will_paginate'
+
+gem "gretel"
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem 'subexec'
 gem 'moodle-api'

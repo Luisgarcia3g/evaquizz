@@ -3,8 +3,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Temas</h1>
+<%= breadcrumbs  :pretext => "Você está aqui: ", :separator => " &rsaquo;", :display_single_fragment => true%>
 
-<table>
+<table border="1">
+  <col width="150">
+  <col width="160">
+  <col width="150">
+
   <thead>
     <tr>
       <th>Nombre del tema</th>
@@ -22,7 +27,7 @@
           <td><%= tema.descripcion %></td>
 
 
-      
+        <td><%= link_to 'Show', controller: "temas", action: "show", id: tema.id  %></td>
         <td><%= link_to 'Editar', edit_admin_tema_path(tema) %></td>
       </tr>
     <% end %>
