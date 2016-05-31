@@ -1,7 +1,7 @@
 class Admin::PreguntasController < ApplicationController
 
   def index
-    @preguntas = Pregunta.all.paginate(page: params[:page], per_page: 10)
+    @preguntas = Pregunta.all.paginate(page: params[:page], per_page: 10).order('texto ASC')
   end
 
   def new

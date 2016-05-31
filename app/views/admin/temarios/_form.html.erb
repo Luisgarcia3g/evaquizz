@@ -1,3 +1,4 @@
+
 <%= form_for :temario, :url => { :action => :create} do |f| %>
   <% if @temario.errors.any? %>
     <div id="error_explanation">
@@ -19,7 +20,7 @@
     <%= f.label "Escriba la descripción del temario" %><br>
     <%= f.text_field :descripcion %>
   </div>
-
+<br>
   <div class="actions">
     <%= f.submit "Guardar Temario" %>
   </div>

@@ -81,7 +81,7 @@ get'quizz/', to: 'quizzs#index'
         get'tema/', to: 'temas#index'
 
   post 'tema/actualizar', to: 'temas#update'
-        get'temario/nuevo', to: 'temario#new'
+        get'temario/nuevo', to: 'temarios#new'
 
        get'temario/editar', to: 'temarios#edit'
        get'temario/mostrar', to: 'temarios#show'

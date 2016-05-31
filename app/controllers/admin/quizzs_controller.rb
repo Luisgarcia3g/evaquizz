@@ -1,7 +1,7 @@
 class Admin::QuizzsController < ApplicationController
 
   def index
-    @quizzes = Quizz.all
+    @quizzes = Quizz.all.paginate(page: params[:page], per_page: 10).order('temaid ASC')
     @temas=Tema.all
 
   end

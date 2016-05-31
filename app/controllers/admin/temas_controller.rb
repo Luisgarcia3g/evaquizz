@@ -1,7 +1,9 @@
 class Admin::TemasController < ApplicationController
 
+require 'will_paginate/array'
   def index
-    @tema = Tema.all.paginate(page: params[:page], per_page: 10)
+    @tema = Tema.all.paginate(page: params[:page], per_page: 10).order('nombretema ASC')
+@temarios=Temario.all
   end
 
   def new
@@ -35,12 +37,17 @@ class Admin::TemasController < ApplicationController
   #redirect_to :action => :show, :id => @tema.id
   end
 def update
-  @tema = Tema.find(params[:id])
-if @tema.update_attributes(tema_params)
-  redirect_to :action => :show, :id => @tema.id
-else
-render 'edit'
-end
+  @temario = Temario.find(params[:id])
+  @temario.update(temario_params)
+  respond_to do |format|
+    if @temario.save
+      format.html { redirect_to admin_temario_path(@temario), notice: "temario actualizado" }
+      format.json { render :show, status: :ok, location: admin_temario_path(@temario) }
+    else
+      format.html { render :edit }
+      format.json { render json: @temario.errors, status: :unprocessable_entity }
+    end
+  end
 end
 
 

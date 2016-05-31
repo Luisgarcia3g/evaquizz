@@ -1,4 +1,118 @@
-<h1>Tema</h1>
+<style>
+.button {
+    background-color: #5999CB; /* Green */
+
+    color: #F9F9F9;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#header {
+
+    background-color:#5999CB;
+    color:white;
+    text-align:left;
+    padding:5px;
+    height: 100%;
+  width: : 100%;
+}
+#nav {
+    line-height:30px;
+    background-color:#F9F9F9;
+    height:450px;
+    width:150px;
+    float:left;
+    padding:5px;
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px;
+  }
+    /* Style the buttons that are used to open and close the accordion panel */
+    button.accordion {
+        background-color: #F9F9F9;
+        color: #5999CB;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+    }
+
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    button.accordion.active, button.accordion:hover {
+        background-color: #9CC2E0;
+    }
+
+    /* Style the accordion panel. Note: hidden by default */
+    div.panel {
+        padding: 0 18px;
+        background-color: white;
+        display: none;
+    }
+
+    /* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
+    div.panel.show {
+        display: block ;
+    }
+
+    th {
+        text-align: center;
+        vertical-align: center;
+        background-color: #5999CB;
+        color: #F9F9F9;
+    }
+    td {
+        text-align: center;
+        vertical-align: center;
+    }
+    .logo{
+
+
+    }
+
+tr:hover {background-color: #F9F9F9}
+</style>
+<p id="notice"><%= notice %></p>
+
+<div id="header">
+
+<h1>Ver temario</h1>
+</div>
+
+<div id="nav">
+  <button class="accordion">Preguntas</button>
+  <div class="panel">
+    <%= link_to "Ver preguntas", controller: "preguntas", action: "index" %>
+      <%= link_to "Crear pregunta", controller: "preguntas", action: "new" %>
+  </div>
+
+  <button class="accordion">Quizzes</button>
+  <div class="panel">
+    <%= link_to "Ver Quizzes", controller: "quizzs", action: "index" %>
+      <%= link_to "Crear quizz", controller: "quizzs", action: "new" %>
+  </div>
+
+  <button class="accordion">Tema</button>
+  <div class="panel">
+  <%= link_to "Ver temas", controller: "temas", action: "index" %>
+    <%= link_to "Crear tema", controller: "temas", action: "new" %>
+  </div>
+  <button class="accordion">Temario</button>
+  <div class="panel">
+    <%= link_to "Ver temarios", controller: "temarios", action: "index" %>
+      <%= link_to "Crear temario", controller: "temarios", action: "new" %>
+  </div>
+
+</div>
+
+<div id="section">
 
 <p>
   <strong>Nombre:</strong>
@@ -16,11 +130,15 @@
   <col width="150">
   <col width="160">
   <col width="150">
+    <col width="150">
+
 
   <thead>
     <tr>
       <th>Nombre del tema</th>
         <th>Descripción</th>
+          <th>Ver</th>
+            <th>Editar</th>
 
 
       <th colspan="3"></th>
@@ -44,5 +162,18 @@
 <br>
 
 
-<%= link_to 'Index', admin_temarios_path %>
+<%= link_to 'Temarios', admin_temarios_path %>
 <%= link_to 'Atras',:back %>
+
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>
