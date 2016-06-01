@@ -127,7 +127,7 @@ tr:hover {background-color: #F9F9F9}
   <thead>
     <tr>
       <th>Nombre del quizz</th>
-        <th>Disponibilidad</th>
+        <th>Disponibile</th>
           <th>Tema</th>
             <th>Ver</th>
               <th>Editar</th>
@@ -142,9 +142,9 @@ tr:hover {background-color: #F9F9F9}
       <tr>
         <td><%= q.nombre %></td>
           <% if q.disponible? %>
-<td> Disponible</td>
+<td> Sí</td>
             <% else %>
-<td> No Disponible</td>
+<td> No </td>
               <% end %>
 
               <% @temas.each do |t| %>

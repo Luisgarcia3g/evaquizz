@@ -37,6 +37,16 @@ def edit
    @preguntas = Pregunta.all
 end
 
+def update
+  @quizz = Quizz.find(params[:id])
+
+   if @quizz.update_attributes(quizz_params)
+     redirect_to :action => :show, :id =>@quizz.id
+   else
+     render :edit
+   end
+end
+
 private
   def quizz_params
    params.require(:quizz).permit(:nombre, :disponible, :temaid)

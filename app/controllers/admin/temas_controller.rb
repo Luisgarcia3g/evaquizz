@@ -14,7 +14,9 @@ require 'will_paginate/array'
 
   def show
     @path_prefix = :admin
+
     @tema = Tema.find(params[:id])
+      @temario=Temario.where(id: @tema.temarioid)
       @quizzes=Quizz.where(temaid: @tema.id ).paginate(page: params[:page], per_page: 10)
   end
 
@@ -36,18 +38,16 @@ require 'will_paginate/array'
 
   #redirect_to :action => :show, :id => @tema.id
   end
+
+
 def update
-  @temario = Temario.find(params[:id])
-  @temario.update(temario_params)
-  respond_to do |format|
-    if @temario.save
-      format.html { redirect_to admin_temario_path(@temario), notice: "temario actualizado" }
-      format.json { render :show, status: :ok, location: admin_temario_path(@temario) }
-    else
-      format.html { render :edit }
-      format.json { render json: @temario.errors, status: :unprocessable_entity }
-    end
-  end
+  @tema = Tema.find(params[:id])
+
+   if @tema.update_attributes(tema_params)
+     redirect_to :action => :show, :id =>@tema.id
+   else
+     render :edit
+   end
 end
 
 

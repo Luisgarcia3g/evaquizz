@@ -127,6 +127,13 @@ tr:hover {background-color: #F9F9F9}
 </p>
 
 <p>
+  <strong>Temario:</strong>
+  <% @temario.each do |temario| %>
+  <%= temario.nombretemario %>
+    <% end %>
+</p>
+
+<p>
   <strong>Quizzes:</strong>
 </p>
 
@@ -155,8 +162,8 @@ tr:hover {background-color: #F9F9F9}
             <% else %>
 <td> No Disponible</td>
               <% end %>
-                            <td><%= link_to 'Show', controller: "quizzs", action: "show", id: q.id  %></td>
-                          <td><%= link_to 'Edit', edit_admin_quizz_path(q) %></td>
+                            <td><%= link_to 'Ver', controller: "quizzs", action: "show", id: q.id  %></td>
+                          <td><%= link_to 'Editar', edit_admin_quizz_path(q) %></td>
     <% end %>
 
     <% end %>

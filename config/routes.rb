@@ -74,17 +74,22 @@ post "welcome" => "welcome#validar"
 get'quizz/', to: 'quizzs#index'
 
      get'quizz/nuevo', to: 'quizzs#new'
+        get'quizz/:id', to: 'quizzs#show'
+
      get'tema/nuevo', to: 'temas#new'
 
     get'tema/editar', to: 'temas#edit'
+    patch' tema/actualizar', to: 'temas#update'
     get'tema/mostrar', to: 'temas#show'
         get'tema/', to: 'temas#index'
-
-  post 'tema/actualizar', to: 'temas#update'
+  put "temas/:id" => "temas#update"
+  
+  put "temarios/:id" => "temarios#update"
         get'temario/nuevo', to: 'temarios#new'
 
        get'temario/editar', to: 'temarios#edit'
-       get'temario/mostrar', to: 'temarios#show'
+       get'temario/:id', to: 'temarios#show'
+        post 'temarios/:id', to: 'temarios#show'
            get'temario/', to: 'temarios#index'
 
     resources :preguntas

@@ -29,6 +29,15 @@ class Admin::PreguntasController < ApplicationController
 
 
   end
+  def update
+    @pregunta = Pregunta.find(params[:id])
+
+     if @pregunta.update_attributes(pregunta_params)
+       redirect_to :action => :show, :id =>@pregunta.id
+     else
+       render :edit
+     end
+  end
 
    private
      def pregunta_params

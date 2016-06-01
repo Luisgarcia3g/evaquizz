@@ -150,7 +150,7 @@ tr:hover {background-color: #F9F9F9}
                 <td><%= pregunta.respuesta4 %></td>
 
         <td><%= pregunta.tiempo %></td>
-        <td><%= link_to 'Ver', admin_pregunta_path(pregunta) %></td>
+        <td><%= link_to 'Ver',  controller: "preguntas", action: "show", id: pregunta.id %></td>
         <td><%= link_to 'Editar', edit_admin_pregunta_path(pregunta) %></td>
       </tr>
     <% end %>
