@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530174605) do
+ActiveRecord::Schema.define(version: 20160602204402) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -34,11 +34,9 @@ ActiveRecord::Schema.define(version: 20160530174605) do
   end
 
   create_table "pregunta_quizzs", id: false, force: :cascade do |t|
-    t.integer "Id_Pregunta", limit: 4, null: false
-    t.integer "IdQuizz",     limit: 4, null: false
+    t.integer "preguntum_id", limit: 4, null: false
+    t.integer "quizz_id",     limit: 4, null: false
   end
-
-  add_index "pregunta_quizzs", ["IdQuizz"], name: "IdQuizz", using: :btree
 
   create_table "quizzs", force: :cascade do |t|
     t.boolean  "disponible"

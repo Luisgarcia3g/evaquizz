@@ -134,10 +134,10 @@ tr:hover {background-color: #F9F9F9}
   <div class="field">
     <br>
     <br>
-    <% @preguntas.each do |pre| %>
+    <% Pregunta.all.each do |pregunta| %>
         <div>
-    <%= check_box_tag :preguntas_id -%>
-    <%= label_tag :preguntas, pre.texto-%>
+    <%= check_box_tag :preguntas_ids,pregunta.id, @quizz.preguntas.include?(pregunta), :name => 'quizz[preguntas_ids][]' -%>
+    <%= label_tag :preguntas, pregunta.texto-%>
         </div>
       <% end %>
 

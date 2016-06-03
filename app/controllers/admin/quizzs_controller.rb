@@ -49,7 +49,9 @@ end
 
 private
   def quizz_params
-   params.require(:quizz).permit(:nombre, :disponible, :temaid)
+    #Se manda el arreglo de los id de preguntas debo nombrarlo así
+    #de lo contrario me da el error de Pregunta expected, got String
+   params.require(:quizz).permit(:nombre, :disponible, :temaid, :preguntas_ids => [])
   end
 
 

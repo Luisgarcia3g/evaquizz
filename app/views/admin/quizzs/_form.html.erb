@@ -15,15 +15,18 @@
   <%= f.label "Elija un tema" %>
     <%= f.select(:temaid,@tema_options) %>
 </div>
+
 <div class="field">
   <br>
   <br>
-  <% @preguntas.each do |pre| %>
-      <div>
-  <%= check_box_tag :preguntas_id -%>
-  <%= label_tag :preguntas, pre.texto-%>
+  <%= f.label "Preguntas" %><br>
+    <%= f.label "Esto es para generar los checkboxes, tengo que ponerle preguntas si uso preguntas_ids me dice que no encuentra el metodo" %><br>
+    <%= f.collection_check_boxes :preguntas, Pregunta.all, :id, :texto do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label%>
       </div>
-    <% end %>
+    <%end %>
 
   </div>
   <div class="actions">
