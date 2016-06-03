@@ -5,9 +5,9 @@ class WelcomeController < ApplicationController
  $usuarioNombre=@usuario
 @contraseña = params[:welcome][:contraseñas]
 @tokencreado=nil
+session[:rol]=nil
+session[:tokencreado]=nil
 if (Admin.exists?(name: @usuario))
-
-
   redirect_to :admin
 else
 host = 'http://evafisica.com/learn'
@@ -20,7 +20,8 @@ host = 'http://evafisica.com/learn'
    p configuration
 
    token =  Moodle::Api::TokenGenerator.new(configuration).call
-@tokencreado=token
+
+session[:tokenusuario]=token
   Moodle::Api.configure({host: host, token: token })
 
   params = { 'criteria[0][key]' => 'username', 'criteria[0][value]' => configuration.username }
@@ -61,15 +62,18 @@ for x in 0..@cantidadgente-1
 if (@indice[0].values[2]=="teacher")
 if(@course_users[x].values[0]==@userid)
 @rol=1
+
 end
 end
 end
 end
 
 if (@rol==1)
+  session[:rol]=1
   redirect_to :maestro
 
 else
+  session[:rol]=2
 redirect_to :alumno
 end
 

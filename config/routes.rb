@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 root 'welcome#index'
 
+get '/welcome', to: 'welcome#index'
+
   get "inicio/maestro"
 
 
@@ -83,7 +85,7 @@ get'quizz/', to: 'quizzs#index'
     get'tema/mostrar', to: 'temas#show'
         get'tema/', to: 'temas#index'
   put "temas/:id" => "temas#update"
-  
+
   put "temarios/:id" => "temarios#update"
         get'temario/nuevo', to: 'temarios#new'
 
@@ -103,6 +105,7 @@ get'quizz/', to: 'quizzs#index'
     get '/grupo', to: 'dashboard#grupo'
       get '/grafica', to: 'dashboard#grafica'
       get '/gestion', to: "dashboard#gestion"
+      get '/logout', to: "dashboard#logout"
   end
   namespace :alumno do
     get '/', to: 'dashboard#index'
@@ -111,6 +114,7 @@ get'quizz/', to: 'quizzs#index'
     get 'respuestas', to: 'dashboard#respuestas'
     get 'enviada', to: 'dashboard#enviada'
     get 'puntaje', to: 'dashboard#puntaje'
+    get '/logout', to: "dashboard#logout"
   end
 
 end

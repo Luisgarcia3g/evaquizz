@@ -1,18 +1,47 @@
 class Maestro::DashboardController < ApplicationController
+
+def logout
+
+session[:tokenusuario]=nil
+session[:rol]=nil
+
+    redirect_to '/welcome'
+end
+
+def checar
+  if (session[:tokenusuario]==nil)
+
+
+        redirect_to '/welcome'
+  else
+
+    if(session[:rol]==2)
+
+      redirect_to :alumno
+    end
+
+  end
+
+end
+
   def index
     @saludo = "Hola maestro"
+
+    checar
   end
 
 
   def grupo
   @saludo = "Hola maestro"
+  checar
   end
 
 def especificacion
-
+checar
 end
 
   def grafica
+    checar
     @chart = LazyHighCharts::HighChart.new('graph' , :style=>"width: 600px") do |f|
   f.title(text: "Resultados Luis")
   f.xAxis(categories: ["Quizz 1", "Quizz 2", "Quizz 3", "Quizz 4", "Quizz 5"])
@@ -50,6 +79,7 @@ end
   end
 
 def gestion
+  checar
   @chart2 = LazyHighCharts::HighChart.new('graph' ) do |f|
 f.title(text: "¿Cuál es el resultado de la sumatoria de las fuerzas?")
   f.xAxis(categories: ["Respuesta:"])
