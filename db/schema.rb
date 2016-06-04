@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602204402) do
+ActiveRecord::Schema.define(version: 20160604172806) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -21,7 +21,12 @@ ActiveRecord::Schema.define(version: 20160602204402) do
     t.string   "password_digest", limit: 255
   end
 
-  create_table "pregunta", force: :cascade do |t|
+  create_table "pregunta_quizzs", force: :cascade do |t|
+    t.integer "quizz_id",    limit: 4
+    t.integer "pregunta_id", limit: 4
+  end
+
+  create_table "preguntas", force: :cascade do |t|
     t.text     "texto",      limit: 65535
     t.text     "respuesta1", limit: 65535
     t.text     "respuesta2", limit: 65535
@@ -33,20 +38,14 @@ ActiveRecord::Schema.define(version: 20160602204402) do
     t.string   "image",      limit: 255
   end
 
-  create_table "pregunta_quizzs", id: false, force: :cascade do |t|
-    t.integer "preguntum_id", limit: 4, null: false
-    t.integer "quizz_id",     limit: 4, null: false
-  end
-
   create_table "quizzs", force: :cascade do |t|
+    t.integer  "pregunta",   limit: 4
     t.boolean  "disponible"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "nombre",     limit: 255
     t.integer  "temaid",     limit: 4
   end
-
-  add_index "quizzs", ["temaid"], name: "temaid", using: :btree
 
   create_table "temarios", force: :cascade do |t|
     t.text     "temas",         limit: 65535
@@ -57,15 +56,14 @@ ActiveRecord::Schema.define(version: 20160602204402) do
   end
 
   create_table "temas", force: :cascade do |t|
-    t.string   "nombretema",  limit: 255
+    t.text     "nombretema",  limit: 65535
+    t.integer  "quizz",       limit: 4
     t.integer  "temarioid",   limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.text     "descripcion", limit: 65535
   end
 
-  add_index "temas", ["nombretema"], name: "index_temas_on_nombretema", unique: true, using: :btree
-  add_index "temas", ["temarioid"], name: "temario", using: :btree
+  add_index "temas", ["nombretema"], name: "index_temas_on_nombretema", unique: true, length: {"nombretema"=>767}, using: :btree
 
-  add_foreign_key "temas", "temarios", column: "temarioid", name: "temas_ibfk_1", on_update: :cascade, on_delete: :cascade
 end
