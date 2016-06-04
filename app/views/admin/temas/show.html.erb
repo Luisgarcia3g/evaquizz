@@ -1,0 +1,51 @@
+<h1>Tema</h1>
+<%= breadcrumb :tema, @tema %>
+<p>
+  <strong>Nombre:</strong>
+  <%= @tema.nombretema %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @tema.descripcion %>
+</p>
+
+<p>
+  <strong>Quizzes:</strong>
+</p>
+
+<table border="1">
+  <col width="150">
+  <col width="160">
+  <col width="150">
+  <col width="50">
+  <thead>
+    <tr>
+      <th>Nombre del quizz</th>
+        <th>Disponibilidad</th>
+
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quizzes.each do |q| %>
+      <tr>
+                <% if (@tema.id==q.temaid) %>
+        <td><%= q.nombre %></td>
+          <% if q.disponible? %>
+<td> Disponible</td>
+            <% else %>
+<td> No Disponible</td>
+              <% end %>
+                            <td><%= link_to 'Show', controller: "quizzs", action: "show", id: q.id  %></td>
+                          <td><%= link_to 'Edit', edit_admin_quizz_path(q) %></td>
+    <% end %>
+
+    <% end %>
+
+  </tbody>
+</table>
+<%= will_paginate @quizzes,  :previous_label => 'Atrás', :next_label => 'Adelante'%>
+<br>
+<%= link_to 'Index', admin_temas_path %>
+<%= link_to 'Atras',:back %>

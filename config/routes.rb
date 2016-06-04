@@ -67,15 +67,31 @@ post "welcome" => "welcome#validar"
   namespace :admin do
     #resource :pregunta
     get '/', to: 'dashboard#index'
-    get '/usuarios', to: 'admins#show'
+    get '/usuarios', to: 'admins#new'
      get 'pregunta/nueva', to: 'preguntas#new'
-     post "pregunta" => "preguntas#create"
+     get 'pregunta/', to: "preguntas#index"
      get "pregunta/:id" => "preguntas#show"
+get'quizz/', to: 'quizzs#index'
+
+     get'quizz/nuevo', to: 'quizzs#new'
+     get'tema/nuevo', to: 'temas#new'
+
+    get'tema/editar', to: 'temas#edit'
+    get'tema/mostrar', to: 'temas#show'
+        get'tema/', to: 'temas#index'
+
+  post 'tema/actualizar', to: 'temas#update'
+        get'temario/nuevo', to: 'temario#new'
+
+       get'temario/editar', to: 'temarios#edit'
+       get'temario/mostrar', to: 'temarios#show'
+           get'temario/', to: 'temarios#index'
+
     resources :preguntas
     resource :admin
     resources :quizzs
     resources :temas
-    resources :temario
+    resources :temarios
   end
   namespace :maestro do
     get '/', to: 'dashboard#index'

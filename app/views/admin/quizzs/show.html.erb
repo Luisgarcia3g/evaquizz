@@ -1,0 +1,35 @@
+<h1>Mostrar Quizz</h1>
+<h1>Quizz</h1>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @quizz.nombre %>
+</p>
+
+
+<p>
+  <strong>Disponibilidad:</strong>
+
+
+<% if  @quizz.disponible? %>
+ Disponible
+  <% else %>
+ No Disponible
+    <% end %>
+
+</p>
+    <p>
+      <strong>Tema:</strong>
+
+
+    <% @temas.each do |t| %>
+
+
+          <% if (t.id==@quizz.temaid) %>
+    <%= t.nombretema %>
+
+    <% end %>
+    <% end %>
+</p>
+<%= link_to 'Index', admin_quizzs_path %>
+<%= link_to 'Atras',:back %>

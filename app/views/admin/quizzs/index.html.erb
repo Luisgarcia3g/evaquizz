@@ -1,0 +1,52 @@
+<h1>Index Quizzes</h1>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Quizzes</h1>
+
+
+<table border="1">
+  <col width="150">
+  <col width="160">
+  <col width="150">
+  <col width="50">
+  <thead>
+    <tr>
+      <th>Nombre del quizz</th>
+        <th>Disponibilidad</th>
+          <th>Tema</th>
+
+
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quizzes.each do |q| %>
+      <tr>
+        <td><%= q.nombre %></td>
+          <% if q.disponible? %>
+<td> Disponible</td>
+            <% else %>
+<td> No Disponible</td>
+              <% end %>
+
+              <% @temas.each do |t| %>
+
+
+                    <% if (t.id==q.temaid) %>
+            <td><%= t.nombretema %></td>
+
+  <% end %>
+                        <% end %>
+                          <td><%= link_to 'Show', controller: "quizzs", action: "show", id: q.id  %></td>
+  <td><%= link_to 'Edit', edit_admin_quizz_path(q) %></td>
+
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo quizz', new_admin_quizz_path %>

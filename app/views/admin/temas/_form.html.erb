@@ -1,0 +1,34 @@
+<%= form_for :tema, :url => { :action => :create} do |f| %>
+  <% if @tema.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tema.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <ul>
+      <% @tema.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Escriba el nombre del tema" %><br>
+    <%= f.text_field :nombretema %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Escriba la descripción del tema" %><br>
+    <%= f.text_field :descripcion %>
+
+  </div>
+  <br>
+  <div class="field">
+
+    <%= f.label "Elija un temario" %>
+      <br>
+      <%= f.select(:temarioid,Temario.all.map{ |te| [ te.nombretemario, te.id ] }) %>
+  </div>
+    <br>
+  <div class="actions">
+    <%= f.submit "Guardar Tema" %>
+  </div>
+<% end %>

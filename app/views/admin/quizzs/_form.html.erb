@@ -1,0 +1,32 @@
+<h1>Formulario de Quizzes</h1>
+<%= form_for :quizz, :url => { :action => :create} do |f| %>
+<div class="field">
+  <%= f.label "Introduzca el nombre del Quizz" %><br>
+  <%= f.text_field :nombre %>
+</div>
+
+<div class="field">
+
+  <%= label_tag(:disp, "¿El quizz esta disponible para usarse?") %>
+  <%= f.check_box :disponible %>
+</div>
+<div class="field">
+
+  <%= f.label "Elija un tema" %>
+    <%= f.select(:temaid,@tema_options) %>
+</div>
+<div class="field">
+  <br>
+  <br>
+  <% @preguntas.each do |pre| %>
+      <div>
+  <%= check_box_tag :preguntas_id -%>
+  <%= label_tag :preguntas, pre.texto-%>
+      </div>
+    <% end %>
+  
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar Quizz" %>
+  </div>
+<% end %>
