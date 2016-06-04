@@ -144,6 +144,17 @@ tr:hover {background-color: #F9F9F9}
     <% end %>
     <% end %>
 </p>
+
+<br>
+  <h5>Preguntas</h5>
+  <p>
+    <% @quizz.preguntas.each do |pregunta|  %>
+      <%= pregunta.texto %>
+      <br>
+    <% end %>
+  </p>
+<br>
+
 <%= link_to 'Quizzes', admin_quizzs_path %>
 <%= link_to 'Atras',:back %>
 

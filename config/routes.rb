@@ -96,7 +96,12 @@ get'quizz/', to: 'quizzs#index'
 
     resources :preguntas
     resource :admin
-    resources :quizzs
+    resources :quizzs do
+      member  do
+        get 'agregar_pregunta'
+        get 'pregunta_nueva'
+      end
+    end
     resources :temas
     resources :temarios
   end

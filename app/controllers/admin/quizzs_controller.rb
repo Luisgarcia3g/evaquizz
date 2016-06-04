@@ -41,6 +41,19 @@ class Admin::QuizzsController < ApplicationController
     end
   end
 
+  def pregunta_nueva
+    @quizz = Quizz.find { params[:quizz_id]  }
+    @preguntas = Pregunta.all
+  end
+
+  def agregar_pregunta
+    pregunta = Pregunta.find(params[:pregunta_id])
+    quizz = Quizz.find { params[:quizz_id]  }
+    pregunta_quizz = PreguntaQuizz.create(pregunta_id: pregunta.id, quizz_id: quizz.id)
+    flash[:notice] = "Pregunta agregada"
+    redirect_to admin_quizz_path(quizz.id)
+  end
+
 private
   def quizz_params
     #Se manda el arreglo de los id de preguntas debo nombrarlo así

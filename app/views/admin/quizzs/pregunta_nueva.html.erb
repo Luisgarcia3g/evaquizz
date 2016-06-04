@@ -1,0 +1,26 @@
+
+<h2>Enroll</h2>
+<h3><%= @quizz.nombre %></h3>
+<br>
+<%= form_tag agregar_pregunta_admin_quizz_path, :method => :get do |f| %>
+
+
+
+  <div class="form-inputs">
+    <%= hidden_field_tag :quizz_id, @quizz.id %>
+
+    <div class="form-group">
+      <%= label_tag :pregunta %><br>
+      <%= select_tag :pregunta_id, options_for_select(@preguntas.collect { |pregunta|
+      [pregunta.texto, pregunta.id] }, 1), { id: 'preguntas_select' } %>
+    </div>
+
+  </div>
+
+  <div class="actions">
+    <%= link_to t(:cancel), admin_pregunta_path(id: @quizz.id), class:"btn btn-default" %>
+    <%= submit_tag 'Submit', class:"btn btn-primary" %>
+  </div>
+
+<br>
+<% end %>
