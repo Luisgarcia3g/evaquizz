@@ -33,6 +33,15 @@ class Admin::TemariosController < ApplicationController
     @temario = Temario.find(params[:id])
   end
 
+  def update
+  @temario = Temario.find(params[:id])
+  if @temario.update_attributes(temario_params)
+    redirect_to :action => :show, :id => @temario.id
+  else
+    render :edit
+  end
+end
+
    private
      def temario_params
        params.require(:temario).permit(:nombretemario, :descripcion)

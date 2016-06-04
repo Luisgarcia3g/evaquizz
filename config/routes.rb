@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 root 'welcome#index'
 
+get '/welcome', to: 'welcome#index'
+
   get "inicio/maestro"
 
 
@@ -74,17 +76,22 @@ post "welcome" => "welcome#validar"
 get'quizz/', to: 'quizzs#index'
 
      get'quizz/nuevo', to: 'quizzs#new'
+        get'quizz/:id', to: 'quizzs#show'
+
      get'tema/nuevo', to: 'temas#new'
 
     get'tema/editar', to: 'temas#edit'
+    patch' tema/actualizar', to: 'temas#update'
     get'tema/mostrar', to: 'temas#show'
         get'tema/', to: 'temas#index'
+  put "temas/:id" => "temas#update"
 
-  post 'tema/actualizar', to: 'temas#update'
-        get'temario/nuevo', to: 'temario#new'
+  put "temarios/:id" => "temarios#update"
+        get'temario/nuevo', to: 'temarios#new'
 
        get'temario/editar', to: 'temarios#edit'
-       get'temario/mostrar', to: 'temarios#show'
+       get'temario/:id', to: 'temarios#show'
+        post 'temarios/:id', to: 'temarios#show'
            get'temario/', to: 'temarios#index'
 
     resources :preguntas
@@ -98,6 +105,7 @@ get'quizz/', to: 'quizzs#index'
     get '/grupo', to: 'dashboard#grupo'
       get '/grafica', to: 'dashboard#grafica'
       get '/gestion', to: "dashboard#gestion"
+      get '/logout', to: "dashboard#logout"
   end
   namespace :alumno do
     get '/', to: 'dashboard#index'
@@ -106,6 +114,7 @@ get'quizz/', to: 'quizzs#index'
     get 'respuestas', to: 'dashboard#respuestas'
     get 'enviada', to: 'dashboard#enviada'
     get 'puntaje', to: 'dashboard#puntaje'
+    get '/logout', to: "dashboard#logout"
   end
 
 end

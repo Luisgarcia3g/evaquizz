@@ -3,7 +3,7 @@
     <h1><%= @saludo %></h1>
       <h1><%= $usuarioNombre %></h1>
 
-
+  <%= link_to 'Cerrar Sesión', alumno_logout_path %>
         <img src="logo_nuevo.png" >
          <br> <br>
         <% if flash[:notice] %>

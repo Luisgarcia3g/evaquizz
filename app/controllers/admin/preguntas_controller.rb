@@ -1,7 +1,7 @@
 class Admin::PreguntasController < ApplicationController
 
   def index
-    @preguntas = Pregunta.all.paginate(page: params[:page], per_page: 10)
+    @preguntas = Pregunta.all.paginate(page: params[:page], per_page: 10).order('texto ASC')
   end
 
   def new
@@ -28,6 +28,15 @@ class Admin::PreguntasController < ApplicationController
     @pregunta = Pregunta.find(params[:id])
 
 
+  end
+  def update
+    @pregunta = Pregunta.find(params[:id])
+
+     if @pregunta.update_attributes(pregunta_params)
+       redirect_to :action => :show, :id =>@pregunta.id
+     else
+       render :edit
+     end
   end
 
    private

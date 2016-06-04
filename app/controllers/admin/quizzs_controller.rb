@@ -1,7 +1,7 @@
 class Admin::QuizzsController < ApplicationController
 
   def index
-    @quizzes = Quizz.all
+    @quizzes = Quizz.all.paginate(page: params[:page], per_page: 10).order('temaid ASC')
     @temas=Tema.all
 
   end
@@ -37,9 +37,21 @@ def edit
    @preguntas = Pregunta.all
 end
 
+def update
+  @quizz = Quizz.find(params[:id])
+
+   if @quizz.update_attributes(quizz_params)
+     redirect_to :action => :show, :id =>@quizz.id
+   else
+     render :edit
+   end
+end
+
 private
   def quizz_params
-   params.require(:quizz).permit(:nombre, :disponible, :temaid)
+    #Se manda el arreglo de los id de preguntas debo nombrarlo así
+    #de lo contrario me da el error de Pregunta expected, got String
+   params.require(:quizz).permit(:nombre, :disponible, :temaid, :preguntas_ids => [])
   end
 
 

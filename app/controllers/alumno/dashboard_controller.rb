@@ -1,6 +1,32 @@
 class Alumno::DashboardController < ApplicationController
+  def logout
+
+  session[:tokenusuario]=nil
+  session[:rol]=nil
+
+      redirect_to '/welcome'
+  end
+
+
+def checar
+  if (session[:tokenusuario]==nil)
+
+
+        redirect_to '/welcome'
+  else
+
+    if(session[:rol]==1)
+
+      redirect_to :maestro
+    end
+
+  end
+
+end
   def index
     @saludo = "Hola alumno"
+
+    checar
   end
 
   def validarCodigo
@@ -22,9 +48,11 @@ end
   end
 def respuestas
 
+
 end
 
 def enviada
+
 
 end
 
