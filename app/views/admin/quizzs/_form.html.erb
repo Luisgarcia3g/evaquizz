@@ -16,19 +16,7 @@
     <%= f.select(:temaid,@tema_options) %>
 </div>
 
-<div class="field">
-  <br>
-  <br>
-  <%= f.label "Preguntas" %><br>
-    <%= f.label "Esto es para generar los checkboxes, tengo que ponerle preguntas si uso preguntas_ids me dice que no encuentra el metodo" %><br>
-    <%= f.collection_check_boxes :preguntas, Pregunta.all, :id, :texto do |b| %>
-      <div class="collection-check-box">
-        <%= b.check_box %>
-        <%= b.label%>
-      </div>
-    <%end %>
 
-  </div>
   <div class="actions">
     <%= f.submit "Guardar Quizz" %>
   </div>

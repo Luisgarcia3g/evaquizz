@@ -1,5 +1,7 @@
 class Maestro::DashboardController < ApplicationController
 
+layout "maestro"
+
 def logout
 
 session[:tokenusuario]=nil

@@ -1,8 +1,8 @@
 class Admin::AdminsController < ApplicationController
+  layout "admin"
+
 def index
   @message="Hola Administrador tal"
-
-  
 end
 
 def show

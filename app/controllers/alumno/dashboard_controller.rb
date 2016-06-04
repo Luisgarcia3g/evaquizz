@@ -1,4 +1,7 @@
 class Alumno::DashboardController < ApplicationController
+
+  layout "alumno"
+
   def logout
 
   session[:tokenusuario]=nil
