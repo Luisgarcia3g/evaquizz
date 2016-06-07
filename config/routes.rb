@@ -93,6 +93,7 @@ get'quizz/', to: 'quizzs#index'
        get'temario/:id', to: 'temarios#show'
         post 'temarios/:id', to: 'temarios#show'
            get'temario/', to: 'temarios#index'
+           get '/logout', to: "dashboard#logout"
 
     resources :preguntas
     resource :admin

@@ -20,6 +20,10 @@ def checar
     if(session[:rol]==2)
 
       redirect_to :alumno
+
+    elsif (session[:rol]==3)
+
+      redirect_to :admin
     end
 
   end

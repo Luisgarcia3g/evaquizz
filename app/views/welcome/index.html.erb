@@ -1,24 +1,122 @@
-<h1>Bienvenido a QQ</h1>
-  <h3><%= @mensaje %></h3>
-  <img src="logo_nuevo.png" >
+<style>
+
+* {
+box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+body {
+font-family: Arial;
+background-color: #3498DB;
+padding: 50px;
+}
+.login {
+margin: 20px auto;
+width: 300px;
+}
+.login-screen {
+background-color: #FFF;
+padding: 20px;
+border-radius: 5px
+}
+
+.app-title {
+text-align: center;
+color: #777;
+}
+
+.login-form {
+text-align: center;
+}
+.control-group {
+margin-bottom: 10px;
+}
+
+input {
+text-align: center;
+background-color: #ECF0F1;
+border: 2px solid transparent;
+border-radius: 3px;
+font-size: 16px;
+font-weight: 200;
+padding: 10px 0;
+width: 250px;
+transition: border .5s;
+}
+
+input:focus {
+border: 2px solid #3498DB;
+box-shadow: none;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color: #2980B9;
+}
+
+.login-link {
+  font-size: 12px;
+  color: #444;
+  display: block;
+	margin-top: 12px;
+}
+</style>
+
+
+
 
   <% if flash[:notice] %>
      <div class="notice"><%= flash[:notice] %></div>
    <% end %>
-<%= form_for :welcome, :url => { :action => :validar} do |f| %>
+   <div class="login">
+   		<div class="login-screen">
+   			<div class="app-title">
+   				<h1>Bienvenido</h1>
+          <img src="logo_nuevo.png" >
 
-  <p>
+   			</div>
 
-    <%= f.text_field :usuarios, :placeholder => "Nombre de usuario" %>
-  </p>
+   			<div class="login-form">
+   				<div class="control-group">
+            <%= form_for :welcome, :url => { :action => :validar} do |f| %>
 
-  <p>
+              <p>
 
-    <%= f.password_field :contraseñas,:placeholder => "Contraseña" %>
-  </p>
+                <%= f.text_field :usuarios, :placeholder => "Nombre de usuario" %>
+              </p>
 
-  <p>
-    <%= f.submit "Entrar" %>
-  </p>
+              <p>
 
-  <% end %>
+                <%= f.password_field :contraseñas,:placeholder => "Contraseña" %>
+              </p>
+
+              <p>
+                <%= f.submit "Entrar" %>
+              </p>
+
+              <% end %>
+   				</div>
+
+
+   		</div>
+   	</div>
+
+	</div>

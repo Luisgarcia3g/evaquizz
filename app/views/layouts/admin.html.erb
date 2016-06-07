@@ -16,7 +16,7 @@
     color:white;
     text-align:left;
     padding:5px;
-    /*height: 100%;*/
+    height: 20%;
   width: : 100%;
 }
 #nav {
@@ -97,20 +97,20 @@ tr:hover {background-color: #F9F9F9}
 
     <div id="header">
       <h3 class="titulo">QuickQuizz - EvaFisica</h3>
+      <div align="rig">
       <h4>Vista administrador</h4>
-    <h1>Dashboard</h1>
+</div>
+
+<div align="right">
+  <p><%= @saludo   %> </p>
+    <%= link_to 'Cerrar Sesión', admin_logout_path, {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+</div>
     </div>
     <div id="nav">
-      <button class="accordion">Preguntas</button>
+      <button class="accordion">Temario</button>
       <div class="panel">
-        <%= link_to "Ver preguntas", controller: "preguntas", action: "index" %>
-          <%= link_to "Crear pregunta", controller: "preguntas", action: "new" %>
-      </div>
-
-      <button class="accordion">Quizzes</button>
-      <div class="panel">
-        <%= link_to "Ver Quizzes", controller: "quizzs", action: "index" %>
-          <%= link_to "Crear quizz", controller: "quizzs", action: "new" %>
+        <%= link_to "Ver temarios", controller: "temarios", action: "index" %>
+          <%= link_to "Crear temario", controller: "temarios", action: "new" %>
       </div>
 
       <button class="accordion">Tema</button>
@@ -118,11 +118,20 @@ tr:hover {background-color: #F9F9F9}
       <%= link_to "Ver temas", controller: "temas", action: "index" %>
         <%= link_to "Crear tema", controller: "temas", action: "new" %>
       </div>
-      <button class="accordion">Temario</button>
+
+
+      <button class="accordion">Quizzes</button>
       <div class="panel">
-        <%= link_to "Ver temarios", controller: "temarios", action: "index" %>
-          <%= link_to "Crear temario", controller: "temarios", action: "new" %>
+        <%= link_to "Ver Quizzes", controller: "quizzs", action: "index" %>
+          <%= link_to "Crear quizz", controller: "quizzs", action: "new" %>
       </div>
+
+      <button class="accordion">Preguntas</button>
+      <div class="panel">
+        <%= link_to "Ver preguntas", controller: "preguntas", action: "index" %>
+          <%= link_to "Crear pregunta", controller: "preguntas", action: "new" %>
+      </div>
+
 
     </div>
 

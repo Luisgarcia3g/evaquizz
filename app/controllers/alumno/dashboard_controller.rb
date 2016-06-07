@@ -21,6 +21,10 @@ def checar
     if(session[:rol]==1)
 
       redirect_to :maestro
+
+    elsif(session[:rol]==3)
+
+      redirect_to :admin
     end
 
   end
@@ -47,10 +51,12 @@ end
   end
   def esperar
 
+sleep 5
+render :respuestas
 
   end
 def respuestas
-
+sleep 5
 
 end
 

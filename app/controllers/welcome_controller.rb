@@ -7,8 +7,11 @@ class WelcomeController < ApplicationController
 @tokencreado=nil
 session[:rol]=nil
 session[:tokencreado]=nil
-if (Admin.exists?(name: @usuario))
+admin= Admin.find_by(name: params[:welcome][:usuarios])
+if (admin && admin.authenticate(params[:welcome][:contraseñas]))
   redirect_to :admin
+  session[:rol]=3
+  session[:tokenusuario]=10
 else
 host = 'http://evafisica.com/learn'
 
