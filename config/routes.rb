@@ -70,30 +70,36 @@ post "welcome" => "welcome#validar"
     #resource :pregunta
     get '/', to: 'dashboard#index'
     get '/usuarios', to: 'admins#new'
-     get 'pregunta/nueva', to: 'preguntas#new'
-     get 'pregunta/', to: "preguntas#index"
-     get "pregunta/:id" => "preguntas#show"
-get'quizz/', to: 'quizzs#index'
+    get '/logout', to: "dashboard#logout"
 
-     get'quizz/nuevo', to: 'quizzs#new'
-        get'quizz/:id', to: 'quizzs#show'
+    get 'pregunta/nueva', to: 'preguntas#new'
+    get 'pregunta/', to: "preguntas#index"
+    get "pregunta/:id" => "preguntas#show"
+    get '/desactivar', to: "preguntas#desactivar"
 
-     get'tema/nuevo', to: 'temas#new'
 
+    get'quizz/', to: 'quizzs#index'
+    get'quizz/nuevo', to: 'quizzs#new'
+    get'quizz/:id', to: 'quizzs#show'
+    get '/desactivar', to: "quizzs#desactivar"
+
+    get'tema/nuevo', to: 'temas#new'
     get'tema/editar', to: 'temas#edit'
     patch' tema/actualizar', to: 'temas#update'
     get'tema/mostrar', to: 'temas#show'
-        get'tema/', to: 'temas#index'
-  put "temas/:id" => "temas#update"
+    get'tema/', to: 'temas#index'
+    put "temas/:id" => "temas#update"
+    get '/desactivar', to: "temas#desactivar"
 
-  put "temarios/:id" => "temarios#update"
-        get'temario/nuevo', to: 'temarios#new'
+    put "temarios/:id" => "temarios#update"
+    get'temario/nuevo', to: 'temarios#new'
+    get'temario/editar', to: 'temarios#edit'
+    get'temario/:id', to: 'temarios#show'
+    post 'temarios/:id', to: 'temarios#show'
+    get'temario/', to: 'temarios#index'
+    get '/desactivar', to: "temarios#desactivar"
 
-       get'temario/editar', to: 'temarios#edit'
-       get'temario/:id', to: 'temarios#show'
-        post 'temarios/:id', to: 'temarios#show'
-           get'temario/', to: 'temarios#index'
-           get '/logout', to: "dashboard#logout"
+
 
     resources :preguntas
     resource :admin

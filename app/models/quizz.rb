@@ -1,4 +1,5 @@
 class Quizz < ActiveRecord::Base
+    scope :active, -> { where(is_active: true) }
   validates_uniqueness_of :nombre
   validates(:nombre, presence: true)
   belongs_to :tema

@@ -2,15 +2,16 @@ class Admin::AdminsController < ApplicationController
   layout "admin"
 
 def index
-  @message="Hola Administrador tal"
+  @saludo = "Hola administrador #{$usuarioNombre}"
 end
 
 def show
+    @saludo = "Hola administrador #{$usuarioNombre}"
   @admin = Admin.find(params[:id])
 end
 
 def new
-
+  @saludo = "Hola administrador #{$usuarioNombre}"
   @path_prefix = :admin
   @admin = Admin.new
 end

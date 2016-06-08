@@ -1,10 +1,10 @@
 class Admin::TemariosController < ApplicationController
-
+layout 'temarios'
   def checar
     if (session[:tokenusuario]==nil)
 
+      redirect_to '/welcome'
 
-          redirect_to '/welcome'
     else
 
       if(session[:rol]==1)
@@ -12,30 +12,41 @@ class Admin::TemariosController < ApplicationController
         redirect_to :maestro
 
       elsif (session[:rol]==2)
+
         redirect_to :alumno
-
-
-
 
       end
 
     end
 
+  end
+
+  def desactivar
+
+    @temario = Temario.find(params[:id])
+
+    @temario.update_attribute(:is_active, false
+    )
+    redirect_to :back
 
   end
 
   def logout
 
-  session[:tokenusuario]=nil
-  session[:rol]=nil
+    session[:tokenusuario]=nil
 
-      redirect_to '/welcome'
+    session[:rol]=nil
+
+    redirect_to '/welcome'
+
   end
 
-
   def index
+
     checar
-    @temario = Temario.all.paginate(page: params[:page], per_page: 10)
+
+    @temario = Temario.active.all.paginate(page: params[:page], per_page: 10)
+
   end
 
   def new
@@ -48,7 +59,7 @@ class Admin::TemariosController < ApplicationController
     checar
     @path_prefix = :admin
     @temario = Temario.find(params[:id])
-@temas=Tema.where(temarioid: @temario.id ).paginate(page: params[:page], per_page: 10)
+    @temas=Tema.where(temarioid: @temario.id ).paginate(page: params[:page], per_page: 10)
   end
 
   def create
@@ -70,18 +81,18 @@ class Admin::TemariosController < ApplicationController
 
   def update
     checar
-  @temario = Temario.find(params[:id])
-  if @temario.update_attributes(temario_params)
-    redirect_to :action => :show, :id => @temario.id
-  else
-    render :edit
+    @temario = Temario.find(params[:id])
+    if @temario.update_attributes(temario_params)
+      redirect_to :action => :show, :id => @temario.id
+    else
+      render :edit
+    end
   end
-end
 
-   private
-     def temario_params
-       params.require(:temario).permit(:nombretemario, :descripcion)
-     end
+  private
+  def temario_params
+    params.require(:temario).permit(:nombretemario, :descripcion)
+  end
 
 
 end

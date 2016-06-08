@@ -1,6 +1,6 @@
 class Pregunta < ActiveRecord::Base
   self.table_name = 'preguntas'
-
+  scope :active, -> { where(is_active: true) }
   validates(:texto, presence: true)
   validates(:respuesta1, presence: true)
   validates(:respuesta2, presence: true)

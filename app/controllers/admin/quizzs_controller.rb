@@ -1,10 +1,10 @@
 class Admin::QuizzsController < ApplicationController
-
+layout 'quizz'
   def checar
     if (session[:tokenusuario]==nil)
 
 
-          redirect_to '/welcome'
+      redirect_to '/welcome'
     else
 
       if(session[:rol]==1)
@@ -24,12 +24,22 @@ class Admin::QuizzsController < ApplicationController
 
   end
 
+  def desactivar
+
+    @temario = Temario.find(params[:id])
+
+    @temario.update_attribute(:is_active, false
+    )
+    redirect_to :back
+
+  end
+
   def logout
 
-  session[:tokenusuario]=nil
-  session[:rol]=nil
+    session[:tokenusuario]=nil
+    session[:rol]=nil
 
-      redirect_to '/welcome'
+    redirect_to '/welcome'
   end
 
   def index
@@ -94,11 +104,11 @@ class Admin::QuizzsController < ApplicationController
     redirect_to admin_quizz_path(quizz.id)
   end
 
-private
+  private
   def quizz_params
     #Se manda el arreglo de los id de preguntas debo nombrarlo así
     #de lo contrario me da el error de Pregunta expected, got String
-   params.require(:quizz).permit(:nombre, :disponible, :temaid)
+    params.require(:quizz).permit(:nombre, :disponible, :temaid)
   end
 
 

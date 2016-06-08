@@ -98,7 +98,7 @@ tr:hover {background-color: #F9F9F9}
     <div id="header">
       <h3 class="titulo">QuickQuizz - EvaFisica</h3>
       <div align="rig">
-      <h4>Vista administrador</h4>
+      <h4>Administradores</h4>
 </div>
 
 <div align="right">
@@ -107,6 +107,15 @@ tr:hover {background-color: #F9F9F9}
 </div>
     </div>
     <div id="nav">
+
+      <button class="accordion">Administradores</button>
+      <div class="panel">
+        <%= link_to "Crear Administrador", controller: "admins", action: "new" %>
+
+      </div>
+
+
+
       <button class="accordion">Temario</button>
       <div class="panel">
         <%= link_to "Ver temarios", controller: "temarios", action: "index" %>

@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604172806) do
+ActiveRecord::Schema.define(version: 20160608154317) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.string   "email",           limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "password_digest", limit: 255
+    t.boolean  "is_active",                   default: true
   end
 
   create_table "pregunta_quizzs", force: :cascade do |t|
@@ -33,35 +34,39 @@ ActiveRecord::Schema.define(version: 20160604172806) do
     t.text     "respuesta3", limit: 65535
     t.text     "respuesta4", limit: 65535
     t.integer  "tiempo",     limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "image",      limit: 255
+    t.boolean  "is_active",                default: true
   end
 
   create_table "quizzs", force: :cascade do |t|
     t.boolean  "disponible"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "nombre",     limit: 255
     t.integer  "temaid",     limit: 4
+    t.boolean  "is_active",              default: true
   end
 
   add_index "quizzs", ["temaid"], name: "temaid", using: :btree
 
   create_table "temarios", force: :cascade do |t|
     t.text     "temas",         limit: 65535
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "nombretemario", limit: 255
     t.text     "descripcion",   limit: 65535
+    t.boolean  "is_active",                   default: true
   end
 
   create_table "temas", force: :cascade do |t|
     t.string   "nombretema",  limit: 255
     t.integer  "temarioid",   limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.text     "descripcion", limit: 65535
+    t.boolean  "is_active",                 default: true
   end
 
   add_index "temas", ["nombretema"], name: "index_temas_on_nombretema", unique: true, using: :btree
