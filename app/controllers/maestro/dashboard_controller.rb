@@ -2,6 +2,11 @@ class Maestro::DashboardController < ApplicationController
 
 layout "maestro"
 
+
+def filtrar
+
+
+end
 def logout
 
 session[:tokenusuario]=nil
@@ -31,22 +36,25 @@ def checar
 end
 
   def index
-    @saludo = "Hola maestro"
+      @saludo = "Hola  #{$usuarioNombre}"
 
     checar
   end
 
 
   def grupo
-  @saludo = "Hola maestro"
+
+  @saludo = "Hola  #{$usuarioNombre}"
   checar
   end
 
 def especificacion
 checar
+  @saludo = "Hola #{$usuarioNombre}"
 end
 
   def grafica
+      @saludo = "Hola administrador #{$usuarioNombre}"
     checar
     @chart = LazyHighCharts::HighChart.new('graph' , :style=>"width: 600px") do |f|
   f.title(text: "Resultados Luis")
@@ -85,6 +93,7 @@ end
   end
 
 def gestion
+    @saludo = "Hola #{$usuarioNombre}"
   checar
   @chart2 = LazyHighCharts::HighChart.new('graph' ) do |f|
 f.title(text: "¿Cuál es el resultado de la sumatoria de las fuerzas?")

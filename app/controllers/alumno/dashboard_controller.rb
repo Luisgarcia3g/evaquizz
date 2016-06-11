@@ -51,12 +51,10 @@ end
   end
   def esperar
 
-sleep 5
-render :respuestas
+
 
   end
 def respuestas
-sleep 5
 
 end
 

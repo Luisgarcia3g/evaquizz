@@ -1,3 +1,59 @@
+<style>
+.button {
+  background-color: #5999CB; /* Green */
+
+  color: #F9F9F9;
+
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.button2 {
+  background-color: #FF9811; /* Green */
+
+  color: #F9F9F9;
+  width: 200px;
+    height: 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 26px;
+  margin-left: 550px;
+
+   border-radius: 20px;
+}
+
+
+#header {
+
+  background-color:#5999CB;
+  color:white;
+  text-align:left;
+  padding:5px;
+  height: 22%;
+  width: : 100%;
+}
+
+th {
+  text-align: center;
+  background-color: #5999CB;
+  color: #F9F9F9;
+
+}
+td {
+  text-align: center;
+  vertical-align: center;
+}
+
+
+tr {
+  text-align: center;
+  background-color: #F9F9F9;
+
+}
+</style>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +64,31 @@
 </head>
 <body>
 
-    <div id="main-container" class="container">
+  <div id="main-container" class="container">
+
+
+
+
+    <div id="header">
       <h3 class="titulo">QuickQuizz - EvaFisica</h3>
-      <h4>Vistas Maestros</h4>
-      <div class="row">
-        <div class="col-sm-12">
-          <%= yield %>
-        </div>
+      <div align="rig">
+        <h4>Maestros</h4>
+      </div>
+
+      <div align="right">
+        <p><%= @saludo   %> </p>
+        <%= link_to 'Cerrar Sesión', maestro_logout_path, {:style=>'color:#FFFFFF;', :class => "css_class"} %>
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+        <br>
+        <%= yield %>
+      </div>
+    </div>
+
+
   </body>
-</html>
+  </html>

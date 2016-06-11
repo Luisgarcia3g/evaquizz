@@ -1,16 +1,3 @@
-<div class="row">
-  <div class="col-sm-12 text-center bootstrap-welcome">
-    <h1><%= @saludo %></h1>
-        <h1><%= $usuarioNombre %></h1>
-  <%= link_to 'Cerrar Sesión', maestro_logout_path %>
-        <br>
-        <h1>Gestión de Quizzes</h1>
-        <br>
-
-  <%= link_to "<button>Ver Grupo</button>".html_safe, "maestro/grupo" %>
-
-  </div>
-</div>
 <!-- Codes by HTML.am -->
 
 <!-- CSS Code -->
@@ -18,24 +5,58 @@
 table.GeneratedTable {
 width:100%;
 background-color:#FFFFFF;
-border-collapse:collapse;border-width:1px;
-
+border-collapse:collapse;border-width:2px;
+border-color:#9CC2E0;
 border-style:solid;
-
+color:#F9F9F9;
 }
 
-table.GeneratedTable td, table.GeneratedTable th {
-border-width:1px;
-
+ table.GeneratedTable th {
+border-width:2px;
+border-color:#9CC2E0;
 border-style:solid;
-padding:3px;
+padding:10px;
 }
+
+table.GeneratedTable td {
+border-width:2px;
+border-color:#9CC2E0;
+border-style:solid;
+padding:10px;
+color:#000000;
+}
+
 
 table.GeneratedTable thead {
-
+background-color:#5999CB;
+text-align: center;
 }
 </style>
 
+<div>
+  <%= form_for :dashboard, :url => { :action => :filtrar} do |f| %>
+
+<table border="0">
+<tr>
+  <td>
+      <%= f.label "Grupo", :size => 100 %>
+
+        <%= f.select(:temarioid,Temario.all.map{ |te| [ te.nombretemario, te.id ] }) %>
+  <%= f.submit "Filtrar" %>
+
+
+
+  <% end %>
+</td>
+<td>
+  <%= link_to "<button class='button2'>Ver Grupo</button>".html_safe, "maestro/grupo" %>
+</td>
+</tr>
+</table>
+</div>
+
+  <br>
+  <br>
 <!-- HTML Code -->
 <table class="GeneratedTable">
 <thead>
@@ -53,9 +74,15 @@ table.GeneratedTable thead {
   <tr>
   <td>Terminado</td>
   <td>Introducción</td>
-  <td>1</td>
+  <td>Bienvenido a fisica</td>
   <td>30/08/16 10:00 am</td>
-  <td><%= link_to 'Resultados', :action => :gestion %></td>
+  <td>
+
+    <%=link_to image_tag("grafic.png", border: 0), {action: 'gestion', controller: 'dashboard'}, {class: 'dock-item'}%>
+
+
+
+  </td>
   <td>95%</td>
   <td>Ver</td>
 
@@ -63,7 +90,7 @@ table.GeneratedTable thead {
   <tr>
   <td><%= link_to 'No Iniciado', {:action => :gestion}, data: {title:' Activar',confirm: 'Estas seguro de querer activar este quiz?',cancel:'Cancelar', commit: 'Confirmar'} %></td>
   <td>Introducción</td>
-  <td>1</td>
+  <td>Bienvenido a fisica</td>
   <td> </td>
   <td></td>
   <td></td>
@@ -72,3 +99,10 @@ table.GeneratedTable thead {
   </tr>
 </tbody>
 </table>
+
+
+
+
+
+
+<!-- HTML Code -->

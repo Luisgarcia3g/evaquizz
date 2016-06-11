@@ -8,15 +8,15 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-root 'welcome#index'
+  root 'welcome#index'
 
-get '/welcome', to: 'welcome#index'
+  get '/welcome', to: 'welcome#index'
 
   get "inicio/maestro"
 
 
 
-post "welcome" => "welcome#validar"
+  post "welcome" => "welcome#validar"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -115,9 +115,11 @@ post "welcome" => "welcome#validar"
   namespace :maestro do
     get '/', to: 'dashboard#index'
     get '/grupo', to: 'dashboard#grupo'
-      get '/grafica', to: 'dashboard#grafica'
-      get '/gestion', to: "dashboard#gestion"
-      get '/logout', to: "dashboard#logout"
+    get '/grafica', to: 'dashboard#grafica'
+    get '/gestion', to: "dashboard#gestion"
+    get '/logout', to: "dashboard#logout"
+    get '/especificacion', to: "dashboard#especificacion"
+    get '/filtrar', to: "dashboard#filtrar"
   end
   namespace :alumno do
     get '/', to: 'dashboard#index'

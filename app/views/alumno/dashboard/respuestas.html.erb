@@ -1,13 +1,36 @@
 <h1> Respuestas</h1>
 
-<button type="button" style="width:300px;height:200px">Respuesta 1</button>
 
-<button type="button" style="width:300px;height:200px">Respuesta 2</button>
-  <br>
-    <br>
-<button type="button" style="width:300px;height:200px">Respuesta 3</button>
-<button type="button" style="width:300px;height:200px">Respuesta 4</button>
-  <br>
-    <br>
+<style>
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
-  <%= link_to "<button type='button' style='width:600px;height:200px' >Enviar</button>".html_safe, "enviada" %>
+.button2 {background-color: #0D01FF;width:200px;height:100px} /* azul */
+.button3 {background-color: #7F0089;width:200px;height:100px} /* violeta */
+.button4 {background-color: #008905;width:200px;height:100px} /* verde */
+.button5 {background-color: #EAFF24;width:200px;height:100px} /* amarillo */
+</style>
+
+<div align="center">
+<button class="button button5">Respuesta 1</button>
+<button class="button button2">Respuesta 2</button>
+<br>
+   <br>
+<button class="button button3">Respuesta 3</button>
+<button class="button button4">Respuesta 4</button>
+<br>
+   <br>
+
+
+  <%= link_to "<button type='button' style='width:200px;height:100px' >Enviar</button>".html_safe, "enviada" %>
+</di>

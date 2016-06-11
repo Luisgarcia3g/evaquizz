@@ -44,19 +44,21 @@ layout 'temarios'
   def index
 
     checar
-
+  @saludo = "Hola  #{$usuarioNombre}"
     @temario = Temario.active.all.paginate(page: params[:page], per_page: 10)
 
   end
 
   def new
     checar
+      @saludo = "Hola  #{$usuarioNombre}"
     @path_prefix = :admin
     @temario = Temario.new
   end
 
   def show
     checar
+      @saludo = "Hola  #{$usuarioNombre}"
     @path_prefix = :admin
     @temario = Temario.find(params[:id])
     @temas=Tema.where(temarioid: @temario.id ).paginate(page: params[:page], per_page: 10)
@@ -76,6 +78,7 @@ layout 'temarios'
   def edit
     checar
     # @path_prefix = :admin
+      @saludo = "Hola  #{$usuarioNombre}"
     @temario = Temario.find(params[:id])
   end
 
