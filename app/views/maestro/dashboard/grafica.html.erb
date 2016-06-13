@@ -1,6 +1,8 @@
 <h1>Grafica</h1>
-<%= link_to 'Cerrar Sesión', maestro_logout_path %>
+<div id="chart-container"  align="center"><%= @chart.render() %>
+</div>
+<div align="center">
+<%= link_to 'Atras', maestro_grupo_path %>
+</div>
 <br>
 <br>
-<%= high_chart_globals(@chart_globals) %>
-<%= high_chart("some_id", @chart) %>

@@ -20,7 +20,9 @@
 
 //= require_tree .
 
-
+//= require fusioncharts/fusioncharts
+//= require fusioncharts/fusioncharts.charts
+//= require fusioncharts/themes/fusioncharts.theme.fint
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
 //= require highcharts/highstock

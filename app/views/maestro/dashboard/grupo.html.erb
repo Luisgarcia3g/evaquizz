@@ -1,44 +1,64 @@
-<h1>Grupo</h1>
 
 
-<div class="row">
-  <div class="col-sm-12 text-center bootstrap-welcome">
-    <h1><%= @saludo %></h1>
-        <h1><%= $usuarioNombre %></h1>
-        <%= link_to 'Cerrar Sesión', maestro_logout_path %>
-        <br>
-
-        <br>
-  <%= link_to "<button>Temario</button>".html_safe, "/maestro" %>
-
-  </div>
-</div>
-<!-- Codes by HTML.am -->
 
 <!-- CSS Code -->
 <style type="text/css" scoped>
 table.GeneratedTable {
 width:100%;
 background-color:#FFFFFF;
-border-collapse:collapse;border-width:1px;
-
+border-collapse:collapse;border-width:2px;
+border-color:#9CC2E0;
 border-style:solid;
-
+color:#F9F9F9;
 }
 
-table.GeneratedTable td, table.GeneratedTable th {
-border-width:1px;
-
+ table.GeneratedTable th {
+border-width:2px;
+border-color:#9CC2E0;
 border-style:solid;
-padding:3px;
+padding:10px;
 }
+
+table.GeneratedTable td {
+border-width:2px;
+border-color:#9CC2E0;
+border-style:solid;
+padding:10px;
+color:#000000;
+}
+
 
 table.GeneratedTable thead {
-
+background-color:#5999CB;
+text-align: center;
 }
 </style>
 
+<div>
+  <%= form_for :dashboard, :url => { :action => :filtrar} do |f| %>
 
+<table border="0">
+<tr>
+  <td>
+      <%= f.label "Grupo", :size => 100 %>
+
+        <%= f.select(:temarioid,Temario.all.map{ |te| [ te.nombretemario, te.id ] }) %>
+  <%= f.submit "Filtrar" %>
+
+
+
+  <% end %>
+</td>
+<td>
+  <%= link_to "<button class='button2'>Temario</button>".html_safe, maestro_path %>
+</td>
+</tr>
+</table>
+</div>
+
+  <br>
+  <br>
+<!-- HTML Code -->
 <table class="GeneratedTable">
 <thead>
   <tr>
@@ -65,3 +85,10 @@ table.GeneratedTable thead {
 
 </tbody>
 </table>
+
+
+
+
+<!-- Codes by HTML.am -->
+
+<!-- CSS Code -->

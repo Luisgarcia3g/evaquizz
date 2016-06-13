@@ -120,6 +120,8 @@ Rails.application.routes.draw do
     get '/logout', to: "dashboard#logout"
     get '/especificacion', to: "dashboard#especificacion"
     get '/filtrar', to: "dashboard#filtrar"
+    get '/iniciar', to: "dashboard#iniciar"
+
   end
   namespace :alumno do
     get '/', to: 'dashboard#index'
