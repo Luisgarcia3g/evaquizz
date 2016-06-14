@@ -46,6 +46,7 @@ class Admin::TemasController < ApplicationController
   end
   def index
     checar
+    @saludo = "Hola  #{$usuarioNombre}"
     @tema = Tema.active.all.paginate(page: params[:page], per_page: 10).order('nombretema ASC')
     @temarios=Temario.all
   end
@@ -59,6 +60,7 @@ class Admin::TemasController < ApplicationController
 
   def show
     checar
+    @saludo = "Hola  #{$usuarioNombre}"
     @path_prefix = :admin
 
     @tema = Tema.find(params[:id])

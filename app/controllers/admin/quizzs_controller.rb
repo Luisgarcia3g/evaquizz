@@ -44,12 +44,14 @@ layout 'quizz'
 
   def index
     checar
+    @saludo = "Hola  #{$usuarioNombre}"
     @quizzes = Quizz.all.paginate(page: params[:page], per_page: 10).order('temaid ASC')
     @temas=Tema.all
   end
 
   def new
     checar
+    @saludo = "Hola  #{$usuarioNombre}"
     @tema_options = Tema.all.map{ |t| [ t.nombretema, t.id ] }
     @preguntas = Pregunta.all
     @path_prefix = :admin
@@ -58,6 +60,7 @@ layout 'quizz'
 
   def show
     checar
+    @saludo = "Hola  #{$usuarioNombre}"
     @quizz = Quizz.find(params[:id])
     @temas=Tema.all
   end
@@ -74,6 +77,7 @@ layout 'quizz'
 
   def edit
     checar
+    @saludo = "Hola  #{$usuarioNombre}"
     @quizz = Quizz.find(params[:id])
     @tema_options = Tema.all.map{ |t| [ t.nombretema, t.id ] }
     @preguntas = Pregunta.all

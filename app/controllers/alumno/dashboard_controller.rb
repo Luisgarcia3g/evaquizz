@@ -1,3 +1,15 @@
+# config/initializers/pusher.rb
+require 'pusher'
+
+Pusher.app_id = '215714'
+Pusher.key = '75159ef1c6a366266edb'
+Pusher.secret = 'c62f3def449b7e35a42a'
+Pusher.logger = Rails.logger
+Pusher.encrypted = true
+
+# app/controllers/hello_world_controller.rb
+
+
 class Alumno::DashboardController < ApplicationController
 
   layout "alumno"

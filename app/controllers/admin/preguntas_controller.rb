@@ -43,7 +43,7 @@ class Admin::PreguntasController < ApplicationController
   def index
 
     checar
-    @saludo = "Hola administrador #{$usuarioNombre}"
+    @saludo = "Hola  #{$usuarioNombre}"
     @preguntas = Pregunta.all.paginate(page: params[:page], per_page: 10).order('texto ASC')
   end
 

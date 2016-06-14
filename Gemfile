@@ -8,6 +8,7 @@ gem 'fusioncharts-rails'
 gem 'will_paginate'
 gem 'jquery-turbolinks'
 gem "gretel"
+gem 'pusher'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem 'subexec'
 gem 'moodle-api'
