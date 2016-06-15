@@ -121,6 +121,7 @@ Rails.application.routes.draw do
     get '/especificacion', to: "dashboard#especificacion"
     get '/filtrar', to: "dashboard#filtrar"
     get '/iniciar', to: "dashboard#iniciar"
+    post 'siguiente', to: 'dashboard#siguiente'
 
   end
   namespace :alumno do

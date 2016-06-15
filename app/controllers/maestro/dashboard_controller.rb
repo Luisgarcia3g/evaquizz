@@ -12,36 +12,31 @@ class Maestro::DashboardController < ApplicationController
   Pusher.encrypted = true
 
   require 'securerandom'
+
   def filtrar
 
   end
+
   def logout
 
     session[:tokenusuario]=nil
     session[:rol]=nil
-
     redirect_to '/welcome'
   end
 
+
   def checar
     if (session[:tokenusuario]==nil)
-
-
       redirect_to '/welcome'
     else
-
       if(session[:rol]==2)
-
         redirect_to :alumno
-
       elsif (session[:rol]==3)
-
         redirect_to :admin
       end
-
     end
-
   end
+
 
   def index
     @saludo = "Hola  #{$usuarioNombre}"
@@ -61,16 +56,24 @@ class Maestro::DashboardController < ApplicationController
     @saludo = "Hola #{$usuarioNombre}"
   end
 
-
-
 def iniciar
-checar
+  checar
   @saludo = "Hola #{$usuarioNombre}"
   @codigo= SecureRandom.hex(3)
-  Pusher.trigger('channel', 'event', foo: 'bar')
+  Pusher.trigger('channel', 'event', codigo: @codigo)
 
 end
-  def grafica
+
+
+def siguiente
+  checar
+  @codigo= SecureRandom.hex(3)
+  Pusher.trigger('channel', 'event', codigo: @codigo)
+  render nothing: true
+end
+
+
+def grafica
     @saludo = "Hola administrador #{$usuarioNombre}"
     checar
     @chart = Fusioncharts::Chart.new({
