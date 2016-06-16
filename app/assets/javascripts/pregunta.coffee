@@ -6,6 +6,8 @@ $(document).ready ->
         $.post '/maestro/siguiente'
 
     timer = new Date new Date().getTime() + 1000 * 10 #1000 Milliseconds 10 seconds
+
+    #Contdown Plugin http://hilios.github.io/jQuery.countdown/documentation.html
     $('#clock').countdown timer
       .on 'update.countdown', (event) ->
         $(this).html event.strftime '%D days %H:%M:%S'
