@@ -1,17 +1,30 @@
 
 <div align="center">
+ <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
 <h1> Nombre del Quizz: Quizz 1</h1>
 <h1> El código del quizz es: </h1>
 <h1 style="color:red;"> <%=   @codigo %></h1>
-<h1> Alumnos que han entrado: </h1>
+<h1> Alumnos que han entrado : </h1>
 <br>
 <div align="center">
-    <%= link_to "<button class='button3'>Comenzar</button>".html_safe, "maestro/iniciar" %>
+    <%= link_to "<button class='button3'>Comenzar</button>".html_safe, maestro_quizz_path %>
 </div>
 
 <div align="center">
     <button class='button3 x-send-msg'>Enviar Mensaje</button>
+
+
 </div>
+<script>
+
+var pusher = new Pusher('75159ef1c6a366266edb', {
+encrypted: true
+});
+  var mensaje = pusher.subscribe('channel');
+   mensaje.bind('event', function(data) {
+alert("LLEGA");
+   });
+   </script>
 
 
 </div>

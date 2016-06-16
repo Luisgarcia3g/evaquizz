@@ -17,6 +17,10 @@ class Maestro::DashboardController < ApplicationController
 
   end
 
+
+def quizz
+
+end
   def logout
 
     session[:tokenusuario]=nil
@@ -61,7 +65,7 @@ def iniciar
   @saludo = "Hola #{$usuarioNombre}"
   @codigo= SecureRandom.hex(3)
   Pusher.trigger('channel', 'event', codigo: @codigo)
-
+@alumnos=0
 end
 
 
