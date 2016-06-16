@@ -4,3 +4,12 @@
 $(document).ready ->
     $('.x-send-msg').on 'click' , ->
         $.post '/maestro/siguiente'
+
+    timer = new Date new Date().getTime() + 1000 * 10 #1000 Milliseconds 10 seconds
+    $('#clock').countdown timer
+      .on 'update.countdown', (event) ->
+        $(this).html event.strftime '%D days %H:%M:%S'
+        console.log event.strftime '%D days %H:%M:%S'
+      .on 'finish.countdown', (event)->
+        $(this).html event.strftime '%D days %H:%M:%S'
+        console.log 'finish count'

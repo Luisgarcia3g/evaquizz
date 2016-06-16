@@ -18,9 +18,10 @@ class Maestro::DashboardController < ApplicationController
   end
 
 
-def quizz
+  def quizz
 
-end
+  end
+  
   def logout
 
     session[:tokenusuario]=nil
