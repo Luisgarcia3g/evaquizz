@@ -9,5 +9,16 @@
 <br>
 
 <h1>Pon atención a tu profesor para la siguiente pregunta</h1>
-  <%= link_to "<button>Continuar</button>".html_safe, "puntaje" %>
+
 </div>
+<script>
+
+var pusher = new Pusher('75159ef1c6a366266edb', {
+encrypted: true
+});
+  var mensaje = pusher.subscribe('channel');
+   mensaje.bind('event', function(data) {
+
+    window.location.href = "<%= alumno_respuestas_path %>"
+   });
+   </script>

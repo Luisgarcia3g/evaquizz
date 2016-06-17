@@ -123,6 +123,7 @@ Rails.application.routes.draw do
     get '/iniciar', to: "dashboard#iniciar"
     post 'siguiente', to: 'dashboard#siguiente'
     get '/quizz', to: 'dashboard#quizz'
+    get '/mostrargrafica', to: 'dashboard#mostrargrafica'
 
   end
   namespace :alumno do
@@ -133,6 +134,7 @@ Rails.application.routes.draw do
     get 'enviada', to: 'dashboard#enviada'
     get 'puntaje', to: 'dashboard#puntaje'
     get '/logout', to: "dashboard#logout"
+
   end
 
 end

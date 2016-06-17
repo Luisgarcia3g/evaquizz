@@ -1,0 +1,2 @@
+class CodigosController < ApplicationController
+end

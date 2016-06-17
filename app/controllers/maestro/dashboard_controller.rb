@@ -30,15 +30,7 @@ end
 
 
   def checar
-    if (session[:tokenusuario]==nil)
-      redirect_to '/welcome'
-    else
-      if(session[:rol]==2)
-        redirect_to :alumno
-      elsif (session[:rol]==3)
-        redirect_to :admin
-      end
-    end
+
   end
 
 
@@ -64,7 +56,9 @@ def iniciar
   checar
   @saludo = "Hola #{$usuarioNombre}"
   @codigo= SecureRandom.hex(3)
-  Pusher.trigger('channel', 'event', codigo: @codigo)
+    @cod=Codigo.new(codigo: @codigo)
+@cod.save
+
 @alumnos=0
 end
 
@@ -348,5 +342,64 @@ def grafica
 
 
   end
+
+def mostrargrafica
+  @chart = Fusioncharts::Chart.new({
+:height => 400,
+:width => 550,
+:type => 'mscolumn2d',
+:renderAt => 'chart-container',
+:dataSource => {
+  :chart => {
+    :caption => 'Respuestas de pregunta 1, Sumatoria de fuerzas',
+
+    :xAxisname => 'Quizzes',
+    :yAxisName => 'Puntaje',
+
+    :theme => 'fint',
+  },
+  :categories => [{
+    :category => [
+      { :label => 'R1' },
+      { :label => 'R2' },
+      { :label => 'R3' },
+      { :label => 'R4' },
+
+    ]
+  }],
+  :dataset =>  [{
+    :seriesname => 'Newton',
+    :data =>  [
+      { :value => '1' }
+    ]},
+    {
+      :seriesname => 'Copernico',
+      :data =>  [
+        { :value => nil},
+          { :value => '' }
+
+      ]},
+      {
+        :seriesname => 'Einstein',
+        :data =>  [
+          { :value => nil },
+            { :value => nil },
+              { :value => '' }
+
+        ]},
+        {
+          :seriesname => 'Galileo',
+          :data =>  [
+            { :value => nil },
+              { :value => nil },
+                { :value => nil },
+{ :value => '' }
+          ]},
+
+  ]
+}
+})
+
+end
 
 end

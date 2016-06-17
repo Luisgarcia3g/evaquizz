@@ -1,0 +1,26 @@
+<h1>Quizz 1</h1>
+<div align="center">
+<h1>¿Quién descubrió la gravedad?</h1>
+
+   <img src="gravedad2.jpg" >
+</div>
+<br>
+<br>
+<br>
+
+
+<div align="center">
+    <button class='button3 x-send-msg'>Continuar</button>
+
+</div>
+
+    <script>
+
+    var pusher = new Pusher('75159ef1c6a366266edb', {
+    encrypted: true
+    });
+      var mensaje = pusher.subscribe('channel');
+       mensaje.bind('event', function(data) {
+           window.location.href = "<%= maestro_mostrargrafica_path %>"
+       });
+       </script>

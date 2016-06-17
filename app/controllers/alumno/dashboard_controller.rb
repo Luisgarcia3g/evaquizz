@@ -24,22 +24,7 @@ class Alumno::DashboardController < ApplicationController
 
 
 def checar
-  if (session[:tokenusuario]==nil)
 
-
-        redirect_to '/welcome'
-  else
-
-    if(session[:rol]==1)
-
-      redirect_to :maestro
-
-    elsif(session[:rol]==3)
-
-      redirect_to :admin
-    end
-
-  end
 
 end
   def index
@@ -51,7 +36,9 @@ end
   def validarCodigo
      @codigo = params[:dashboard][:codigo]
 
-     if(@codigo=="XYZ123")
+     valido= Codigo.find_by(codigo: params[:dashboard][:codigo])
+
+     if (valido)
       redirect_to :action => :esperar
 
      else

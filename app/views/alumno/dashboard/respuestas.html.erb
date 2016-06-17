@@ -1,9 +1,13 @@
+<div align="center">
 <h1> Respuestas</h1>
+</div>
+<br>
+<br>
 
 
 <style>
 .button {
-    background-color: #4CAF50; /* Green */
+
     border: none;
     color: white;
     padding: 15px 32px;
@@ -14,23 +18,36 @@
     margin: 4px 2px;
     cursor: pointer;
 }
+.button6 {
+  background-color: #FF9811; /* Green */
 
-.button2 {background-color: #0D01FF;width:200px;height:100px} /* azul */
-.button3 {background-color: #7F0089;width:200px;height:100px} /* violeta */
-.button4 {background-color: #008905;width:200px;height:100px} /* verde */
-.button5 {background-color: #EAFF24;width:200px;height:100px} /* amarillo */
+  color: #F9F9F9;
+  width: 200px;
+    height: 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 26px;
+
+
+   border-radius: 20px;
+}
+
+.button2 {width:200px;height:100px; color: black; font-size: 30px} /* azul */
+.button3 {width:200px;height:100px; color: black; font-size: 30px;} /* violeta */
+.button4 {width:200px;height:100px; color: black; font-size: 30px;} /* verde */
+.button5 {width:200px;height:100px; color: black; font-size: 30px;} /* amarillo */
 </style>
 
 <div align="center">
-<button class="button button5">Respuesta 1</button>
-<button class="button button2">Respuesta 2</button>
+<button class="button button5">Coopérnico</button>
+<button class="button button2">Einstein</button>
+<br>
+
+<button class="button button3">Galileo</button>
+<button class="button button4">Newton</button>
 <br>
    <br>
-<button class="button button3">Respuesta 3</button>
-<button class="button button4">Respuesta 4</button>
-<br>
    <br>
-
-
-  <%= link_to "<button type='button' style='width:200px;height:100px' >Enviar</button>".html_safe, "enviada" %>
+<%= link_to "<button class='button6'>Enviar respuesta</button>".html_safe, "enviada" %>
 </di>
