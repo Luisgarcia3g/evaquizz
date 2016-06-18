@@ -4,4 +4,5 @@ class Temario < ActiveRecord::Base
    validates(:nombretemario, presence: true)
    validates(:descripcion, presence: true)
   has_many :temas
+  has_many :grupos
 end

@@ -1,6 +1,6 @@
 class Admin::DashboardController < ApplicationController
   layout "admin"
-@saludo = "Hola administrador #{$usuarioNombre}"
+@saludo = "Hola #{$usuarioNombre}"
   def checar
     if (session[:tokenusuario]==nil)
 
@@ -34,7 +34,7 @@ class Admin::DashboardController < ApplicationController
 
   def index
 checar
-  @saludo = "Hola administrador #{$usuarioNombre}"
+  @saludo = "Hola  #{$usuarioNombre}"
 
   end
 

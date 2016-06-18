@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  IdQR: 1
-  Codigo: 1
-  Alumno: 1
-  Hora: 2016-04-26 11:55:49
+  Codigo: MyString
+  Alumno: 
 
 two:
-  IdQR: 1
-  Codigo: 1
-  Alumno: 1
-  Hora: 2016-04-26 11:55:49
+  Codigo: MyString
+  Alumno: 

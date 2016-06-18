@@ -18,9 +18,10 @@ class Maestro::DashboardController < ApplicationController
   end
 
 
-def quizz
+  def quizz
 
-end
+  end
+
   def logout
 
     session[:tokenusuario]=nil
@@ -56,9 +57,9 @@ def iniciar
   checar
   @saludo = "Hola #{$usuarioNombre}"
   @codigo= SecureRandom.hex(3)
-    @cod=Codigo.new(codigo: @codigo)
-@cod.save
 
+@cod=Codigo.new(:codigo=> @codigo)
+@cod.save
 @alumnos=0
 end
 
@@ -72,7 +73,7 @@ end
 
 
 def grafica
-    @saludo = "Hola administrador #{$usuarioNombre}"
+    @saludo = "Hola #{$usuarioNombre}"
     checar
     @chart = Fusioncharts::Chart.new({
 	:height => 400,
@@ -345,10 +346,11 @@ def grafica
 
 def mostrargrafica
   @chart = Fusioncharts::Chart.new({
-:height => 400,
-:width => 550,
+:height => 500,
+:width => 750,
 :type => 'mscolumn2d',
 :renderAt => 'chart-container',
+
 :dataSource => {
   :chart => {
     :caption => 'Respuestas de pregunta 1, Sumatoria de fuerzas',

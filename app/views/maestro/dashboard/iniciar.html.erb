@@ -20,7 +20,8 @@ encrypted: true
 });
   var mensaje = pusher.subscribe('channel');
    mensaje.bind('event', function(data) {
-       window.location.href = "<%= maestro_quizz_path %>"
+
+      window.location.href = "<%= maestro_quizz_path %>"
    });
    </script>
 

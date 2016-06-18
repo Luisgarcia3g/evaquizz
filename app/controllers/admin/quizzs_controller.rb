@@ -104,7 +104,7 @@ layout 'quizz'
     pregunta = Pregunta.find(params[:pregunta_id])
     quizz = Quizz.find { params[:quizz_id]  }
     pregunta_quizz = PreguntaQuizz.create(pregunta_id: pregunta.id, quizz_id: quizz.id)
-    flash[:notice] = "Pregunta agregada"
+    
     redirect_to admin_quizz_path(quizz.id)
   end
 

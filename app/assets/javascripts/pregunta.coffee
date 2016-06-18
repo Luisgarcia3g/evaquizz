@@ -2,5 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
-    $('.x-send-msg').on 'click' , ->
-         $.post '/maestro/siguiente'
+    $('.x-send-msg').on 'click', ->
+     $.post '/maestro/siguiente'

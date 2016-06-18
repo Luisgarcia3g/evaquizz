@@ -1,8 +1,10 @@
-<h1>Quizz 1</h1>
+
+<h1>Quizz 1 Pregunta 1</h1>
 <div align="center">
 <h1>¿Quién descubrió la gravedad?</h1>
+ <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
 
-   <img src="gravedad2.jpg" >
+   <img src="\gravedad2.png" >
 </div>
 <br>
 <br>
@@ -16,11 +18,13 @@
 
     <script>
 
-    var pusher = new Pusher('75159ef1c6a366266edb', {
+    var pusher2 = new Pusher('75159ef1c6a366266edb', {
     encrypted: true
     });
-      var mensaje = pusher.subscribe('channel');
-       mensaje.bind('event', function(data) {
-           window.location.href = "<%= maestro_mostrargrafica_path %>"
+      var mensaje2 = pusher2.subscribe('channel');
+       mensaje2.bind('event', function(data) {
+            //window.location.href = "<%= maestro_path %>"
+           window.open('<%= maestro_mostrargrafica_path %>','_blank');
+
        });
        </script>

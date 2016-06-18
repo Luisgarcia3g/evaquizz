@@ -50,7 +50,7 @@ end
   end
   def esperar
 
-  Pusher.trigger('channel', 'event', codigo: @codigo)
+  #Pusher.trigger('channel', 'event', codigo: @codigo)
 
   end
 def respuestas
