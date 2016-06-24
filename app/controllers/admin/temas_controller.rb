@@ -1,5 +1,5 @@
 class Admin::TemasController < ApplicationController
-
+layout 'admin'
 
   require 'will_paginate/array'
   layout 'temas'
@@ -46,7 +46,7 @@ class Admin::TemasController < ApplicationController
   end
   def index
     checar
-    @saludo = "Hola  #{$usuarioNombre}"
+    @saludo = "Hola #{session[:nombre]}"
     @tema = Tema.active.all.paginate(page: params[:page], per_page: 10).order('nombretema ASC')
     @temarios=Temario.all
   end
@@ -60,7 +60,7 @@ class Admin::TemasController < ApplicationController
 
   def show
     checar
-    @saludo = "Hola  #{$usuarioNombre}"
+      @saludo = "Hola #{session[:nombre]}"
     @path_prefix = :admin
 
     @tema = Tema.find(params[:id])

@@ -5,8 +5,8 @@ class Quizz < ActiveRecord::Base
   belongs_to :tema
   has_many :pregunta_quizzs
   has_many :preguntas,  :through => :pregunta_quizzs
-  has_many :grupos, :through => :grupo_quizzs
-  
+  has_many :grupos, :through => :grupoquizzs
+
  #accepts_nested_attributes_for :pregunta_quizzs
 
  #has_and_belongs_to_many :preguntas

@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   get '/welcome', to: 'welcome#index'
 
   get "inicio/maestro"
+  get 'servicio', to: 'welcome#servicio'
 
 
+  post 'welcome'=> 'welcome#validar'
 
-  post "welcome" => "welcome#validar"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -75,7 +76,7 @@ Rails.application.routes.draw do
     get 'pregunta/nueva', to: 'preguntas#new'
     get 'pregunta/', to: "preguntas#index"
     get "pregunta/:id" => "preguntas#show"
-    get '/desactivar', to: "preguntas#desactivar"
+  
 
 
     get'quizz/', to: 'quizzs#index'
@@ -105,15 +106,18 @@ Rails.application.routes.draw do
     resource :admin
     resources :quizzs do
       member  do
-        get 'agregar_pregunta'
-        get 'pregunta_nueva'
+        get 'agregar_pregunta',to: 'quizzs#agregar_pregunta'
+        get 'pregunta_nueva',to: 'quizzs#pregunta_nueva'
       end
     end
     resources :temas
     resources :temarios
+    resources :grupoquizzs
+
   end
   namespace :maestro do
     get '/', to: 'dashboard#index'
+    get 'index2', to: 'dashboard#index2'
     get '/grupo', to: 'dashboard#grupo'
     get '/grafica', to: 'dashboard#grafica'
     get '/gestion', to: "dashboard#gestion"
@@ -124,6 +128,10 @@ Rails.application.routes.draw do
     post 'siguiente', to: 'dashboard#siguiente'
     get '/quizz', to: 'dashboard#quizz'
     get '/mostrargrafica', to: 'dashboard#mostrargrafica'
+    get 'verquizz/:id', to: 'dashboard#verquizz'
+    resources :grupos
+    resources :resultados
+    resources :grupoquizzs
 
   end
   namespace :alumno do

@@ -2,16 +2,16 @@ class Admin::AdminsController < ApplicationController
   layout "admin"
 
 def index
-  @saludo = "Hola administrador #{$usuarioNombre}"
+  @saludo = "Hola  #{session[:nombre]}"
 end
 
 def show
-    @saludo = "Hola administrador #{$usuarioNombre}"
+    @saludo = "Hola  #{session[:nombre]}"
   @admin = Admin.find(params[:id])
 end
 
 def new
-  @saludo = "Hola administrador #{$usuarioNombre}"
+  @saludo = "Hola  #{session[:nombre]}"
   @path_prefix = :admin
   @admin = Admin.new
 end

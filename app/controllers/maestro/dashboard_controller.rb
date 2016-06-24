@@ -13,6 +13,10 @@ class Maestro::DashboardController < ApplicationController
 
   require 'securerandom'
 
+  def cursogrupo
+
+  end
+
   def filtrar
 
   end
@@ -26,17 +30,54 @@ class Maestro::DashboardController < ApplicationController
 
     session[:tokenusuario]=nil
     session[:rol]=nil
+    session[:nombre]=nil
+
     redirect_to '/welcome'
   end
 
 
   def checar
 
+
+
+      if (session[:tokenusuario]==nil)
+          redirect_to '/welcome'
+        else
+          if(session[:rol]==2)
+            redirect_to :alumno
+          elsif (session[:rol]==3)
+            redirect_to :admin
+          end
+        end
+
+
+  end
+
+def verquizz
+    @saludo = "Hola  #{session[:nombre]}"
+  @quizz = Quizz.active.find(params[:id])
+  @temas=Tema.all
+
+end
+
+  def index2
+      @saludo = "Hola  #{session[:nombre]}"
+  @grupo=Grupo.where(maestro: session[:nombre]).second
+      @temario=Temario.active.all
+
+      @temas=Tema.all
+      @grupoquizz=Grupoquizzs.where(Grupo:  @grupo.id)
+  checar
   end
 
 
   def index
-    @saludo = "Hola  #{$usuarioNombre}"
+  @saludo = "Hola  #{session[:nombre]}"
+      @grupo=Grupo.where(maestro: session[:nombre]).first
+        @temario=Temario.active.all
+
+        @temas=Tema.all
+        @grupoquizz=Grupoquizzs.where(Grupo: @grupo.id)
 
     checar
   end
@@ -44,23 +85,19 @@ class Maestro::DashboardController < ApplicationController
 
   def grupo
 
-    @saludo = "Hola  #{$usuarioNombre}"
+  @saludo = "Hola  #{session[:nombre]}"
     checar
   end
 
   def especificacion
     checar
-    @saludo = "Hola #{$usuarioNombre}"
+    @saludo = "Hola  #{session[:nombre]}"
   end
 
 def iniciar
   checar
-  @saludo = "Hola #{$usuarioNombre}"
-  @codigo= SecureRandom.hex(3)
-
-@cod=Codigo.new(:codigo=> @codigo)
-@cod.save
-@alumnos=0
+  @saludo = "Hola  #{session[:nombre]}"
+  
 end
 
 
@@ -73,7 +110,7 @@ end
 
 
 def grafica
-    @saludo = "Hola #{$usuarioNombre}"
+    @saludo = "Hola  #{session[:nombre]}"
     checar
     @chart = Fusioncharts::Chart.new({
 	:height => 400,
@@ -116,7 +153,7 @@ def grafica
 
 
   def gestion
-    @saludo = "Hola #{$usuarioNombre}"
+    @saludo = "Hola  #{session[:nombre]}"
     checar
     @chart = Fusioncharts::Chart.new({
   :height => 400,
@@ -345,6 +382,7 @@ def grafica
   end
 
 def mostrargrafica
+  @saludo = "Hola  #{session[:nombre]}"
   @chart = Fusioncharts::Chart.new({
 :height => 500,
 :width => 750,

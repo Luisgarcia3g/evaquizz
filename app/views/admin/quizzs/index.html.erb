@@ -22,7 +22,7 @@
                 <th>Desactivar</th>
 
 
-      <th colspan="5"></th>
+
     </tr>
   </thead>
 
@@ -45,7 +45,7 @@
   <% end %>
                         <% end %>
                           <td><%= link_to 'Ver', controller: "quizzs", action: "show", id: q.id  %></td>
-  <td><%= link_to 'Editar', edit_admin_quizz_path(q) %></td>
+  <td><%= link_to 'Editar', edit_admin_quizz_path(q.id) %></td>
   <td><%= link_to 'Desactivar', controller: "quizzs", action: "desactivar", id: q.id %></td>
 
 

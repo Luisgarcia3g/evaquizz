@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618063855) do
+ActiveRecord::Schema.define(version: 20160620060409) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -28,21 +28,22 @@ ActiveRecord::Schema.define(version: 20160618063855) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "grupo_quizzs", force: :cascade do |t|
+  create_table "grupo", force: :cascade do |t|
+    t.string   "Nombre_grupo", limit: 255
+    t.string   "maestro",      limit: 255
+    t.integer  "temarioid",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "grupoquizzs", force: :cascade do |t|
     t.datetime "Hora"
     t.integer  "Quizz",      limit: 4
     t.integer  "Grupo",      limit: 4
     t.string   "Codigo",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-  end
-
-  create_table "grupos", force: :cascade do |t|
-    t.string   "Nombre_grupo", limit: 255
-    t.string   "Maestro",      limit: 255
-    t.integer  "Temario",      limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.boolean  "iniciado"
   end
 
   create_table "pregunta_quizzs", force: :cascade do |t|

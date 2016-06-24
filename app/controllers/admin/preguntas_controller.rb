@@ -1,5 +1,5 @@
 class Admin::PreguntasController < ApplicationController
-  layout "preguntas"
+  layout "admin"
   def checar
     if (session[:tokenusuario]==nil)
 
@@ -26,9 +26,9 @@ class Admin::PreguntasController < ApplicationController
 
   def desactivar
 
-    @temario = Temario.find(params[:id])
+    @pregunta = Pregunta.find(params[:id])
 
-    @temario.update_attribute(:is_active, false
+    @pregunta.update_attribute(:is_active, false
     )
     redirect_to :back
 
@@ -43,7 +43,7 @@ class Admin::PreguntasController < ApplicationController
   def index
 
     checar
-    @saludo = "Hola  #{$usuarioNombre}"
+    @saludo = "Hola  #{session[:nombre]}"
     @preguntas = Pregunta.all.paginate(page: params[:page], per_page: 10).order('texto ASC')
   end
 
@@ -56,13 +56,13 @@ class Admin::PreguntasController < ApplicationController
 
   def show
     checar
-      @saludo = "Hola administrador #{$usuarioNombre}"
+      @saludo = "Hola #{session[:nombre]}"
     @pregunta = Pregunta.find(params[:id])
   end
 
   def create
     checar
-      @saludo = "Hola administrador #{$usuarioNombre}"
+      @saludo = "Hola #{session[:nombre]}"
     @pregunta = Pregunta.new(pregunta_params)
     if @pregunta.save
       redirect_to :action => :show, :id => @pregunta.id
@@ -74,7 +74,7 @@ class Admin::PreguntasController < ApplicationController
 
   def edit
     checar
-      @saludo = "Hola administrador #{$usuarioNombre}"
+      @saludo = "Hola #{session[:nombre]}"
     # @path_prefix = :admin
     @pregunta = Pregunta.find(params[:id])
 

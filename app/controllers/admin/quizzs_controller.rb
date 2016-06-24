@@ -1,5 +1,5 @@
 class Admin::QuizzsController < ApplicationController
-layout 'quizz'
+layout 'admin'
   def checar
     if (session[:tokenusuario]==nil)
 
@@ -26,9 +26,9 @@ layout 'quizz'
 
   def desactivar
 
-    @temario = Temario.find(params[:id])
+    @quizz= Quizz.find(params[:id])
 
-    @temario.update_attribute(:is_active, false
+    @quizz.update_attribute(:is_active, false
     )
     redirect_to :back
 
@@ -44,14 +44,14 @@ layout 'quizz'
 
   def index
     checar
-    @saludo = "Hola  #{$usuarioNombre}"
-    @quizzes = Quizz.all.paginate(page: params[:page], per_page: 10).order('temaid ASC')
+    @saludo = "Hola #{session[:nombre]}"
+    @quizzes = Quizz.active.all.paginate(page: params[:page], per_page: 10).order('temaid ASC')
     @temas=Tema.all
   end
 
   def new
     checar
-    @saludo = "Hola  #{$usuarioNombre}"
+    @saludo = "Hola #{session[:nombre]}"
     @tema_options = Tema.all.map{ |t| [ t.nombretema, t.id ] }
     @preguntas = Pregunta.all
     @path_prefix = :admin
@@ -60,7 +60,7 @@ layout 'quizz'
 
   def show
     checar
-    @saludo = "Hola  #{$usuarioNombre}"
+      @saludo = "Hola #{session[:nombre]}"
     @quizz = Quizz.find(params[:id])
     @temas=Tema.all
   end
@@ -69,6 +69,8 @@ layout 'quizz'
     checar
     @quizz = Quizz.new(quizz_params)
     if @quizz.save
+
+
       redirect_to :action => :show, :id => @quizz.id
     else
       render :new
@@ -77,7 +79,7 @@ layout 'quizz'
 
   def edit
     checar
-    @saludo = "Hola  #{$usuarioNombre}"
+    @saludo = "Hola #{session[:nombre]}"
     @quizz = Quizz.find(params[:id])
     @tema_options = Tema.all.map{ |t| [ t.nombretema, t.id ] }
     @preguntas = Pregunta.all
@@ -95,16 +97,16 @@ layout 'quizz'
 
   def pregunta_nueva
     checar
-    @quizz = Quizz.find { params[:quizz_id]  }
+    @quizz = Quizz.find (params[:quizz_id])
     @preguntas = Pregunta.all
   end
 
   def agregar_pregunta
     checar
     pregunta = Pregunta.find(params[:pregunta_id])
-    quizz = Quizz.find { params[:quizz_id]  }
+    quizz = Quizz.find(params[:id] )
     pregunta_quizz = PreguntaQuizz.create(pregunta_id: pregunta.id, quizz_id: quizz.id)
-    
+
     redirect_to admin_quizz_path(quizz.id)
   end
 

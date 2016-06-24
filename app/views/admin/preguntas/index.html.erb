@@ -28,7 +28,7 @@
         <th>Tiempo</th>
         <th>Ver</th>
         <th>Editar</th>
-        <th>Desactivar</th>
+
       </th>
       </tr>
     </thead>
@@ -45,7 +45,7 @@
         <td><%= pregunta.tiempo %></td>
         <td><%= link_to 'Ver',  controller: "preguntas", action: "show", id: pregunta.id %></td>
         <td><%= link_to 'Editar', edit_admin_pregunta_path(pregunta) %></td>
-        <td><%= link_to 'Desactivar', controller: "preguntas", action: "desactivar", id: pregunta.id %></td>
+      
       </tr>
     </tr>
     <% end %>

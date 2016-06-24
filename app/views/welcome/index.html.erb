@@ -84,13 +84,15 @@ box-shadow: none;
 
 
   <% if flash[:notice] %>
-     <div class="notice"><%= flash[:notice] %></div>
+
    <% end %>
    <div class="login">
    		<div class="login-screen">
    			<div class="app-title">
    				<h1>Bienvenido</h1>
           <img src="logo_nuevo.png" >
+					<br>
+					     <div class="notice"><%= flash[:notice] %></div>
 
    			</div>
 

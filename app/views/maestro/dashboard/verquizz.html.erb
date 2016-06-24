@@ -1,4 +1,3 @@
-
 <div id="section">
 
 <p>
@@ -7,17 +6,6 @@
 </p>
 
 
-<p>
-  <strong>Disponibilidad:</strong>
-
-
-<% if  @quizz.disponible? %>
- Disponible
-  <% else %>
- No Disponible
-    <% end %>
-
-</p>
     <p>
       <strong>Tema:</strong>
 
@@ -50,25 +38,14 @@
 
           <li>    <%= pregunta.respuesta4 %></li>
 </ol>
-  
+
 
     <% end %>
   </p>
 <br>
 
-<%= link_to 'Quizzes', admin_quizzs_path %>
-<%= link_to 'Atras',:back %>
+
+<%= link_to 'Atras',maestro_path %>
 
 
 </div>
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-    acc[i].onclick = function(){
-        this.classList.toggle("active");
-        this.nextElementSibling.classList.toggle("show");
-    }
-}
-</script>
