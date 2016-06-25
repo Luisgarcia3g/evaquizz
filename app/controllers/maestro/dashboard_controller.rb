@@ -67,7 +67,7 @@ end
 
       @temas=Tema.all
       @grupoquizz=Grupoquizzs.where(Grupo:  @grupo.id)
-  checar
+  #checar
   end
 
 
@@ -97,7 +97,7 @@ end
 def iniciar
   checar
   @saludo = "Hola  #{session[:nombre]}"
-  
+
 end
 
 

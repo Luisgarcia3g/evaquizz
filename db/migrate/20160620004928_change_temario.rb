@@ -1,5 +1,5 @@
 class ChangeTemario < ActiveRecord::Migration
   def change
-    rename_column :grupo, :Temario, :temarioid
+    rename_column :grupos, :Temario, :temarioid
   end
 end
