@@ -1,0 +1,51 @@
+<div id="section">
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @quizz.nombre %>
+</p>
+
+
+    <p>
+      <strong>Tema:</strong>
+
+
+    <% @temas.each do |t| %>
+
+
+          <% if (t.id==@quizz.temaid) %>
+    <%= t.nombretema %>
+
+    <% end %>
+    <% end %>
+</p>
+
+
+  <h5>Preguntas</h5>
+  <p>
+    <% @quizz.preguntas.each do |pregunta|  %>
+
+  <li>  <%= pregunta.texto %></li>
+
+<ol>
+
+
+        <li><%= pregunta.respuesta1 %></li>
+
+        <li>  <%= pregunta.respuesta2 %></li>
+
+        <li>    <%= pregunta.respuesta3 %></li>
+
+          <li>    <%= pregunta.respuesta4 %></li>
+</ol>
+
+
+    <% end %>
+  </p>
+<br>
+
+
+<%= link_to 'Atras',maestro_path %>
+
+
+</div>

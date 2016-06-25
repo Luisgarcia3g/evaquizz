@@ -1,0 +1,29 @@
+
+
+<div align="center">
+    <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
+<h1>Atención, primera pregunta</h1>
+
+
+
+<%=image_tag("loading.gif", size: "155")%>
+
+
+
+
+
+
+</div>
+
+
+<script>
+
+var pusher = new Pusher('75159ef1c6a366266edb', {
+encrypted: true
+});
+  var mensaje = pusher.subscribe('channel');
+   mensaje.bind('event', function(data) {
+
+    window.location.href = "<%= alumno_respuestas_path %>"
+   });
+   </script>

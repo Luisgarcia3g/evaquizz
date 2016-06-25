@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombretema: MyText
+  quizz: 1
+  temario: 1
+
+two:
+  nombretema: MyText
+  quizz: 1
+  temario: 1

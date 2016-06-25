@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Hora: 2016-06-18 01:33:05
+  Quizz: 1
+  Grupo: 1
+  Codigo: MyString
+
+two:
+  Hora: 2016-06-18 01:33:05
+  Quizz: 1
+  Grupo: 1
+  Codigo: MyString

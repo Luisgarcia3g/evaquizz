@@ -1,0 +1,134 @@
+
+
+
+<!-- CSS Code -->
+<style type="text/css" scoped>
+table.GeneratedTable {
+width:100%;
+background-color:#FFFFFF;
+border-collapse:collapse;border-width:2px;
+border-color:#9CC2E0;
+border-style:solid;
+color:#F9F9F9;
+}
+
+ table.GeneratedTable th {
+border-width:2px;
+border-color:#9CC2E0;
+border-style:solid;
+padding:10px;
+}
+
+table.GeneratedTable td {
+border-width:2px;
+border-color:#9CC2E0;
+border-style:solid;
+padding:10px;
+color:#000000;
+}
+
+
+table.GeneratedTable thead {
+background-color:#5999CB;
+text-align: center;
+}
+</style>
+
+<div>
+  <%= form_for :dashboard, :url => { :action => :filtrar} do |f| %>
+
+<table border="0">
+<tr>
+  <td>
+      <%= f.label "Grupo", :size => 100 %>
+
+        <%= f.select(:temarioid,Temario.all.map{ |te| [ te.nombretemario, te.id ] }) %>
+  <%= f.submit "Filtrar" %>
+
+
+
+  <% end %>
+</td>
+<td>
+  <%= link_to "<button class='button2'>Ver Temario</button>".html_safe, maestro_path %>
+</td>
+</tr>
+</table>
+</div>
+
+  <br>
+  <br>
+<!-- HTML Code -->
+<table class="GeneratedTable">
+<thead>
+  <tr>
+  <th>alumno</th>
+  <th>Quizz 1</th>
+  <th>Quizz 2</th>
+  <th>Quizz 3</th>
+  <th>Quizz 4</th>
+  <th>Quizz 5</th>
+  <th>Gráfica</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>Luis</td>
+  <td>100</td>
+  <td>90</td>
+  <td>80</td>
+  <td>70</td>
+  <td>70</td>
+  <td><%= link_to 'Ver', :action => :grafica %></td>
+
+  </tr>
+  <tr>
+  <td>María</td>
+  <td>90</td>
+  <td>50</td>
+  <td>40</td>
+  <td>80</td>
+  <td>100</td>
+  <td><%= link_to 'Ver', :action => :grafica %></td>
+
+  </tr>
+  <tr>
+  <td>Ricardo</td>
+  <td>80</td>
+  <td>90</td>
+  <td>100</td>
+  <td>100</td>
+  <td>100</td>
+  <td><%= link_to 'Ver', :action => :grafica %></td>
+
+  </tr>
+  <tr>
+  <td>Tavo</td>
+  <td>60</td>
+  <td>70</td>
+  <td>50</td>
+  <td>70</td>
+  <td>60</td>
+  <td><%= link_to 'Ver', :action => :grafica %></td>
+
+  </tr>
+  <tr>
+  <td>Uriel</td>
+  <td>100</td>
+  <td>100</td>
+  <td>100</td>
+  <td>100</td>
+  <td>100</td>
+  <td><%= link_to 'Ver', :action => :grafica %></td>
+
+  </tr>
+
+</tbody>
+</table>
+
+
+
+
+<!-- Codes by HTML.am -->
+
+<!-- CSS Code -->

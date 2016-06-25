@@ -1,0 +1,74 @@
+
+<div id="section">
+
+<h1>Tema</h1>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @tema.nombretema %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @tema.descripcion %>
+</p>
+
+<p>
+  <strong>Temario:</strong>
+  <% @temario.each do |temario| %>
+  <%= temario.nombretemario %>
+    <% end %>
+</p>
+
+<p>
+  <strong>Quizzes:</strong>
+</p>
+
+<table class="GeneratedTable", border="1">
+
+  <thead>
+    <tr>
+      <th>Nombre del quizz</th>
+        <th>Disponibilidad</th>
+          <th>Ver</th>
+            <th>Editar</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @quizzes.each do |q| %>
+      <tr>
+                <% if (@tema.id==q.temaid) %>
+        <td><%= q.nombre %></td>
+          <% if q.disponible? %>
+<td> Disponible</td>
+            <% else %>
+<td> No Disponible</td>
+              <% end %>
+                            <td><%= link_to 'Ver', controller: "quizzs", action: "show", id: q.id  %></td>
+                          <td><%= link_to 'Editar', edit_admin_quizz_path(q) %></td>
+    <% end %>
+
+    <% end %>
+
+  </tbody>
+</table>
+<%= will_paginate @quizzes,  :previous_label => 'Atrás', :next_label => 'Adelante'%>
+<br>
+<%= link_to 'Temas', admin_temas_path %>
+<%= link_to 'Atras',:back %>
+
+
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

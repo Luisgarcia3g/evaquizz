@@ -1,0 +1,133 @@
+<!-- Codes by HTML.am -->
+
+<!-- CSS Code -->
+<style type="text/css" scoped>
+table.GeneratedTable {
+width:100%;
+background-color:#FFFFFF;
+border-collapse:collapse;border-width:2px;
+border-color:#9CC2E0;
+border-style:solid;
+color:#F9F9F9;
+}
+
+ table.GeneratedTable th {
+border-width:2px;
+border-color:#9CC2E0;
+border-style:solid;
+padding:10px;
+}
+
+table.GeneratedTable td {
+border-width:2px;
+border-color:#9CC2E0;
+border-style:solid;
+padding:10px;
+color:#000000;
+}
+
+
+table.GeneratedTable thead {
+background-color:#5999CB;
+text-align: center;
+}
+</style>
+
+<div>
+  <%= form_for :dashboard, :url => { :action => :filtrar} do |f| %>
+
+<table border="0">
+<tr>
+  <td>
+      <%= f.label "Grupo", :size => 100 %>
+        <%if session[:nombre]=="maestro1"%>
+        <%= f.select(:temarioid,Temario.active.where(id: 2).map{ |te| [ te.nombretemario, te.id ] }) %>
+<%= link_to "<button>Cambiar grupo</button>".html_safe, maestro_index2_path %>
+
+<%end %>
+
+
+  <% end %>
+</td>
+<td>
+  <%= link_to "<button class='button2'>Ver Grupo</button>".html_safe, "maestro/grupo" %>
+</td>
+</tr>
+</table>
+</div>
+
+  <br>
+  <br>
+<!-- HTML Code -->
+<table class="GeneratedTable">
+<thead>
+  <tr>
+  <th>Estatus</th>
+  <th>Nombre</th>
+  <th>Tema</th>
+  <th>Fecha de inicio</th>
+  <th>Resultados</th>
+  <th>Nivel de Aprobación</th>
+    <th>Ver Quizz</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+<%@temario.each do |trio| %>
+
+<% if (trio.id==@grupo.temarioid) %>
+<%  @temas=Tema.where(temarioid: trio.id)%>
+
+<%@temas.each do |temas| %>
+<%  @quizz=Quizz.where(temaid: temas.id)%>
+
+<%@quizz.each do |q| %>
+
+<%@grupoquizz=Grupoquizzs.where(Quizz: q.id)%>
+<% @grupoquizz.each do |gp| %>
+
+<% if gp.iniciado? %>
+<td>Terminado</td>
+
+<% else %>
+<td><%= link_to 'No Iniciado', {:action => :iniciar}, data: {title:' Activar',confirm: 'Estas seguro de querer activar este quiz?',cancel:'Cancelar', commit: 'Confirmar'} %></td>
+
+<% end %>
+<td><%=q.nombre%></td>
+<td><%=temas.nombretema%></td>
+<% if gp.iniciado? %>
+<td>30/08/16 10:00 am</td>
+<td>
+
+  <%=link_to image_tag("grafic.png", border: 0), {action: 'gestion', controller: 'dashboard'}, {class: 'dock-item'}%>
+
+</td>
+<td>95%</td>
+<% else %>
+<td></td>
+<td></td>
+<td></td>
+<% end %>
+
+  <td><%= link_to 'Ver', controller: "dashboard", action: "verquizz", id: q.id  %></td>
+</tr>
+<% end %>
+
+  <% end %>
+
+  <% end %>
+    <% end %>
+
+      <% end %>
+
+
+</tbody>
+</table>
+
+
+
+
+
+
+<!-- HTML Code -->

@@ -1,0 +1,68 @@
+
+
+<div id="section">
+  <%= link_to "<button class='button'>Nueva Pregunta</button>".html_safe, "pregunta/nueva/" %>
+  <br>
+  <br>
+  <table class="GeneratedTable", border="1" >
+    <col width="170">
+    <col width="105">
+    <col width="105">
+    <col width="105">
+    <col width="105">
+    <col width="80">
+    <col width="50">
+    <col width="80">
+    <col width="100">
+
+
+
+    <thead>
+      <tr>
+        <th>Texto</th>
+        <th>Respuesta 1</th>
+        <th>Respuesta 2 </th>
+        <th>Respuesta 3 </th>
+        <th>Respuesta 4 </th>
+
+        <th>Tiempo</th>
+        <th>Ver</th>
+        <th>Editar</th>
+
+      </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @preguntas.each do |pregunta| %>
+      <tr>
+        <td><%= pregunta.texto %></td>
+        <td><%= pregunta.respuesta1 %></td>
+        <td><%= pregunta.respuesta2 %></td>
+        <td><%= pregunta.respuesta3 %></td>
+        <td><%= pregunta.respuesta4 %></td>
+
+        <td><%= pregunta.tiempo %></td>
+        <td><%= link_to 'Ver',  controller: "preguntas", action: "show", id: pregunta.id %></td>
+        <td><%= link_to 'Editar', edit_admin_pregunta_path(pregunta) %></td>
+      
+      </tr>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @preguntas,  :previous_label => 'Atrás', :next_label => 'Adelante'%>
+<br>
+
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function(){
+    this.classList.toggle("active");
+    this.nextElementSibling.classList.toggle("show");
+  }
+}
+</script>

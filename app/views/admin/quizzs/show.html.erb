@@ -1,0 +1,74 @@
+
+<div id="section">
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @quizz.nombre %>
+</p>
+
+
+<p>
+  <strong>Disponibilidad:</strong>
+
+
+<% if  @quizz.disponible? %>
+ Disponible
+  <% else %>
+ No Disponible
+    <% end %>
+
+</p>
+    <p>
+      <strong>Tema:</strong>
+
+
+    <% @temas.each do |t| %>
+
+
+          <% if (t.id==@quizz.temaid) %>
+    <%= t.nombretema %>
+
+    <% end %>
+    <% end %>
+</p>
+
+
+  <h5>Preguntas</h5>
+  <p>
+    <% @quizz.preguntas.each do |pregunta|  %>
+
+  <li>  <%= pregunta.texto %></li>
+
+<ol>
+
+
+        <li><%= pregunta.respuesta1 %></li>
+
+        <li>  <%= pregunta.respuesta2 %></li>
+
+        <li>    <%= pregunta.respuesta3 %></li>
+
+          <li>    <%= pregunta.respuesta4 %></li>
+</ol>
+  
+
+    <% end %>
+  </p>
+<br>
+
+<%= link_to 'Quizzes', admin_quizzs_path %>
+<%= link_to 'Atras',:back %>
+
+
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

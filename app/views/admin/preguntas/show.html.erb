@@ -1,0 +1,56 @@
+
+
+
+
+<div id="section">
+
+  <h1>Ver Pregunta</h1>
+<p>
+  <strong>Texto:</strong>
+  <%= @pregunta.texto %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @pregunta.image %>
+</p>
+
+<p>
+  <strong>Respuesta 1 (correcta):</strong>
+  <%= @pregunta.respuesta1 %>
+</p>
+
+<p>
+  <strong>Respuesta 2 (incorrecta):</strong>
+  <%= @pregunta.respuesta2 %>
+</p>
+
+<p>
+  <strong>Respuesta 3 (incorrecta):</strong>
+  <%= @pregunta.respuesta3 %>
+</p>
+
+
+<p>
+  <strong>Respuesta 4 (incorrecta):</strong>
+  <%= @pregunta.respuesta4 %>
+</p>
+
+<p>
+  <strong>Tiempo de pregunta:</strong>
+  <%= @pregunta.tiempo %>
+</p>
+<%= link_to 'Preguntas', admin_preguntas_path %>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

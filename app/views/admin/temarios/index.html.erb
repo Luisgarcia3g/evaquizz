@@ -1,0 +1,52 @@
+
+
+
+<div id="section">
+
+
+
+<%= link_to "<button class='button'>Nuevo Temario</button>".html_safe, "temario/nuevo/" %>
+<br>
+<br>
+
+<table class="GeneratedTable", border="1">
+
+  <thead>
+    <tr>
+      <th>Nombre del temario</th>
+        <th>Descripción</th>
+        <th>Ver</th>
+          <th>Editar</th>
+              <th>Desactivar</th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @temario.each do |t| %>
+      <tr>
+        <td><%= t.nombretemario %></td>
+          <td><%= t.descripcion %></td>
+        <td><%= link_to 'Ver',controller: "temarios", action: "show", id: t.id   %></td>
+        <td><%= link_to 'Editar', edit_admin_temario_path(t) %></td>
+          <td><%= link_to 'Desactivar', controller: "temarios", action: "desactivar", id: t.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @temario,  :previous_label => 'Atrás', :next_label => 'Adelante'%>
+<br>
+
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

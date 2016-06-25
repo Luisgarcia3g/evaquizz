@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistemaquiz</title>
+  <script src="//js.pusher.com/3.1/pusher.min.js"></script>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+    <div id="main-container" class="container">
+      <h3 class="titulo">QuickQuizz - EvaFisica</h3>
+      <h4>Vista de alumno</h4>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,41 @@
+
+<p id="notice"><%= notice %></p>
+
+
+<div id="section">
+
+<div class="row">
+  <div class="col-sm-12 text-center bootstrap-welcome">
+
+
+
+
+  </div>
+</div>
+
+<%= link_to "<button>Preguntas</button>".html_safe, admin_pregunta_path %>
+<br>
+<br>
+<%= link_to "<button>Quizzes</button>".html_safe, "quizz/" %>
+<br>
+<br>
+<%= link_to "<button>Temas</button>".html_safe, "tema/" %>
+<br>
+<br>
+<%= link_to "<button>Temarios</button>".html_safe, "admin/temarios" %>
+<br>
+<br>
+<%= link_to "<button>Administradores</button>".html_safe, "admin/usuarios" %>
+
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

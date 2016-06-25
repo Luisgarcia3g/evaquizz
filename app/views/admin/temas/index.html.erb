@@ -1,0 +1,64 @@
+
+<div id="section">
+
+
+<%= link_to "<button class='button'>Nuevo Tema</button>".html_safe, "tema/nuevo" %>
+<br>
+<br>
+<table  class="GeneratedTable", border="1">
+
+
+
+  <thead>
+    <tr>
+      <th align="center">Nombre del tema</th>
+        <th align="center">Descripción</th>
+          <th align="center">Temario</th>
+        <th align="center">Ver</th>
+          <th align="center">Editar</th>
+          <th align="center">Desactivar</th>
+
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tema.each do |tema| %>
+      <tr>
+        <td><%= tema.nombretema %></td>
+          <td><%= tema.descripcion %></td>
+          <% @temarios.each do |t| %>
+
+
+                <% if (t.id==tema.temarioid) %>
+          <td><%= t.nombretemario %></td>
+
+          <% end %>
+                    <% end %>
+
+        <td><%= link_to 'Ver', controller: "temas", action: "show", id: tema.id  %></td>
+        <td><%= link_to 'Editar', edit_admin_tema_path(tema) %></td>
+        <td><%= link_to 'Desactivar', controller: "temas", action: "desactivar", id: tema.id %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @tema,  :previous_label => 'Atrás', :next_label => 'Adelante'%>
+<br>
+
+
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

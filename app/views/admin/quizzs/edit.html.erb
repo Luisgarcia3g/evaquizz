@@ -1,0 +1,50 @@
+
+
+<div id="section">
+
+
+  <%= form_for :quizz, :url => { :action => :update}, :method => :put do |f| %>
+  <div class="field">
+    <%= f.label "Introduzca el nombre del Quizz" %><br>
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div class="field">
+
+    <%= label_tag(:disp, "¿El quizz esta disponible para usarse?") %>
+    <%= f.check_box :disponible %>
+  </div>
+  <div class="field">
+
+    <%= f.label "Elija un tema" %>
+      <%= f.select(:temaid,@tema_options) %>
+  </div>
+
+    <div class="actions">
+      <%= f.submit "Guardar Quizz" %>
+    </div>
+
+
+  <h5>Preguntas</h5>
+  <p>
+    <% @quizz.preguntas.each do |pregunta|  %>
+      <%= pregunta.texto %>
+      <br>
+    <% end %>
+  </p>
+  <%= link_to 'agregar pregunta', pregunta_nueva_admin_quizz_path(quizz_id: @quizz) %>
+  <br><br>
+  <%= link_to 'Quizzes', admin_quizzs_path %>
+</div>
+  <% end %>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

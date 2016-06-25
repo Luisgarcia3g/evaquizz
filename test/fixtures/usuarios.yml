@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cuenta: MyString
+  contra: MyString
+  nombre: MyString
+  apellido: MyString
+  id: MyString
+  cursos: MyText
+
+two:
+  cuenta: MyString
+  contra: MyString
+  nombre: MyString
+  apellido: MyString
+  id: MyString
+  cursos: MyText

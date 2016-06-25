@@ -1,0 +1,47 @@
+
+
+<div id="section">
+<h1>Crear Temario</h1>
+  <%= form_for :temario, :url => { :action => :update}, :method => :put do |f| %>
+    <% if @temario.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@temario.errors.count, "error") %> prohibited this question from being saved:</h2>
+        <ul>
+        <% @temario.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label "Escriba el nombre del temario" %><br>
+      <%= f.text_field :nombretemario %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Escriba la descripción del temario" %><br>
+      <%= f.text_area :descripcion %>
+    </div>
+  <br>
+    <div class="actions">
+      <%= f.submit "Guardar Temario" %>
+    </div>
+  <% end %>
+
+<%= link_to 'Temarios', admin_temarios_path %>
+
+
+
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

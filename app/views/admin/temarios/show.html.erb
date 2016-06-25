@@ -1,0 +1,63 @@
+
+<div id="section">
+<h1>Mostrar temario</h1>
+<p>
+  <strong>Nombre:</strong>
+  <%= @temario.nombretemario %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @temario.descripcion %>
+</p>
+
+
+
+<table class="GeneratedTable", border="1">
+
+
+
+  <thead>
+    <tr>
+      <th>Nombre del tema</th>
+        <th>Descripción</th>
+          <th>Ver</th>
+            <th>Editar</th>
+
+
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @temas.each do |tema| %>
+      <tr>
+        <td><%= tema.nombretema %></td>
+          <td><%= tema.descripcion %></td>
+
+
+        <td><%= link_to 'Ver', controller: "temas", action: "show", id: tema.id  %></td>
+        <td><%= link_to 'Editar', edit_admin_tema_path(tema) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @temas,  :previous_label => 'Atrás', :next_label => 'Adelante'%>
+<br>
+
+
+<%= link_to 'Temarios', admin_temarios_path %>
+<%= link_to 'Atras',:back %>
+
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>
