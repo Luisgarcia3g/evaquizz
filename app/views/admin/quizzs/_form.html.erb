@@ -13,7 +13,7 @@
 <div class="field">
 
   <%= f.label "Elija un tema" %>
-    <%= f.select(:temaid,@tema_options) %>
+    <%= f.select(:temaid,Tema.active.all.map{ |te| [ te.nombretema, te.id ] })  %>
 </div>
 
 

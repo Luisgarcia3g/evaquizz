@@ -52,7 +52,6 @@ layout 'admin'
   def new
     checar
     @saludo = "Hola #{session[:nombre]}"
-    @tema_options = Tema.all.map{ |t| [ t.nombretema, t.id ] }
     @preguntas = Pregunta.all
     @path_prefix = :admin
     @quizz = Quizz.new
@@ -69,7 +68,18 @@ layout 'admin'
     checar
     @quizz = Quizz.new(quizz_params)
     if @quizz.save
+        @tema=Tema.find_by(id: @quizz.temaid)
+        @temario=Temario.find_by(id: @tema.temarioid)
+        @grupos=Grupo.where(temarioid: @temario.id)
 
+
+          @grupos.each do |g|
+                @codigo= SecureRandom.hex(3)
+            grupoquizz=Grupoquizzs.new(Grupo: g.id, Quizz: @quizz.id,Codigo: @codigo,  iniciado: false,  )
+            grupoquizz.save
+
+
+          end
 
       redirect_to :action => :show, :id => @quizz.id
     else
