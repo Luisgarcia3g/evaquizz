@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 
 
-gem 'carrierwave', '~> 0.10.0'
-gem 'mini_magick', '~> 4.3'
+#gem 'carrierwave'
+gem 'mini_magick'
 gem 'fusioncharts-rails'
 gem 'will_paginate'
 gem 'jquery-turbolinks'
