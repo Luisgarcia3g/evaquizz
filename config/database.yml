@@ -30,12 +30,13 @@ default: &default
   socket: /tmp/mysql.sock
 
 production:
-  <<: *default
   adapter: mysql2
-  database: evaquiz_development
-  username: root
-  password: 
-  socket: /tmp/mysql.sock
+  encoding: utf8
+  database: ebdb
+  username: evaclickerdb
+  password: EvaClicker2016
+  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
+  port: 3306
 
 
 development:
