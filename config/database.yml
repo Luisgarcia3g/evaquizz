@@ -20,10 +20,6 @@ default: &default
 #   <<: *default
 #   database: db/test.sqlite3
 #
-production:
-  <<: *default
-  #database: db/production.sqlite3
-  database: evaquiz_production
 
 default: &default
   adapter: mysql2
@@ -32,6 +28,15 @@ default: &default
   username: root
   password:
   socket: /tmp/mysql.sock
+
+production:
+  <<: *default
+  adapter: mysql2
+  database: evaquiz_development
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+
 
 development:
   <<: *default
