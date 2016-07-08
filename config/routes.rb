@@ -132,6 +132,7 @@ Rails.application.routes.draw do
     get '/quizz', to: 'dashboard#quizz'
     get '/mostrargrafica', to: 'dashboard#mostrargrafica'
     get 'verquizz/:id', to: 'dashboard#verquizz'
+    get 'finalquizz/', to: 'dashboard#finalquizz'
     resources :grupos
     resources :resultados
     resources :grupoquizzs

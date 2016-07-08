@@ -20,7 +20,7 @@
     <thead>
       <tr>
         <th>Texto</th>
-        <th>Respuesta 1</th>
+        <th>Respuesta 1 (Correcta)</th>
         <th>Respuesta 2 </th>
         <th>Respuesta 3 </th>
         <th>Respuesta 4 </th>
@@ -45,7 +45,7 @@
         <td><%= pregunta.tiempo %></td>
         <td><%= link_to 'Ver',  controller: "preguntas", action: "show", id: pregunta.id %></td>
         <td><%= link_to 'Editar', edit_admin_pregunta_path(pregunta) %></td>
-      
+
       </tr>
     </tr>
     <% end %>

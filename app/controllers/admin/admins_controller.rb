@@ -1,5 +1,27 @@
 class Admin::AdminsController < ApplicationController
   layout "admin"
+  def checar
+    if (session[:tokenusuario]==nil)
+
+
+          redirect_to '/welcome'
+    else
+
+      if(session[:rol]==1)
+
+        redirect_to :maestro
+
+      elsif (session[:rol]==2)
+        redirect_to :alumno
+
+
+
+      end
+
+    end
+
+
+  end
 
 def desactivar
 @admin = Admin.find(params[:id])
@@ -9,6 +31,7 @@ redirect_to :back
 
 end
 def index
+  checar
   @saludo = "Hola  #{session[:nombre]}"
   @admins=Admin.all
 end

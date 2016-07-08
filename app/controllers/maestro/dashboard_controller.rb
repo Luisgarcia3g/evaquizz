@@ -42,6 +42,10 @@ end
 
 
   end
+  def finalquizz
+@saludo = "Hola  #{session[:nombre]}"
+
+  end
 
   def logout
 
@@ -79,7 +83,7 @@ end
 
   def index2
       @saludo = "Hola  #{session[:nombre]}"
-  @grupo=Grupo.where(maestro: session[:nombre]).second
+      @grupo=Grupo.where(maestro: session[:nombre]).second
       @temario=Temario.active.all
 
       @temas=Tema.all

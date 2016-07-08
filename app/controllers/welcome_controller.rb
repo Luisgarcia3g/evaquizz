@@ -1,22 +1,5 @@
 class WelcomeController < ApplicationController
-def servicio
-  host = 'http://evafisica.com/learn'
 
-  configuration          = Moodle::Api::Configuration.new
-  configuration.host     = host
-  configuration.username = '422627'
-  configuration.password = 'EvaClicker?1'
-  configuration.service  = 'eva-prac-2016'
-  p configuration
-
-  token =  Moodle::Api::TokenGenerator.new(configuration).call
-
-
-  Moodle::Api.configure({host: host, token: token })
-
-  params = { 'criteria[0][key]' => 'username', 'criteria[0][value]' => configuration.username }
-  @user = Moodle::Api.core_user_get_users(params)
-end
   def validar
     @admins=Admin.all
     @usuario = params[:welcome][:usuarios]
