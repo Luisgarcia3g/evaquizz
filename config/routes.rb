@@ -90,7 +90,7 @@ Rails.application.routes.draw do
     get'tema/editar', to: 'temas#edit'
     patch' tema/actualizar', to: 'temas#update'
     get'tema/mostrar', to: 'temas#show'
-    get'tema/', to: 'temas#index'
+    get'tema', to: 'temas#index'
     put "temas/:id" => "temas#update"
     get '/desactivar', to: "temas#desactivar"
 
@@ -146,7 +146,8 @@ Rails.application.routes.draw do
     get 'puntaje', to: 'dashboard#puntaje'
     get '/logout', to: "dashboard#logout"
     post 'enviada', to: 'dashboard#enviada'
-    resources :resultados
+  resources :resultados
+
   end
 
 end

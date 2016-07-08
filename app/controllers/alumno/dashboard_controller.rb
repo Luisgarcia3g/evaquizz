@@ -116,9 +116,10 @@ private
 def puntaje
 @codigo=params[:codigo]
 @alumno=session[:nombre]
-@puntaje=Resultado.where(Codigo: @codigo, Alumno: @alumno)
-@score=@puntaje.all.where(respuesta: 1)
-@score=@score.count
+@puntaje=Resultado.all
+
+#@score=@puntaje.where(respuesta: 1)
+#@score=@score.count
 end
 
 end
