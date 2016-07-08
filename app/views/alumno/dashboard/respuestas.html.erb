@@ -2,7 +2,7 @@
 <h1> Respuestas</h1>
 </div>
 <br>
-<br>
+
 
 
 <style>
@@ -27,27 +27,137 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 26px;
+  font-size: 24px;
 
 
    border-radius: 20px;
 }
 
-.button2 {width:200px;height:100px; color: black; font-size: 30px} /* azul */
-.button3 {width:200px;height:100px; color: black; font-size: 30px;} /* violeta */
-.button4 {width:200px;height:100px; color: black; font-size: 30px;} /* verde */
-.button5 {width:200px;height:100px; color: black; font-size: 30px;} /* amarillo */
+.button2 {width:200px;height:100px; color: black; font-size: 28px} /* azul */
+.button3 {width:200px;height:100px; color: black; font-size: 28px;} /* violeta */
+.button4 {width:200px;height:100px; color: black; font-size: 28px;} /* verde */
+.button5 {width:200px;height:100px; color: black; font-size: 28px;} /* amarillo */
+#clase {
+font-size: 100px;
+color: red;
+
+
+}
 </style>
 
-<div align="center">
-<button class="button button5">Coopérnico</button>
-<button class="button button2">Einstein</button>
-<br>
 
-<button class="button button3">Galileo</button>
-<button class="button button4">Newton</button>
-<br>
-   <br>
-   <br>
-<%= link_to "<button class='button6'>Enviar respuesta</button>".html_safe, "enviada" %>
-</di>
+<div align="center">
+
+  <%= form_for :alumno, :url => { :action => :enviada} do |f| %>
+  <%=f.hidden_field :Codigo, :value => @codigo %>
+  <%=f.hidden_field :idq, :value => @quizz.id %>
+  <%=f.hidden_field :index, :value => @index %>
+  <%=f.hidden_field :pregunta, :value => @pregunta.id %>
+
+
+
+  <%if @aleatorio==1%>
+
+  <div class="field">
+    <%=f.label style="clase", @pregunta.respuesta1 %>
+    <%= f.radio_button :respuesta,1 %>
+  </div>
+  <div class="field">
+    <%=f.label style="clase", @pregunta.respuesta2 %>
+    <%= f.radio_button :respuesta,2 %>
+  </div>
+  <div class="field">
+    <%=f.label style="clase", @pregunta.respuesta3 %>
+    <%= f.radio_button :respuesta, 3%>
+  </div>
+  <div class="field">
+    <%=f.label style="clase", @pregunta.respuesta4 %>
+    <%= f.radio_button :respuesta, 4 %>
+  </div>
+
+
+<%elsif @aleatorio==2%>
+
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta4 %>
+  <%= f.radio_button :respuesta,4 %>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta1 %>
+  <%= f.radio_button :respuesta,1 %>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta2 %>
+  <%= f.radio_button :respuesta, 2%>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta3 %>
+  <%= f.radio_button :respuesta, 3 %>
+</div>
+
+
+<%elsif @aleatorio==3%>
+
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta3 %>
+  <%= f.radio_button :respuesta,3 %>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta2 %>
+  <%= f.radio_button :respuesta,2 %>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta4 %>
+  <%= f.radio_button :respuesta, 4%>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta1%>
+  <%= f.radio_button :respuesta, 1%>
+</div>
+
+
+<%else%>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta3 %>
+  <%= f.radio_button :respuesta,3 %>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta4 %>
+  <%= f.radio_button :respuesta,4 %>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta1 %>
+  <%= f.radio_button :respuesta, 1%>
+</div>
+<div class="field">
+  <%=f.label style="clase", @pregunta.respuesta4 %>
+  <%= f.radio_button :respuesta, 4 %>
+</div>
+
+
+
+
+<%end%>
+<div class="field">
+
+<div class="actions">
+  <%= f.submit "Enviar Respuesta" %>
+</div>
+
+ </div>
+  <% end %>
+
+
+
+
+<script>
+
+var pusher = new Pusher('75159ef1c6a366266edb', {
+encrypted: true
+});
+  var mensaje = pusher.subscribe('channel');
+   mensaje.bind('event', function(data) {
+
+   });
+   </script>
+</body>

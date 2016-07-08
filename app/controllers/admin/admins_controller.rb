@@ -1,8 +1,11 @@
 class Admin::AdminsController < ApplicationController
   layout "admin"
 
+def desactivar
+end
 def index
   @saludo = "Hola  #{session[:nombre]}"
+  @admins=Admin.all
 end
 
 def show

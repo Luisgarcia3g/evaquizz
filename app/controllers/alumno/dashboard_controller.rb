@@ -54,10 +54,12 @@ end
   def validarCodigo
      @codigo = params[:dashboard][:codigo]
 
-     valido= Codigo.find_by(codigo: params[:dashboard][:codigo])
+     valido= Grupoquizzs.find_by(codigo: params[:dashboard][:codigo])
+
 
      if (valido)
-      redirect_to :action => :esperar
+        @quizz=Quizz.find_by(id: valido.Quizz)
+      redirect_to :action => :esperar, :idq => @quizz.id, :codigo =>  @codigo
 
      else
 
@@ -67,21 +69,56 @@ end
 
   end
   def esperar
+@quizz=Quizz.find_by(params[:idq])
+@codigo=params[:codigo]
 
-  #Pusher.trigger('channel', 'event', codigo: @codigo)
 
   end
 def respuestas
+  @codigo=params[:codigo]
+  @respuesta=5
+  @aleatorio=rand(4)
+  @quizz=Quizz.find_by(params[:idq])
+  @index=params[:index]
+  @index=@index.to_i
+  @preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
+
+  if @preguntaquizz.count==@index
+  redirect_to :action => :puntaje, :codigo => @codigo
+
+else
+  @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
+
+end
+
 
 end
 
 def enviada
+@quizz=Quizz.find_by(params[:idq])
+@pregunta=Pregunta.find_by(params[:pregunta])
+@index=params[:index]
+@index=@index.to_i
+@codigo=params[:Codigo]
+@res=params[:respuesta]
+@index=@index+1;
+resultado=Resultado.new(respuesta_params)
+resultado.save
 
+resultado.update_attribute(:Alumno, session[:nombre])
 
 end
+private
+  def respuesta_params
+    params.require(:alumno).permit(:Codigo,:respuesta,:pregunta)
+  end
 
 def puntaje
-
+@codigo=params[:codigo]
+@alumno=session[:nombre]
+@puntaje=Resultado.where(Codigo: @codigo, Alumno: @alumno)
+@score=@puntaje.all.where(respuesta: 1)
+@score=@score.count
 end
 
 end

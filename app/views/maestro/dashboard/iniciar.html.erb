@@ -1,15 +1,17 @@
 
 <div align="center">
  <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
-<h1> Nombre del Quizz: Quizz Introductorio a la Física</h1>
+<h1> Nombre del Quizz:</h1>
+<h1><%=@quizz.nombre  %> </h1>
 <h1> El código del quizz es: </h1>
-<h1 style="color:red;"> osk214</h1>
+<h1 style="color:red;"><%=@grupoquizz.Codigo  %> </h1>
+
 
 <br>
 
 
 <div align="center">
-    <button class='button3 x-send-msg'>Comenzar</button>
+<button class='button3 x-send-msg'>Comenzar</button>
 
 
 </div>
@@ -20,8 +22,7 @@ encrypted: true
 });
   var mensaje = pusher.subscribe('channel');
    mensaje.bind('event', function(data) {
-
-      window.location.href = "<%= maestro_quizz_path %>"
+      window.location.href = "<%= maestro_quizz_path(:idq => @quizz.id, :index => 0, :codigo => @grupoquizz.Codigo)  %>"
    });
    </script>
 

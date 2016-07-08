@@ -24,6 +24,6 @@ encrypted: true
   var mensaje = pusher.subscribe('channel');
    mensaje.bind('event', function(data) {
 
-    window.location.href = "<%= alumno_respuestas_path %>"
+    window.location.href = "<%= alumno_respuestas_path(:idq => @quizz.id, :index => 0, :codigo =>@codigo ) %>"
    });
    </script>

@@ -1,0 +1,47 @@
+<h1>Administradores </h1>
+
+<div id="section">
+
+  <table class="GeneratedTable", border="1">
+
+    <thead>
+      <tr>
+        <th>Nombre de administrador</th>
+          <th>Email</th>
+
+              <th>Ver</th>
+                  <th>Desactivar</th>
+
+
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @admins.each do |a| %>
+        <tr>
+          <td><%= a.name %></td>
+          <td><%=a.email%></td>
+                          <td><%= link_to 'Ver', controller: "admins", action: "show", id: a.id  %></td>
+    <td><%= link_to 'Desactivar', controller: "admins", action: "desactivar", id: a.id %></td>
+
+
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+<%= link_to 'Inicio', admin_path %>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

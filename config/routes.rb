@@ -69,6 +69,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     #resource :pregunta
+    get '/index', to: 'admins#index'
+    get '/desactivar', to: 'admins#desactivar'
     get '/', to: 'dashboard#index'
     get '/usuarios', to: 'admins#new'
     get '/logout', to: "dashboard#logout"
@@ -76,7 +78,7 @@ Rails.application.routes.draw do
     get 'pregunta/nueva', to: 'preguntas#new'
     get 'pregunta/', to: "preguntas#index"
     get "pregunta/:id" => "preguntas#show"
-  
+
 
 
     get'quizz/', to: 'quizzs#index'
@@ -133,16 +135,18 @@ Rails.application.routes.draw do
     resources :resultados
     resources :grupoquizzs
 
+
   end
   namespace :alumno do
     get '/', to: 'dashboard#index'
     post 'codigo', to: 'dashboard#validarCodigo'
     get 'esperar', to: 'dashboard#esperar'
     get 'respuestas', to: 'dashboard#respuestas'
-    get 'enviada', to: 'dashboard#enviada'
+    #get 'enviada', to: 'dashboard#enviada'
     get 'puntaje', to: 'dashboard#puntaje'
     get '/logout', to: "dashboard#logout"
-
+    post 'enviada', to: 'dashboard#enviada'
+    resources :resultados
   end
 
 end

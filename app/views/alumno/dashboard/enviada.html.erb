@@ -19,6 +19,6 @@ var pusher = new Pusher('75159ef1c6a366266edb', {
 var mensaje = pusher.subscribe('channel');
 mensaje.bind('event', function(data) {
 
-  window.location.href = "<%= alumno_respuestas_path %>"
+  window.location.href = "<%= alumno_respuestas_path(:idq => @quizz.id, :index => @index) %>"
 });
 </script>

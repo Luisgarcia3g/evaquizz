@@ -23,6 +23,23 @@ class Maestro::DashboardController < ApplicationController
 
 
   def quizz
+    @quizz=Quizz.find(params[:idq])
+      @codigo=params[:codigo]
+    @index=params[:index]
+    @index=@index.to_i
+    @preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
+
+    if @preguntaquizz.count==@index
+    redirect_to '/maestro'
+
+  else
+
+    @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
+
+
+@index=@index+1;
+end
+
 
   end
 
@@ -73,7 +90,7 @@ end
 
   def index
   @saludo = "Hola  #{session[:nombre]}"
-      @grupo=Grupo.where(maestro: session[:nombre]).first
+      @grupo=Grupo.first
         @temario=Temario.active.all
 
         @temas=Tema.all
@@ -97,6 +114,11 @@ end
 def iniciar
   checar
   @saludo = "Hola  #{session[:nombre]}"
+    @quizz = Quizz.find(params[:id])
+    @grupo = Grupo.first
+@grupoquizz=Grupoquizzs.find_by(Grupo: @grupo.id, Quizz: @quizz.id)
+
+
 
 end
 
@@ -382,58 +404,79 @@ def grafica
   end
 
 def mostrargrafica
+  @quizz=Quizz.find(params[:idq])
+  @pregunta=Pregunta.find_by(id: params[:pregunta])
+  @index=params[:index]
+  @codigo=params[:codigo];
+
+
   @saludo = "Hola  #{session[:nombre]}"
+  @r1=@pregunta.respuesta1
+  @r2=@pregunta.respuesta2
+  @r3=@pregunta.respuesta3
+  @r4=@pregunta.respuesta4
+  @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 1)
+@v1=@respuestas.count
+@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 2)
+@v2=@respuestas.count
+@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 3)
+@v3=@respuestas.count
+@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 4)
+@v4=@respuestas.count
+
+
+@titulo = "Respuestas de la pregunta #{@pregunta.texto}"
   @chart = Fusioncharts::Chart.new({
-:height => 500,
+:height => 370,
 :width => 750,
 :type => 'mscolumn2d',
 :renderAt => 'chart-container',
 
 :dataSource => {
   :chart => {
-    :caption => 'Respuestas de pregunta 1, Sumatoria de fuerzas',
+    :caption => @titulo ,
 
-    :xAxisname => 'Quizzes',
-    :yAxisName => 'Puntaje',
+    :xAxisname => 'Respuestas',
+    :yAxisName => 'Alumnos',
 
     :theme => 'fint',
   },
   :categories => [{
     :category => [
-      { :label => 'R1' },
-      { :label => 'R2' },
-      { :label => 'R3' },
-      { :label => 'R4' },
+      { :label => @r1 },
+      { :label => @r2 },
+      { :label => @r3 },
+      { :label => @r4 },
 
     ]
   }],
   :dataset =>  [{
-    :seriesname => 'Newton',
+    :seriesname => @r1,
     :data =>  [
-      { :value => '1' }
+      { :value => @v1 }
     ]},
     {
-      :seriesname => 'Copernico',
+      :seriesname => @r2,
       :data =>  [
         { :value => nil},
-          { :value => '' }
+          { :value => @v2 }
 
       ]},
       {
-        :seriesname => 'Einstein',
+        :seriesname => @r3,
         :data =>  [
           { :value => nil },
             { :value => nil },
-              { :value => '' }
+              { :value => @v3 }
 
         ]},
         {
-          :seriesname => 'Galileo',
+          :seriesname => @r4,
           :data =>  [
             { :value => nil },
               { :value => nil },
                 { :value => nil },
-{ :value => '' }
+{ :value =>@v4 }
           ]},
 
   ]

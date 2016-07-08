@@ -61,7 +61,7 @@ layout 'admin'
       @saludo = "Hola #{session[:nombre]}"
     @path_prefix = :admin
     @temario = Temario.find(params[:id])
-    @temas=Tema.where(temarioid: @temario.id ).paginate(page: params[:page], per_page: 10)
+    @temas=Tema.active.where(temarioid: @temario.id ).paginate(page: params[:page], per_page: 10)
   end
 
   def create

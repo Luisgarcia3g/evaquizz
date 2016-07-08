@@ -68,8 +68,8 @@ layout 'admin'
     checar
     @quizz = Quizz.new(quizz_params)
     if @quizz.save
-        @tema=Tema.find_by(id: @quizz.temaid)
-        @temario=Temario.find_by(id: @tema.temarioid)
+        @tema=Tema.active.find_by(id: @quizz.temaid)
+        @temario=Temario.active.find_by(id: @tema.temarioid)
         @grupos=Grupo.where(temarioid: @temario.id)
 
 
@@ -91,8 +91,8 @@ layout 'admin'
     checar
     @saludo = "Hola #{session[:nombre]}"
     @quizz = Quizz.find(params[:id])
-    @tema_options = Tema.all.map{ |t| [ t.nombretema, t.id ] }
-    @preguntas = Pregunta.all
+    @tema_options = Tema.active.all.map{ |t| [ t.nombretema, t.id ] }
+    @preguntas = Pregunta.active.all
   end
 
   def update

@@ -1,2 +1,32 @@
 <h1>Administrador Creado</h1>
+
+<div id="section">
+
+<p>
+  <strong>Nombre de usuario:</strong>
+  <%= @admin.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @admin.email %>
+</p>
+
+
+
+
+</div>
+
 <%= link_to 'Inicio', admin_path %>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+</script>

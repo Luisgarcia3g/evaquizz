@@ -1,10 +1,27 @@
 <div align="center">
-<h1>Tu puntaje es de 4/5 </h1>
+
+
+<h1>Tu puntaje es de <%=@score %>/ <%=@puntaje %></h1>
+
+
+
+<%@puntaje.each do |p| %>
+
+
+<%p.respuesta==1%>
+
+ <img src="acierto.png" >
+<%else%>
+<img src="error.png" >
+
+<%end%>
+
+  <%end %>
 <br>
 
 <br>
 
-<%= image_tag("4-stars.png", height:"100")%>
+
 <br>
 <br>
 
