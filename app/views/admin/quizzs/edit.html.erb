@@ -29,6 +29,7 @@
   <p>
     <% @quizz.preguntas.each do |pregunta|  %>
       <%= pregunta.texto %>
+  <%= link_to 'Quitar', controller: "quizzs", action: "quitarpregunta", id: pregunta.id, idq: @quizz.id %>
       <br>
     <% end %>
   </p>

@@ -24,6 +24,17 @@ layout 'admin'
 
   end
 
+def quitarpregunta
+@eq= Quizz.find(params[:idq])
+@ep= Pregunta.find(params[:id])
+@eliminar=PreguntaQuizz.find_by(quizz_id: @eq, pregunta_id: @ep)
+@eliminar.destroy
+redirect_to :back
+
+
+end
+
+
   def desactivar
 
     @quizz= Quizz.find(params[:id])

@@ -85,6 +85,7 @@ Rails.application.routes.draw do
     get'quizz/nuevo', to: 'quizzs#new'
     get'quizz/:id', to: 'quizzs#show'
     get '/desactivar', to: "quizzs#desactivar"
+    get '/quitarpregunta', to: 'quizzs#quitarpregunta'
 
     get'tema/nuevo', to: 'temas#new'
     get'tema/editar', to: 'temas#edit'
