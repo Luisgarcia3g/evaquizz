@@ -19,13 +19,18 @@
 
     <tbody>
       <% @admins.each do |a| %>
+<% if a.name==session[:nombre]%>
+
+
+<%else%>
         <tr>
+
           <td><%= a.name %></td>
           <td><%=a.email%></td>
                           <td><%= link_to 'Ver', controller: "admins", action: "show", id: a.id  %></td>
     <td><%= link_to 'Desactivar', controller: "admins", action: "desactivar", id: a.id %></td>
 
-
+      <%end%>
       <% end %>
     </tbody>
   </table>

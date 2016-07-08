@@ -2,6 +2,11 @@ class Admin::AdminsController < ApplicationController
   layout "admin"
 
 def desactivar
+@admin = Admin.find(params[:id])
+
+@admin.destroy
+redirect_to :back
+
 end
 def index
   @saludo = "Hola  #{session[:nombre]}"
