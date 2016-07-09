@@ -149,7 +149,7 @@ Rails.application.routes.draw do
     get '/logout', to: "dashboard#logout"
     post 'enviada', to: 'dashboard#enviada'
   resources :resultados
-
+  
   end
 
 end

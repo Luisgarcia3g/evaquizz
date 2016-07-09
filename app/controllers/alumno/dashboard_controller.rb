@@ -16,21 +16,21 @@ class Alumno::DashboardController < ApplicationController
 
   def logout
 
-  session[:tokenusuario]=nil
-  session[:rol]=nil
-  session[:nombre]=nil
+    session[:tokenusuario]=nil
+    session[:rol]=nil
+    session[:nombre]=nil
 
-      redirect_to '/welcome'
+    redirect_to '/welcome'
   end
 
 
-def checar
+  def checar
 
 
     if (session[:tokenusuario]==nil)
 
 
-          redirect_to '/welcome'
+      redirect_to '/welcome'
     else
 
       if(session[:rol]==1)
@@ -44,7 +44,7 @@ def checar
 
     end
 
-end
+  end
   def index
     @saludo = "Hola  #{session[:nombre]}"
 
@@ -52,74 +52,78 @@ end
   end
 
   def validarCodigo
-     @codigo = params[:dashboard][:codigo]
+    @codigo = params[:dashboard][:codigo]
 
-     valido= Grupoquizzs.find_by(codigo: params[:dashboard][:codigo])
+    valido= Grupoquizzs.find_by(codigo: params[:dashboard][:codigo])
 
 
-     if (valido)
-        @quizz=Quizz.find_by(id: valido.Quizz)
+    if (valido)
+      @quizz=Quizz.find_by(id: valido.Quizz)
       redirect_to :action => :esperar, :idq => @quizz.id, :codigo =>  @codigo
 
-     else
+    else
 
-        flash[:notice] = "Código Incorrecto"
-             redirect_to :back
-end
+      flash[:notice] = "Código Incorrecto"
+      redirect_to :back
+    end
 
   end
   def esperar
-@quizz=Quizz.find_by(params[:idq])
-@codigo=params[:codigo]
+    @quizz=Quizz.find_by(params[:idq])
+    @codigo=params[:codigo]
 
 
   end
-def respuestas
-  @codigo=params[:codigo]
-  @respuesta=5
-  @aleatorio=rand(4)
-  @quizz=Quizz.find_by(params[:idq])
-  @index=params[:index]
-  @index=@index.to_i
-  @preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
+  def respuestas
+    @codigo=params[:Codigo]
+    @respuesta=5
+    @aleatorio=1
+    @quizz=Quizz.find_by(params[:idq])
+    @index=params[:index]
+    @index=@index.to_i
+    @preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
 
-  if @preguntaquizz.count==@index
-  redirect_to :action => :puntaje, :codigo => @codigo
+    if @preguntaquizz.count==@index
+      redirect_to :action => :puntaje, :codigo => @codigo
 
-else
-  @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
+    else
+      @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
+@index=@index+1
+    end
+@index=@index+1
+  end
 
-end
+  def enviada
+    @quizz=Quizz.find_by(params[:idq])
+    @pregunta=Pregunta.find_by(params[:pregunta])
+    @index=params[:index]
+    @index=@index.to_i
+    @codigo=params[:Codigo]
+    @res=params[:respuesta]
+@index=@index+1
 
+    @resultado=Resultado.new(respuesta_params)
+    @resultado.save
 
-end
+    @resultado.update_attribute(:Alumno, session[:nombre])
 
-def enviada
-@quizz=Quizz.find_by(params[:idq])
-@pregunta=Pregunta.find_by(params[:pregunta])
-@index=params[:index]
-@index=@index.to_i
-@codigo=params[:Codigo]
-@res=params[:respuesta]
-@index=@index+1;
-resultado=Resultado.new(respuesta_params)
-resultado.save
+  end
+  def puntaje
+    @codigo=params[:codigo]
+    @alumno=session[:nombre]
+    @puntaje=Resultado.where(Codigo: @codigo)
+    @puntaje=@puntaje.where(Alumno: @alumno)
 
-resultado.update_attribute(:Alumno, session[:nombre])
-
-end
-private
+    @score=@puntaje.where(respuesta: 1)
+    @score=@score.count
+    @califa=(@score*1.0)/@puntaje.count
+    @califa=@califa*100
+  end
+  private
   def respuesta_params
     params.require(:alumno).permit(:Codigo,:respuesta,:pregunta)
   end
 
-def puntaje
-@codigo=params[:codigo]
-@alumno=session[:nombre]
-@puntaje=Resultado.all
 
-#@score=@puntaje.where(respuesta: 1)
-#@score=@score.count
-end
 
 end

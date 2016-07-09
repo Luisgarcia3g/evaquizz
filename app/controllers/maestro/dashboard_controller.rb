@@ -33,10 +33,7 @@ class Maestro::DashboardController < ApplicationController
     redirect_to '/maestro'
 
   else
-
     @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
-
-
 @index=@index+1;
 end
 

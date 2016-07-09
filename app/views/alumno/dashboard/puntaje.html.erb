@@ -1,7 +1,7 @@
 <div align="center">
 
 
-<h1>Tu puntaje es de <%=@score %>/ <%=@puntaje %></h1>
+<h1>Tu puntaje es de <%=@score %> / <%=@puntaje.count %></h1>
 
 
 
@@ -10,9 +10,11 @@
 
 <%if p.respuesta==1%>
 
- <img src="Acierto.png" >
+<%= image_tag("Acierto.png") %>
+
 <%else%>
-<img src="Error.png" >
+<%= image_tag("Error.png") %>
+
 
 <%end%>
 
@@ -25,5 +27,22 @@
 <br>
 <br>
 
-<h1> Regular</h1>
+
+
+<%if @califa==100%>
+
+<h1>ÉPICO¡¡¡</h1>
+
+<%elsif @califa>=90%>
+<h1>Excelente</h1>
+
+<%elsif @califa>=80%>
+<h1>Regular</h1>
+
+<%else%>
+<h1>Necesitas apoyo</h1>
+
+<%end%>
+
+
 </div>
