@@ -34,6 +34,7 @@ def index
   checar
   @saludo = "Hola  #{session[:nombre]}"
   @admins=Admin.all
+
 end
 
 def show

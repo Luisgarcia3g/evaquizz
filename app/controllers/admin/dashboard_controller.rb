@@ -37,6 +37,7 @@ class Admin::DashboardController < ApplicationController
 checar
 @saludo = "Hola  #{session[:nombre]}"
 
+
   end
 
 end

@@ -34,6 +34,7 @@ class Maestro::DashboardController < ApplicationController
 
   else
     @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
+    @tiempo=(@pregunta.tiempo)+1
 @index=@index+1;
 end
 

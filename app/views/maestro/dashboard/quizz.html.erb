@@ -1,15 +1,22 @@
 
-<h1>Quizz : <%=@quizz.nombre %></h1>
+<h2>Quizz : <%=@quizz.nombre %></h2>
 <div align="center">
-<h1>Pregunta :</h1>
-<h1><%= @pregunta.texto%></h1>
- <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
+<h1>Pregunta : <%= @pregunta.texto%></h1>
 
+ <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
+ <table>
+   <col width="130">
+    <col width="130">
+<td>
    <img src="\gravedad2.png" >
+</td>
+<td style="background:white">
+<span id="timer" style="color:red;font-weight:bold;font-size:50px"></span><br>
+</td>
+ </table>
 </div>
 <br>
-<br>
-<br>
+
 
 
 <div align="center">
@@ -29,3 +36,24 @@ window.location.href = "<%= maestro_mostrargrafica_path(:idq => @quizz.id, :inde
 
        });
        </script>
+
+<script>
+
+var count=<%=@tiempo%>;
+
+var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+  function timer()
+  {
+    count=count-1;
+    if (count < 0)
+    {
+      window.location.href = "<%= maestro_mostrargrafica_path(:idq => @quizz.id, :index => @index, :codigo => @codigo,:pregunta => @pregunta.id)  %>"
+
+       clearInterval(counter);
+       return;
+    }
+
+   document.getElementById("timer").innerHTML=count + " segundos"; // watch for spelling
+  }
+
+</script>
