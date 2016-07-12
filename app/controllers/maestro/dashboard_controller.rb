@@ -30,7 +30,7 @@ class Maestro::DashboardController < ApplicationController
     @preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
 
     if @preguntaquizz.count==@index
-    redirect_to '/maestro'
+    redirect_to  maestro_finalquizz_path
 
   else
     @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
@@ -44,6 +44,7 @@ end
   end
   def finalquizz
 @saludo = "Hola  #{session[:nombre]}"
+  Pusher.trigger('channel', 'finquizz', codigo: @codigo)
 
   end
 
@@ -408,6 +409,7 @@ def grafica
   end
 
 def mostrargrafica
+
   @quizz=Quizz.find(params[:idq])
   @pregunta=Pregunta.find_by(id: params[:pregunta])
   @index=params[:index]
@@ -428,7 +430,9 @@ def mostrargrafica
 @v3=@respuestas.count
 @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 4)
 @v4=@respuestas.count
-
+@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 5)
+@v5=@respuestas.count
+@maximo=[@v1,@v2,@v3,@v4,@v5].max
 
 @titulo = "Respuestas de la pregunta #{@pregunta.texto}"
   @chart = Fusioncharts::Chart.new({
@@ -441,17 +445,27 @@ def mostrargrafica
   :chart => {
     :caption => @titulo ,
 
-    :xAxisname => 'Respuestas',
+    #:xAxisname => 'Respuestas',
     :yAxisName => 'Alumnos',
 
+    :showXAxisLine =>'1',
+    :yAxisValueDecimals => '0',
+			:xAxisLineColor => '#999999',
+			:divlineColor => '#999999',
+			:divLineDashed => '1',
+      :borderAlpha => '20',
+      :showYAxisValues => '1',
+      :yAxisMaxvalue => @maximo,
+      :adjustDiv => '1',
+      :numDivLines => '0',
+      :showPlotBorder => '1',
+      :rotateValues => '0',
     :theme => 'fint',
   },
   :categories => [{
     :category => [
-      { :label => @r1 },
-      { :label => @r2 },
-      { :label => @r3 },
-      { :label => @r4 },
+      { :label => 'Respuestas' }
+
 
     ]
   }],
@@ -463,26 +477,29 @@ def mostrargrafica
     {
       :seriesname => @r2,
       :data =>  [
-        { :value => nil},
+
           { :value => @v2 }
 
       ]},
       {
         :seriesname => @r3,
         :data =>  [
-          { :value => nil },
-            { :value => nil },
+
               { :value => @v3 }
 
         ]},
         {
           :seriesname => @r4,
           :data =>  [
-            { :value => nil },
-              { :value => nil },
-                { :value => nil },
+
 { :value =>@v4 }
           ]},
+          {
+            :seriesname => 'No Contesto',
+            :data =>  [
+
+  { :value =>@v5 }
+            ]},
 
   ]
 }

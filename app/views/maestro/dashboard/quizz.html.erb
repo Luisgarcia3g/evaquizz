@@ -49,6 +49,7 @@ var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
     count=count-1;
     if (count < 0)
     {
+    
       window.location.href = "<%= maestro_mostrargrafica_path(:idq => @quizz.id, :index => @index, :codigo => @codigo,:pregunta => @pregunta.id)  %>"
 
        clearInterval(counter);

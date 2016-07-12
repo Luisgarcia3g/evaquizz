@@ -72,13 +72,13 @@ class Alumno::DashboardController < ApplicationController
   def esperar
     @quizz=Quizz.find_by(params[:idq])
     @codigo=params[:codigo]
-  Pusher.trigger('channel', 'registro', codigo: @codigo)
+    Pusher.trigger('channel', 'registro', codigo: @codigo)
 
   end
   def respuestas
     @codigo=params[:Codigo]
     @respuesta=5
-    @aleatorio=1
+    @aleatorio=rand(4)
     @quizz=Quizz.find_by(params[:idq])
     @index=params[:index]
     @index=@index.to_i
@@ -89,43 +89,53 @@ class Alumno::DashboardController < ApplicationController
 
     else
       @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
-@index=@index+1
+      @index=@index+1
     end
-@index=@index+1
+
   end
 
   def enviada
     Pusher.trigger('channel', 'contestados', codigo: @codigo)
 
-    @quizz=Quizz.find_by(params[:idq])
-    @pregunta=Pregunta.find_by(params[:pregunta])
+    @quizz=Quizz.find_by(id: params[:idq])
+    @pregunta=Pregunta.find_by(id: params[:pregunta])
     @index=params[:index]
     @index=@index.to_i
-    @codigo=params[:Codigo]
-    @res=params[:respuesta]
-@index=@index+1
-
-    @resultado=Resultado.new(respuesta_params)
-    @resultado.save
-
-    @resultado.update_attribute(:Alumno, session[:nombre])
-
-  end
-  def puntaje
     @codigo=params[:codigo]
-    @alumno=session[:nombre]
-    @puntaje=Resultado.where(Codigo: @codigo)
-    @puntaje=@puntaje.where(Alumno: @alumno)
+    @res=params[:respuesta]
+    if(@res==@pregunta.respuesta1)
+      @resultado=Resultado.create(Codigo: @codigo, Alumno: session[:nombre],respuesta: 1, pregunta: @pregunta.id  )
 
-    @score=@puntaje.where(respuesta: 1)
-    @score=@score.count
-    @califa=(@score*1.0)/@puntaje.count
-    @califa=@califa*100
-  end
-  private
-  def respuesta_params
-    params.require(:alumno).permit(:Codigo,:respuesta,:pregunta)
-  end
+  elsif (@res==@pregunta.respuesta2)
+
+    @resultado=Resultado.create(Codigo: @codigo, Alumno: session[:nombre],respuesta: 2, pregunta: @pregunta.id  )
+
+elsif (@res==@pregunta.respuesta3)
+
+  @resultado=Resultado.create(Codigo: @codigo, Alumno: session[:nombre],respuesta: 3, pregunta: @pregunta.id  )
+
+
+elsif (@res==@pregunta.respuesta4)
+  @resultado=Resultado.create(Codigo: @codigo, Alumno: session[:nombre],respuesta: 4, pregunta: @pregunta.id  )
+
+else
+  @resultado=Resultado.create(Codigo: @codigo, Alumno: session[:nombre],respuesta: 5, pregunta: @pregunta.id  )
+
+
+end
+end
+def puntaje
+  @codigo=params[:Codigo]
+  @alumno=session[:nombre]
+  @puntaje=Resultado.where(Codigo: @codigo)
+  @puntaje=@puntaje.where(Alumno: @alumno)
+
+  @score=@puntaje.where(respuesta: 1)
+  @score=@score.count
+  @califa=(@score*1.0)/@puntaje.count
+  @califa=@califa*100
+end
+
 
 
 

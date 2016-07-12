@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 
 #gem 'carrierwave'
+gem 'bootstrap_form'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'mini_magick'

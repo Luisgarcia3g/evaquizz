@@ -132,7 +132,7 @@ Rails.application.routes.draw do
     get '/quizz', to: 'dashboard#quizz'
     get '/mostrargrafica', to: 'dashboard#mostrargrafica'
     get 'verquizz/:id', to: 'dashboard#verquizz'
-    get 'finalquizz/', to: 'dashboard#finalquizz'
+    get '/finalquizz', to: 'dashboard#finalquizz'
     resources :grupos
     resources :resultados
     resources :grupoquizzs
@@ -144,12 +144,13 @@ Rails.application.routes.draw do
     post 'codigo', to: 'dashboard#validarCodigo'
     get 'esperar', to: 'dashboard#esperar'
     get 'respuestas', to: 'dashboard#respuestas'
-    #get 'enviada', to: 'dashboard#enviada'
+    get 'enviada', to: 'dashboard#enviada'
     get 'puntaje', to: 'dashboard#puntaje'
     get '/logout', to: "dashboard#logout"
-    post 'enviada', to: 'dashboard#enviada'
+
+    #post 'enviada', to: 'dashboard#enviada'
   resources :resultados
-  
+
   end
 
 end

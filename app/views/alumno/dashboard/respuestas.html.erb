@@ -6,11 +6,7 @@
 
 
 <style>
-label {
-  width: 200px;
-  border-radius: 3px;
-  border: 1px solid #D1D3D4
-}
+
 
 .button {
 
@@ -44,129 +40,154 @@ label {
 .button3 {width:200px;height:100px; color: black; font-size: 28px;} /* violeta */
 .button4 {width:200px;height:100px; color: black; font-size: 28px;} /* verde */
 #button5 {width:200px;height:100px; color: black; font-size: 28px;} /* amarillo */
-#clase {
-font-size: 100px;
-color: red;
 
-
-}
 
 </style>
 
 
 <div align="center">
 
-  <%= form_for :alumno, :url => { :action => :enviada} do |f| %>
-  <%=f.hidden_field :Codigo, :value => @codigo %>
-  <%=f.hidden_field :idq, :value => @quizz.id %>
-  <%=f.hidden_field :index, :value => @index %>
-  <%=f.hidden_field :pregunta, :value => @pregunta.id %>
-
-
-
-  <%if @aleatorio==1%>
-
-  <div class="field">
-
-    <%=f.label  @pregunta.respuesta1 %>
-    <%= f.radio_button :respuesta,1 %>
-  </div>
-  <div class="field">
-    <%=f.label  @pregunta.respuesta2 %>
-    <%= f.radio_button :respuesta,2 %>
-  </div>
-  <div class="field">
-    <%=f.label  @pregunta.respuesta3 %>
-    <%= f.radio_button :respuesta, 3%>
-  </div>
-  <div class="field">
-    <%=f.label  @pregunta.respuesta4 %>
-    <%= f.radio_button :respuesta, 4 %>
-  </div>
-
+<%if @aleatorio==1%>
+<button id="1" class="button4" onclick="elegir(1)"><%=@pregunta.respuesta1%></button>
+<br>
+<br>
+<button id="2" class="button4" onclick="elegir(2)"><%=@pregunta.respuesta2%></button>
+<br>
+<br>
+<button id="3" class="button4" onclick="elegir(3)"><%=@pregunta.respuesta3%></button>
+<br>
+<br>
+<button  id="4" class="button4" onclick="elegir(4)"><%=@pregunta.respuesta4%></button>
+<br>
+<br>
 
 <%elsif @aleatorio==2%>
 
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta4 %>
-  <%= f.radio_button :respuesta,4 %>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta1 %>
-  <%= f.radio_button :respuesta,1 %>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta2 %>
-  <%= f.radio_button :respuesta, 2%>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta3 %>
-  <%= f.radio_button :respuesta, 3 %>
-</div>
+<button id="3" class="button4" onclick="elegir(3)"><%=@pregunta.respuesta3%></button>
+<br>
+<br>
+<button id="1" class="button4" onclick="elegir(1)"><%=@pregunta.respuesta1%></button>
+<br>
+<br>
+<button id="4" class="button4" onclick="elegir(4)"><%=@pregunta.respuesta4%></button>
+<br>
+<br>
+<button  id="2" class="button4" onclick="elegir(2)"><%=@pregunta.respuesta2%></button>
+<br>
+<br>
 
 
 <%elsif @aleatorio==3%>
 
-<div class="field">
-  <%=f.label  @pregunta.respuesta3, class: "eti" %>
-  <%= f.radio_button :respuesta,3 %>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta2 %>
-  <%= f.radio_button :respuesta,2 %>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta4 %>
-  <%= f.radio_button :respuesta, 4%>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta1%>
-  <%= f.radio_button :respuesta, 1%>
-</div>
 
+<button id="4" class="button4" onclick="elegir(4)"><%=@pregunta.respuesta4%></button>
+<br>
+<br>
+<button id="1" class="button4" onclick="elegir(1)"><%=@pregunta.respuesta1%></button>
+<br>
+<br>
+<button id="2" class="button4" onclick="elegir(2)"><%=@pregunta.respuesta2%></button>
+<br>
+<br>
+<button  id="3" class="button4" onclick="elegir(3)"><%=@pregunta.respuesta3%></button>
+<br>
+<br>
 
 <%else%>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta3 %>
-  <%= f.radio_button :respuesta,3 %>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta2 %>
-  <%= f.radio_button :respuesta,2 %>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta1 %>
-  <%= f.radio_button :respuesta, 1%>
-</div>
-<div class="field">
-  <%=f.label style="clase", @pregunta.respuesta4 %>
-  <%= f.radio_button :respuesta, 4 %>
-</div>
+
+
+<button id="1" class="button4" onclick="elegir(1)"><%=@pregunta.respuesta1%></button>
+<br>
+<br>
+<button id="4" class="button4" onclick="elegir(4)"><%=@pregunta.respuesta4%></button>
+<br>
+<br>
+<button id="3" class="button4" onclick="elegir(3)"><%=@pregunta.respuesta3%></button>
+<br>
+<br>
+<button  id="2" class="button4" onclick="elegir(2)"><%=@pregunta.respuesta2%></button>
+<br>
+<br>
 
 
 
 
 <%end%>
-<div class="field">
+<button class="button6" onclick="enviar()">Enviar Respuesta</button>
 
-<div class="actions">
-  <%= f.submit "Enviar Respuesta" %>
+
+
 </div>
 
- </div>
-  <% end %>
-
-
-
-
 <script>
+var eleccion="Nada";
+function elegir(id){
 
+var b1= document.getElementById('1').style.background="gray";
+var b2= document.getElementById('2').style.background="gray";;
+var b3= document.getElementById('3').style.background="gray";;
+var b4= document.getElementById('4').style.background="gray";;
+
+var select=document.getElementById(id).style.background="#009933";
+
+if (id==1){
+
+eleccion='<%=@pregunta.respuesta1%>';
+}
+else if (id==2){
+eleccion='<%=@pregunta.respuesta2%>';
+
+
+}
+else if (id==3){
+
+eleccion='<%=@pregunta.respuesta3%>';
+}
+else {
+
+eleccion='<%=@pregunta.respuesta4%>';
+
+}
+
+}
+
+function enviar(){
+
+if (eleccion=='<%=@pregunta.respuesta1%>'){
+var direccion= "<%= alumno_enviada_path(:idq => @quizz.id, :index => @index, :codigo => @codigo, :pregunta =>  @pregunta.id, :respuesta =>  @pregunta.respuesta1)  %>";
+
+}
+else if (eleccion=='<%=@pregunta.respuesta2%>'){
+
+  var direccion= "<%= alumno_enviada_path(:idq => @quizz.id, :index => @index, :codigo => @codigo, :pregunta =>  @pregunta.id, :respuesta =>  @pregunta.respuesta2)  %>";
+
+}
+
+else if (eleccion=='<%=@pregunta.respuesta3%>'){
+
+  var direccion= "<%= alumno_enviada_path(:idq => @quizz.id, :index => @index, :codigo => @codigo, :pregunta =>  @pregunta.id, :respuesta =>  @pregunta.respuesta3)  %>";
+
+}
+
+else if (eleccion=='<%=@pregunta.respuesta4%>'){
+
+  var direccion= "<%= alumno_enviada_path(:idq => @quizz.id, :index => @index, :codigo => @codigo, :pregunta =>  @pregunta.id, :respuesta =>  @pregunta.respuesta4)  %>";
+
+}
+else {
+
+  var direccion= "<%= alumno_enviada_path(:idq => @quizz.id, :index => @index, :codigo => @codigo, :pregunta =>  @pregunta.id, :respuesta =>  'SC' )  %>";
+
+}
+window.location.href = direccion;
+
+
+}
 var pusher = new Pusher('75159ef1c6a366266edb', {
 encrypted: true
 });
   var mensaje = pusher.subscribe('channel');
-   mensaje.bind('event', function(data) {
-
+   mensaje.bind('cerrar', function(data) {
+ enviar();
    });
    </script>
-</body>
