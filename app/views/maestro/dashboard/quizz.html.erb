@@ -12,6 +12,7 @@
 </td>
 <td style="background:white">
 <span id="timer" style="color:red;font-weight:bold;font-size:50px"></span><br>
+<span id="contestados" style="color:black;font-weight:bold;font-size:25px"></span><br>
 </td>
  </table>
 </div>
@@ -20,19 +21,20 @@
 
 
 <div align="center">
-    <button class='button3 x-send-msg'>Continuar</button>
+  <%= link_to "<button class='button3'>Continuar</button>".html_safe, maestro_mostrargrafica_path(:idq => @quizz.id, :index => @index, :codigo => @codigo,:pregunta => @pregunta.id) %>
 
 </div>
 
     <script>
-
+var con=0;
     var pusher2 = new Pusher('75159ef1c6a366266edb', {
     encrypted: true
     });
       var mensaje2 = pusher2.subscribe('channel');
-       mensaje2.bind('event', function(data) {
-window.location.href = "<%= maestro_mostrargrafica_path(:idq => @quizz.id, :index => @index, :codigo => @codigo,:pregunta => @pregunta.id)  %>"
-           //window.open('<%= maestro_mostrargrafica_path %>');
+       mensaje2.bind('contestados', function(data) {
+         con=con+1;
+         document.getElementById("contestados").innerHTML=con + " han respondido"; // watch for spelling
+
 
        });
        </script>

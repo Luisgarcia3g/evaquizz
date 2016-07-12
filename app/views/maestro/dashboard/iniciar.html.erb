@@ -6,23 +6,29 @@
 <h1> El código del quizz es: </h1>
 <h1 style="color:red;"><%=@grupoquizz.Codigo  %> </h1>
 
+<br>
+<span id="alumnos" style="color:black;font-weight:bold;font-size:30px"></span><br>
 
 <br>
 
 
 <div align="center">
-<button class='button3 x-send-msg'>Comenzar</button>
+  <%= link_to "<button class='button3'>Comenzar</button>".html_safe, maestro_quizz_path(:idq => @quizz.id, :index => 0, :codigo => @grupoquizz.Codigo) %>
+
 
 
 </div>
 <script>
-
+var alumnos=0;
 var pusher = new Pusher('75159ef1c6a366266edb', {
 encrypted: true
 });
   var mensaje = pusher.subscribe('channel');
-   mensaje.bind('event', function(data) {
-      window.location.href = "<%= maestro_quizz_path(:idq => @quizz.id, :index => 0, :codigo => @grupoquizz.Codigo)  %>"
+   mensaje.bind('registro', function(data) {
+     alumnos=alumnos+1;
+     document.getElementById("alumnos").innerHTML=alumnos + " personas han entrado"; // watch for spelling
+
+    //  window.location.href = "<%= maestro_quizz_path(:idq => @quizz.id, :index => 0, :codigo => @grupoquizz.Codigo)  %>"
    });
    </script>
 

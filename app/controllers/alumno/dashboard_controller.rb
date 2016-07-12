@@ -59,6 +59,7 @@ class Alumno::DashboardController < ApplicationController
 
     if (valido)
       @quizz=Quizz.find_by(id: valido.Quizz)
+
       redirect_to :action => :esperar, :idq => @quizz.id, :codigo =>  @codigo
 
     else
@@ -71,7 +72,7 @@ class Alumno::DashboardController < ApplicationController
   def esperar
     @quizz=Quizz.find_by(params[:idq])
     @codigo=params[:codigo]
-
+  Pusher.trigger('channel', 'registro', codigo: @codigo)
 
   end
   def respuestas
@@ -94,6 +95,8 @@ class Alumno::DashboardController < ApplicationController
   end
 
   def enviada
+    Pusher.trigger('channel', 'contestados', codigo: @codigo)
+
     @quizz=Quizz.find_by(params[:idq])
     @pregunta=Pregunta.find_by(params[:pregunta])
     @index=params[:index]

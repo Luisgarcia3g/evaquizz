@@ -34,6 +34,8 @@ class Maestro::DashboardController < ApplicationController
 
   else
     @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
+    Pusher.trigger('channel', 'pregunta', codigo: @codigo)
+
     @tiempo=(@pregunta.tiempo)+1
 @index=@index+1;
 end
@@ -410,6 +412,7 @@ def mostrargrafica
   @pregunta=Pregunta.find_by(id: params[:pregunta])
   @index=params[:index]
   @codigo=params[:codigo];
+  Pusher.trigger('channel', 'cerrar', codigo: @codigo)
 
 
   @saludo = "Hola  #{session[:nombre]}"

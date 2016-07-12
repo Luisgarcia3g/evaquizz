@@ -4,10 +4,10 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-#default: &default
-#  adapter: sqlite2
-#  pool: 5
-#  timeout: 5000
+default: &default
+  adapter: sqlite2
+  pool: 5
+  timeout: 5000
 
  #development:
    #<<: *default
@@ -21,13 +21,13 @@
 #   database: db/test.sqlite3
 #
 #
-default: &default
-   adapter: mysql2
-   encoding: utf8
-   pool: 5
-   username: root
-   password: darkphyros
-   socket: /tmp/mysql.sock
+#default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: 5
+#   username: root
+#   password: darkphyros
+#   socket: /tmp/mysql.sock
 
 #default:
 #  adapter: mysql2
@@ -39,30 +39,30 @@ default: &default
 #  port: 3306
 
 
-#production:
-#  adapter: mysql2
-#  encoding: utf8
-#  database: ebdb
-#  username: evaclickerdb
-#  password: EvaClicker2016
-#  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
-#  port: 3306
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: ebdb
+  username: evaclickerdb
+  password: EvaClicker2016
+  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
+  port: 3306
 
-development:
-  <<: *default
-  database: evaquiz_development
 #development:
-#  adapter: mysql2
-#  encoding: utf8
-#  database: ebdb
-#  username: evaclickerdb
-#  password: EvaClicker2016
-#  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
-#  port: 3306
+#  <<: *default
+#  database: evaquiz_development
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: ebdb
+  username: evaclickerdb
+  password: EvaClicker2016
+  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
+  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: evaquiz_test
+#test:
+#  database: evaquiz_test
+#  <<: *default
