@@ -119,7 +119,7 @@ end
   def pregunta_nueva
     checar
     @quizz = Quizz.find (params[:quizz_id])
-    @preguntas = Pregunta.all
+    @preguntas = Pregunta.active.where(temaid: @quizz.temaid)
   end
 
   def agregar_pregunta
@@ -128,7 +128,7 @@ end
     quizz = Quizz.find(params[:id] )
     pregunta_quizz = PreguntaQuizz.create(pregunta_id: pregunta.id, quizz_id: quizz.id)
 
-    redirect_to admin_quizz_path(quizz.id)
+    redirect_to edit_admin_quizz_path(quizz.id)
   end
 
   private

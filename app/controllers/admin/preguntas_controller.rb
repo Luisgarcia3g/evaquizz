@@ -58,6 +58,7 @@ class Admin::PreguntasController < ApplicationController
     checar
       @saludo = "Hola #{session[:nombre]}"
     @pregunta = Pregunta.find(params[:id])
+    @tema=Tema.active.find_by(id: @pregunta.temaid)
   end
 
   def create
@@ -94,7 +95,7 @@ class Admin::PreguntasController < ApplicationController
   private
   def pregunta_params
     checar
-    params.require(:pregunta).permit(:image, :texto,  :respuesta1,:respuesta2, :respuesta3, :respuesta4, :tiempo)
+    params.require(:pregunta).permit(:image, :texto, :temaid,  :respuesta1,:respuesta2, :respuesta3, :respuesta4, :tiempo)
   end
 
 
