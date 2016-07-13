@@ -47,7 +47,9 @@ class WelcomeController < ApplicationController
       @cantidadcursos=@courses.length
 
       @cursos= Array.new
+
       Array.new(@cantidadcursos)
+      @grupo= Array.new
       @cursosid= Array.new
       Array.new(@cantidadcursos)
       #@otro= Array.new
@@ -68,7 +70,11 @@ class WelcomeController < ApplicationController
 
           if (@indice[0].values[2]=="teacher")
             if(@course_users[x].values[0]==@userid)
-              @rol=1
+                @rol=1
+              
+                session[:continent] ||= {}
+
+
 
             end
           end
@@ -78,6 +84,7 @@ class WelcomeController < ApplicationController
       if (@rol==1)
         session[:rol]=1
         redirect_to :maestro
+        # gid: (session[:cursos][0])
 
       else
         session[:rol]=2

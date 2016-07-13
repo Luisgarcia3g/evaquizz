@@ -97,13 +97,29 @@ text-align: center;
 <td><%=q.nombre%></td>
 <td><%=temas.nombretema%></td>
 <% if gp.iniciado? %>
-<td>30/08/16 10:00 am</td>
+<td><%= localize(gp.updated_at, :format => :long) %></td>
 <td>
 
   <%=link_to image_tag("grafic.png", border: 0), {action: 'gestion', controller: 'dashboard'}, {class: 'dock-item'}%>
 
 </td>
-<td>95%</td>
+<%@resultados=Resultado.where(Codigo: gp.Codigo) %>
+<%preguntas= @resultados.count%>
+<%@resultados=Resultado.where(Codigo: gp.Codigo, respuesta: 1) %>
+<%aciertos= @resultados.count%>
+
+<%aprobacion=((aciertos*1.0)/preguntas)*100 %>
+
+<%if aprobacion>=90%>
+<td><font color="green" ><%=aprobacion%>%  </font></td>
+<%elsif aprobacion >=70%>
+<td><font color="orange" ><%=aprobacion%>%</font></td>
+<%else%>
+<td><font color="red"><%=aprobacion%>% </font></td>
+
+
+
+<%end%>
 <% else %>
 <td></td>
 <td></td>

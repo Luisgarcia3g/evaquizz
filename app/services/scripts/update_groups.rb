@@ -20,6 +20,8 @@ class Scripts::UpdateGroups
 
     for i in 0..@cantidadcursos-1
       grupo = Grupo.create(Nombre_grupo: @courses[i]["shortname"])
+
+
     end
     # Resource.all.each do |resource|
     #   resource.resource_assets.create(uploaded_file: resource.uploaded_file, is_for_teacher: false)

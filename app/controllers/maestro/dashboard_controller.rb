@@ -25,6 +25,8 @@ class Maestro::DashboardController < ApplicationController
   def quizz
     @quizz=Quizz.find(params[:idq])
       @codigo=params[:codigo]
+      @gquizz=Grupoquizzs.find_by(Codigo: @codigo)
+        @gquizz.update_attribute(:iniciado, true)
     @index=params[:index]
     @index=@index.to_i
     @preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
@@ -95,11 +97,14 @@ end
 
   def index
   @saludo = "Hola  #{session[:nombre]}"
-      @grupo=Grupo.first
+      @grupo=Grupo.where(maestro: session[:nombre]).first
+
         @temario=Temario.active.all
 
-        @temas=Tema.all
+        @temas=Tema.active.all
         @grupoquizz=Grupoquizzs.where(Grupo: @grupo.id)
+
+      #  @resultados=Resultado.where(Codigo: @grupoquizz.Codigo)
 
     checar
   end
