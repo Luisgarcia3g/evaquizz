@@ -185,230 +185,109 @@ def grafica
 
 
   def gestion
+        checar
     @saludo = "Hola  #{session[:nombre]}"
-    checar
-    @chart = Fusioncharts::Chart.new({
-  :height => 400,
-  :width => 550,
-  :type => 'mscolumn2d',
-  :renderAt => 'chart-container',
-  :dataSource => {
-    :chart => {
-      :caption => 'Respuestas de pregunta 1, Sumatoria de fuerzas',
+@codigo=params[:codigo]
+@quizz=Quizz.find_by(id: params[:quizz])
+@preguntas=PreguntaQuizz.where(quizz_id: @quizz)
+@cantidadpreguntas=PreguntaQuizz.where(quizz_id: @quizz.id)
+@cantidadpreguntas=@cantidadpreguntas.count
+@chart=Array.new
+Array.new (@cantidadpreguntas)
+for i in 0..@cantidadpreguntas-1
+@pregunta=Pregunta.find_by(id: @preguntas[i].pregunta_id)
+  @r1=@pregunta.respuesta1
+  @r2=@pregunta.respuesta2
+  @r3=@pregunta.respuesta3
+  @r4=@pregunta.respuesta4
+  @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 1)
+@v1=@respuestas.count
+@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 2)
+@v2=@respuestas.count
+@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 3)
+@v3=@respuestas.count
+@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 4)
+@v4=@respuestas.count
+@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 5)
+@v5=@respuestas.count
+@maximo=[@v1,@v2,@v3,@v4,@v5].max
 
-      :xAxisname => 'Quizzes',
-      :yAxisName => 'Puntaje',
+@titulo = "Respuestas de la pregunta #{@pregunta.texto}"
+@contenedor=i.to_s
+@chart[i]=Fusioncharts::Chart.new({
+:height => 370,
+:width => 530,
+:type => 'mscolumn2d',
+:renderAt => @contenedor,
 
-      :theme => 'fint',
-    },
-    :categories => [{
-      :category => [
-        { :label => 'R1' },
-        { :label => 'R2' },
-        { :label => 'R3' },
-        { :label => 'R4' },
+:dataSource => {
+:chart => {
+  :caption => @titulo ,
 
-      ]
-    }],
-    :dataset =>  [{
-      :seriesname => '110 N',
+  #:xAxisname => 'Respuestas',
+  :yAxisName => 'Alumnos',
+
+  :showXAxisLine =>'1',
+  :yAxisValueDecimals => '0',
+    :xAxisLineColor => '#999999',
+    :divlineColor => '#999999',
+    :divLineDashed => '1',
+    :borderAlpha => '20',
+    :showYAxisValues => '1',
+    :yAxisMaxvalue => @maximo,
+    :borderThickness => "4",
+    :adjustDiv => '1',
+    :numDivLines => '0',
+    :showPlotBorder => '1',
+    :rotateValues => '0',
+  :theme => 'ocean',
+},
+:categories => [{
+  :category => [
+    { :label => 'Respuestas' }
+
+
+  ]
+}],
+:dataset =>  [{
+  :seriesname => @r1,
+  :data =>  [
+    { :value => @v1 }
+  ]},
+  {
+    :seriesname => @r2,
+    :data =>  [
+
+        { :value => @v2 }
+
+    ]},
+    {
+      :seriesname => @r3,
       :data =>  [
-        { :value => '10' }
+
+            { :value => @v3 }
+
       ]},
       {
-        :seriesname => '220 N',
+        :seriesname => @r4,
         :data =>  [
-          { :value => nil},
-            { :value => '8' }
 
+{ :value =>@v4 }
         ]},
         {
-          :seriesname => '300 N',
+          :seriesname => 'No Contesto',
           :data =>  [
-            { :value => nil },
-              { :value => nil },
-                { :value => '6' }
 
+{ :value =>@v5 }
           ]},
-          {
-            :seriesname => '50 N',
-            :data =>  [
-              { :value => nil },
-                { :value => nil },
-                  { :value => nil },
-{ :value => '5' }
-            ]},
-
-    ]
-  }
-})
-
-@chart2 = Fusioncharts::Chart.new({
-:height => 400,
-:width => 550,
-:type => 'mscolumn2d',
-:renderAt => 'chart-container2',
-:dataSource => {
-:chart => {
-  :caption => 'Respuestas de pregunta 2, Fuerza del angulo',
-
-  :xAxisname => 'Quizzes',
-  :yAxisName => 'Puntaje',
-
-  :theme => 'fint',
-},
-:categories => [{
-  :category => [
-    { :label => 'R1' },
-    { :label => 'R2' },
-    { :label => 'R3' },
-    { :label => 'R4' },
-
-  ]
-}],
-:dataset =>  [{
-  :seriesname => '110 N',
-  :data =>  [
-    { :value => '10' }
-  ]},
-  {
-    :seriesname => '220 N',
-    :data =>  [
-      { :value => nil},
-        { :value => '8' }
-
-    ]},
-    {
-      :seriesname => '300 N',
-      :data =>  [
-        { :value => nil },
-          { :value => nil },
-            { :value => '6' }
-
-      ]},
-      {
-        :seriesname => '50 N',
-        :data =>  [
-          { :value => nil },
-            { :value => nil },
-              { :value => nil },
-{ :value => '5' }
-        ]},
-
-]
-}
-})
-@chart3 = Fusioncharts::Chart.new({
-:height => 400,
-:width => 550,
-:type => 'mscolumn2d',
-:renderAt => 'chart-container3',
-:dataSource => {
-:chart => {
-  :caption => 'Respuestas de pregunta 3, Resta de fuerzas',
-
-  :xAxisname => 'Quizzes',
-  :yAxisName => 'Puntaje',
-
-  :theme => 'fint',
-},
-:categories => [{
-  :category => [
-    { :label => 'R1' },
-    { :label => 'R2' },
-    { :label => 'R3' },
-    { :label => 'R4' },
-
-  ]
-}],
-:dataset =>  [{
-  :seriesname => '110 N',
-  :data =>  [
-    { :value => '10' }
-  ]},
-  {
-    :seriesname => '220 N',
-    :data =>  [
-      { :value => nil},
-        { :value => '8' }
-
-    ]},
-    {
-      :seriesname => '300 N',
-      :data =>  [
-        { :value => nil },
-          { :value => nil },
-            { :value => '6' }
-
-      ]},
-      {
-        :seriesname => '50 N',
-        :data =>  [
-          { :value => nil },
-            { :value => nil },
-              { :value => nil },
-{ :value => '5' }
-        ]},
 
 ]
 }
 })
 
-@chart4 = Fusioncharts::Chart.new({
-:height => 400,
-:width => 550,
-:type => 'mscolumn2d',
-:renderAt => 'chart-container4',
-:dataSource => {
-:chart => {
-  :caption => 'Respuestas de pregunta 4, Sumatoria de fuerzas',
+end
 
-  :xAxisname => 'Quizzes',
-  :yAxisName => 'Puntaje',
 
-  :theme => 'fint',
-},
-:categories => [{
-  :category => [
-    { :label => 'R1' },
-    { :label => 'R2' },
-    { :label => 'R3' },
-    { :label => 'R4' },
-
-  ]
-}],
-:dataset =>  [{
-  :seriesname => '110 N',
-  :data =>  [
-    { :value => '10' }
-  ]},
-  {
-    :seriesname => '220 N',
-    :data =>  [
-      { :value => nil},
-        { :value => '8' }
-
-    ]},
-    {
-      :seriesname => '300 N',
-      :data =>  [
-        { :value => nil },
-          { :value => nil },
-            { :value => '6' }
-
-      ]},
-      {
-        :seriesname => '50 N',
-        :data =>  [
-          { :value => nil },
-            { :value => nil },
-              { :value => nil },
-{ :value => '5' }
-        ]},
-
-]
-}
-})
 
 
   end
@@ -418,7 +297,7 @@ def mostrargrafica
   @quizz=Quizz.find(params[:idq])
   @pregunta=Pregunta.find_by(id: params[:pregunta])
   @index=params[:index]
-  @codigo=params[:codigo];
+  @codigo=params[:codigo]
   Pusher.trigger('channel', 'cerrar', codigo: @codigo)
 
 

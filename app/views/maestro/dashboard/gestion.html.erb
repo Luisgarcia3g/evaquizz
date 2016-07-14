@@ -1,32 +1,27 @@
-<h1>Resultados de Quizz</h1>
-<table>
-<tr>
+<style>
+table, th, td {
+    border: 3px solid black;
+}
+</style>
+<h1>Resultados de Quizz "<%=@quizz.nombre%>"</h1>
+<%contador=0%>
+<div>
+  <table>
+<% for i in (0..@cantidadpreguntas-1).step(2)%>
 
-<td>
-  <div id="chart-container"  align="center"><%= @chart.render() %>
-  </div>
-</td>
-
-<td>
-  <div id="chart-container2"  align="center"><%= @chart2.render() %>
-  </div>
-</td>
-
-</tr>
-
-<tr>
+  <tr>
   <td>
-    <div id="chart-container3"  align="center"><%= @chart3.render() %>
-    </div>
-  </td>
+<div id="<%=contador%>"><%=@chart[i].render()%></div>
+</td>
+<%contador=contador+1%>
+<%if contador==@cantidadpreguntas%>
 
-  <td>
-    <div id="chart-container4"  align="center"><%= @chart4.render() %>
-    </div>
-  </td>
-
-
-</tr>
-
-
+<%else%>
+<td>
+<div id="<%=contador%>"><%=@chart[i+1].render()%></div>
+</td>
+<%contador=contador+1%>
+<%end%>
+<%end%>
 </table>
+</div>
