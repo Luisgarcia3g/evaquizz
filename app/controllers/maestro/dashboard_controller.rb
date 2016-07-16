@@ -115,7 +115,7 @@ class Maestro::DashboardController < ApplicationController
     checar
     @saludo = "Hola  #{session[:nombre]}"
     @quizz = Quizz.find(params[:id])
-    @grupo = Grupo.first
+    @grupo = Grupo.second
     @grupoquizz=Grupoquizzs.find_by(Grupo: @grupo.id, Quizz: @quizz.id)
   end
 
