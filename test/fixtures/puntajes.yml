@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  alumno: MyString
+  string: MyString
+  puntaje: 1.5
+
+two:
+  codigo: MyString
+  alumno: MyString
+  string: MyString
+  puntaje: 1.5

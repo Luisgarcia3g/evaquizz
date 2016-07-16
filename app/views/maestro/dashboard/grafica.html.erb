@@ -2,7 +2,9 @@
 <div id="chart-container"  align="center"><%= @chart.render() %>
 </div>
 <div align="center">
-<%= link_to 'Atras', maestro_grupo_path %>
+<%= link_to "<button class='button3'>Regresar</button>".html_safe, maestro_grupo_path(grupo: @grupo.id) %>
+
+
 </div>
 <br>
 <br>

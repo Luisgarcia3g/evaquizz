@@ -130,10 +130,13 @@ def puntaje
   @puntaje=Resultado.where(Codigo: @codigo)
   @puntaje=@puntaje.where(Alumno: @alumno)
 
+
   @score=@puntaje.where(respuesta: 1)
   @score=@score.count
   @califa=(@score*1.0)/@puntaje.count
   @califa=@califa*100
+
+  @puntajealumno=Puntaje.create(codigo: @codigo, alumno:@alumno, puntaje: @califa)
 end
 
 

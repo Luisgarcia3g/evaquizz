@@ -111,7 +111,12 @@ end
 
 
   def grupo
-
+@grupo=Grupo.find_by(id: params[:grupo])
+@grupoquizz=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
+@cantidadquizzes=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true)
+@cantidadquizzes=@cantidadquizzes.count
+@puntajes=Puntaje.all
+@puntajes=@puntajes.pluck(:alumno).uniq
   @saludo = "Hola  #{session[:nombre]}"
     checar
   end
@@ -143,40 +148,70 @@ end
 
 def grafica
     @saludo = "Hola  #{session[:nombre]}"
+      @alumno=params[:alumno]
+      @grupo=Grupo.where(params[:grupo]).first
+    @puntajes=Puntaje.where(alumno: @alumno).order(:updated_at => 'ASC')
+    @quizzes=@puntajes.count
+    @contador=1
+
+    @puntajesarreglo=Array.new
+    Array.new(@quizzes)
+  @puntajes.each do |pun|
+    @puntajesarreglo.push(
+
+      {
+        :seriesname => "Quizz #{@contador}",
+        :data =>  [
+         {
+
+                  :value => pun.puntaje }
+        ]}
+
+
+
+
+    )
+    @contador=@contador+1
+
+  end
+
+    @cantidad=@puntajes.count
     checar
+    @titulo= "Calificaciones del alumno #{@alumno}"
+    contador=1
     @chart = Fusioncharts::Chart.new({
 	:height => 400,
 	:width => 600,
 	:type => 'mscolumn2d',
 	:renderAt => 'chart-container',
+
+
 	:dataSource => {
+
 		:chart => {
-			:caption => 'Calificaciones del alumno Luis',
+			:caption =>  @titulo,
+      :adjustDiv => '1',
+      :numDivLines => '10',
+        :yAxisMaxvalue => 100,
 
-			:xAxisname => 'Quizzes',
-			:yAxisName => 'Puntaje',
 
-			:theme => 'fint',
+			#:xAxisname => 'Quizzes',
+			:yAxisName => 'Puntaje'
+
+			#:theme => 'fint',
 		},
-		:categories => [{
-			:category => [
-				{ :label => 'Q1' },
-				{ :label => 'Q2' },
-				{ :label => 'Q3' },
-				{ :label => 'Q4' },
-        { :label => 'Q5' }
-			]
-		}],
-		:dataset =>  [{
-			:seriesname => 'Puntaje de quizzes',
-			:data =>  [
-				{ :value => '100' },
-				{ :value => '90' },
-				{ :value => '80' },
-			{ :value => '70' },
-      { :value => '70' }
-			]}
-		]
+    :categories => [{
+      :category => [
+        { :label => 'Quizzes' }
+
+
+      ]
+    }],
+	:dataset =>@puntajesarreglo
+
+
+
+
 	}
 })
 
@@ -252,7 +287,9 @@ for i in 0..@cantidadpreguntas-1
 :dataset =>  [{
   :seriesname => @r1,
   :data =>  [
-    { :value => @v1 }
+    {
+      :link => maestro_path,
+            :value => @v1 }
   ]},
   {
     :seriesname => @r2,

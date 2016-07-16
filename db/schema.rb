@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712053722) do
+ActiveRecord::Schema.define(version: 20160716042336) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -28,18 +28,19 @@ ActiveRecord::Schema.define(version: 20160712053722) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "grupoquizzs", primary_key: "Codigo", force: :cascade do |t|
+  create_table "grupoquizzs", force: :cascade do |t|
     t.datetime "Hora"
     t.integer  "Quizz",      limit: 4
     t.integer  "Grupo",      limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "Codigo",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.boolean  "iniciado"
   end
 
   create_table "grupos", force: :cascade do |t|
     t.string   "Nombre_grupo", limit: 255
-    t.string   "maestro",      limit: 255
+    t.string   "Maestro",      limit: 255
     t.integer  "temarioid",    limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -64,7 +65,17 @@ ActiveRecord::Schema.define(version: 20160712053722) do
     t.integer  "temaid",     limit: 4
   end
 
+  create_table "puntajes", force: :cascade do |t|
+    t.string   "codigo",     limit: 255
+    t.string   "alumno",     limit: 255
+    t.string   "string",     limit: 255
+    t.float    "puntaje",    limit: 24
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "quizzs", force: :cascade do |t|
+    t.integer  "pregunta",   limit: 4
     t.boolean  "disponible"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
@@ -72,8 +83,6 @@ ActiveRecord::Schema.define(version: 20160712053722) do
     t.integer  "temaid",     limit: 4
     t.boolean  "is_active",              default: true
   end
-
-  add_index "quizzs", ["temaid"], name: "temaid", using: :btree
 
   create_table "resultados", force: :cascade do |t|
     t.string   "Codigo",     limit: 255
@@ -94,7 +103,8 @@ ActiveRecord::Schema.define(version: 20160712053722) do
   end
 
   create_table "temas", force: :cascade do |t|
-    t.string   "nombretema",  limit: 255
+    t.text     "nombretema",  limit: 65535
+    t.integer  "quizz",       limit: 4
     t.integer  "temarioid",   limit: 4
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
@@ -102,7 +112,6 @@ ActiveRecord::Schema.define(version: 20160712053722) do
     t.boolean  "is_active",                 default: true
   end
 
-  add_index "temas", ["nombretema"], name: "index_temas_on_nombretema", unique: true, using: :btree
-  add_index "temas", ["temarioid"], name: "temario", using: :btree
+  add_index "temas", ["nombretema"], name: "index_temas_on_nombretema", unique: true, length: {"nombretema"=>767}, using: :btree
 
 end

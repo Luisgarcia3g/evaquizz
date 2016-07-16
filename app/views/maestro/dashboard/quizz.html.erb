@@ -8,7 +8,7 @@
    <col width="130">
     <col width="130">
 <td>
-   <img src="\gravedad2.png" >
+<%= image_tag(@pregunta.image) %>
 </td>
 <td style="background:white">
 <span id="timer" style="color:red;font-weight:bold;font-size:50px"></span><br>
@@ -33,7 +33,7 @@ var con=0;
       var mensaje2 = pusher2.subscribe('channel');
        mensaje2.bind('contestados', function(data) {
          con=con+1;
-         document.getElementById("contestados").innerHTML=con + " han respondido"; // watch for spelling
+         document.getElementById("contestados").innerHTML="Respuestas : "+con ; // watch for spelling
 
 
        });
@@ -49,7 +49,7 @@ var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
     count=count-1;
     if (count < 0)
     {
-    
+
       window.location.href = "<%= maestro_mostrargrafica_path(:idq => @quizz.id, :index => @index, :codigo => @codigo,:pregunta => @pregunta.id)  %>"
 
        clearInterval(counter);

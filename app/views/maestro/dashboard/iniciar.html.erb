@@ -26,7 +26,7 @@ encrypted: true
   var mensaje = pusher.subscribe('channel');
    mensaje.bind('registro', function(data) {
      alumnos=alumnos+1;
-     document.getElementById("alumnos").innerHTML=alumnos + " personas han entrado"; // watch for spelling
+     document.getElementById("alumnos").innerHTML="Alumnos que han entrado : "+alumnos; 
 
     //  window.location.href = "<%= maestro_quizz_path(:idq => @quizz.id, :index => 0, :codigo => @grupoquizz.Codigo)  %>"
    });

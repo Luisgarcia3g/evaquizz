@@ -49,7 +49,7 @@
     </div>
     <div class="field">
       <%= f.label :tiempo %><br>
-      <%= f.number_field :tiempo %>
+      <%= f.number_field :tiempo,:min => 10 %>
     </div>
     <div class="actions">
       <%= f.submit "Guardar Pregunta" %>

@@ -11,17 +11,26 @@ table, th, td {
 
   <tr>
   <td>
-<div id="<%=contador%>"><%=@chart[i].render()%></div>
+
+<div id="<%=contador%>">
+
+<%= link_to maestro_path do %>
+  <%=@chart[i].render()%></div>
+
+  <% end %>
 </td>
 <%contador=contador+1%>
 <%if contador==@cantidadpreguntas%>
 
 <%else%>
 <td>
-<div id="<%=contador%>"><%=@chart[i+1].render()%></div>
+<div id="<%=contador%>"><br><%=@chart[i+1].render()%></div>
 </td>
 <%contador=contador+1%>
 <%end%>
 <%end%>
 </table>
+<br>
+<%= link_to "<button class='button3'>Regresar</button>".html_safe, maestro_path %>
+
 </div>

@@ -1,6 +1,4 @@
 
-
-
 <!-- CSS Code -->
 <style type="text/css" scoped>
 table.GeneratedTable {
@@ -60,70 +58,54 @@ text-align: center;
   <br>
 <!-- HTML Code -->
 <table class="GeneratedTable">
-<thead>
-  <tr>
-  <th>alumno</th>
-  <th>Quizz 1</th>
-  <th>Quizz 2</th>
-  <th>Quizz 3</th>
-  <th>Quizz 4</th>
-  <th>Quizz 5</th>
-  <th>Gráfica</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-  <td>Luis</td>
-  <td>100</td>
-  <td>90</td>
-  <td>80</td>
-  <td>70</td>
-  <td>70</td>
-  <td><%= link_to 'Ver', :action => :grafica %></td>
+  <thead>
+    <tr>
+    <th>Alumnos</th>
+    <%contador=1%>
+    <%@grupoquizz.each do |e|%>
+<%if e.iniciado==true%>
+    <th>
+      Quizz <%=contador%>
+    </th>
 
-  </tr>
-  <tr>
-  <td>María</td>
-  <td>90</td>
-  <td>50</td>
-  <td>40</td>
-  <td>80</td>
-  <td>100</td>
-  <td><%= link_to 'Ver', :action => :grafica %></td>
+    <%contador=contador+1%>
+    <%end%>
+      <%end%>
+      <th>Grafica </th>
+    </tr>
+    </thead>
+<tr>
+<%@puntajes.each do |pun| %>
+<td>
+<%=pun%>
+</td>
+<%@grupoquizz.each do |gq|%>
+<%@puntajequizz=Puntaje.where(codigo: gq.Codigo, alumno: pun)%>
+<%if @puntajequizz.blank?%>
 
-  </tr>
-  <tr>
-  <td>Ricardo</td>
-  <td>80</td>
-  <td>90</td>
-  <td>100</td>
-  <td>100</td>
-  <td>100</td>
-  <td><%= link_to 'Ver', :action => :grafica %></td>
+<td>
+N/A
+</td>
+<%else%>
+<%@puntajequizz.each do |pq|%>
 
-  </tr>
-  <tr>
-  <td>Tavo</td>
-  <td>60</td>
-  <td>70</td>
-  <td>50</td>
-  <td>70</td>
-  <td>60</td>
-  <td><%= link_to 'Ver', :action => :grafica %></td>
+<td>
+<%=pq.puntaje%>
+</td>
 
-  </tr>
-  <tr>
-  <td>Uriel</td>
-  <td>100</td>
-  <td>100</td>
-  <td>100</td>
-  <td>100</td>
-  <td>100</td>
-  <td><%= link_to 'Ver', :action => :grafica %></td>
 
-  </tr>
+<%end%>
+<%end%>
+<%end%>
+<td>
+<%= link_to 'Ver Grafica',controller: "dashboard", action: "grafica", alumno: pun, grupo: @grupo %>
+</td>
+</tr>
+<% end %>
 
-</tbody>
+
+
+
 </table>
 
 

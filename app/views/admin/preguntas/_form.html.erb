@@ -26,7 +26,7 @@
       <%= f.select(:temaid,Tema.active.all.map{ |te| [ te.nombretema, te.id ] })  %>
   </div>
   <br>
-  
+
   <div class="field">
     <%= f.label "Respuesta 1 (Correcta)" %><br>
     <%= f.text_field :respuesta1 %>
@@ -45,7 +45,7 @@
   </div>
   <div class="field">
     <%= f.label :tiempo %><br>
-    <%= f.number_field :tiempo %>
+    <%= f.number_field :tiempo, :min => 10 %>
   </div>
   <div class="actions">
     <%= f.submit "Guardar Pregunta" %>

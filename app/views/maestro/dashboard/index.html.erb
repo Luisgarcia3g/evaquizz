@@ -39,7 +39,7 @@ text-align: center;
 <table border="0">
 <tr>
   <td>
-      <%= f.label "Grupo", :size => 100 %>
+      <%= f.label "Temario", :size => 100 %>
         <%if session[:nombre]=="maestro1"%>
         <%= f.select(:temarioid,Temario.active.where(id: 2).map{ |te| [ te.nombretemario, te.id ] }) %>
 <%= link_to "<button>Cambiar grupo</button>".html_safe, maestro_index2_path %>
@@ -50,7 +50,7 @@ text-align: center;
   <% end %>
 </td>
 <td>
-  <%= link_to "<button class='button2'>Ver Grupo</button>".html_safe, "maestro/grupo" %>
+  <%= link_to "<button class='button2'>Ver Grupo</button>".html_safe, maestro_grupo_path(grupo:   @grupo.id) %>
 </td>
 </tr>
 </table>
@@ -62,7 +62,7 @@ text-align: center;
 <table class="GeneratedTable">
 <thead>
   <tr>
-  <th>Estatus</th>
+  <th>Alumno</th>
   <th>Nombre</th>
   <th>Tema</th>
   <th>Fecha de inicio</th>

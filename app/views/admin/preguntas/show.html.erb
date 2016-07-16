@@ -17,10 +17,12 @@
 
 <p>
   <strong>Tema:</strong>
+      <%if  @tema.nil?%>
 
+      <%else%>
   <%=  @tema.nombretema %>
 </p>
-
+<%end%>
 
 <p>
   <strong>Respuesta 1 (correcta):</strong>
