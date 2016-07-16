@@ -93,14 +93,13 @@ class Maestro::DashboardController < ApplicationController
 
   def grupo
 
-@grupo=Grupo.find_by(id: params[:grupo])
-@grupoquizz=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
-@cantidadquizzes=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true)
-@cantidadquizzes=@cantidadquizzes.count
-@puntajes=Puntaje.all
-@puntajes=@puntajes.pluck(:alumno).uniq
-  @saludo = "Hola  #{session[:nombre]}"
 
+    @grupo=Grupo.find_by(id: params[:grupo])
+    @grupoquizz=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
+    @cantidadquizzes=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true)
+    @cantidadquizzes=@cantidadquizzes.count
+    @puntajes=Puntaje.all
+    @puntajes=@puntajes.pluck(:alumno).uniq
     @saludo = "Hola  #{session[:nombre]}"
 
     checar
@@ -161,42 +160,41 @@ class Maestro::DashboardController < ApplicationController
     contador=1
     @chart = Fusioncharts::Chart.new({
 
-	:height => 400,
-	:width => 600,
-	:type => 'mscolumn2d',
-	:renderAt => 'chart-container',
-
-
-	:dataSource => {
-
-		:chart => {
-			:caption =>  @titulo,
-      :adjustDiv => '1',
-      :numDivLines => '10',
-        :yAxisMaxvalue => 100,
-
-
-			#:xAxisname => 'Quizzes',
-			:yAxisName => 'Puntaje'
-
-			#:theme => 'fint',
-		},
-    :categories => [{
-      :category => [
-        { :label => 'Quizzes' }
-
-
-      ]
-    }],
-	:dataset =>@puntajesarreglo
+    	:height => 400,
+    	:width => 600,
+    	:type => 'mscolumn2d',
+    	:renderAt => 'chart-container',
 
 
 
+    	:dataSource => {
 
-	}
-})
+    		:chart => {
+    			:caption =>  @titulo,
+          :adjustDiv => '1',
+          :numDivLines => '10',
+            :yAxisMaxvalue => 100,
 
 
+    			#:xAxisname => 'Quizzes',
+    			:yAxisName => 'Puntaje'
+
+    			#:theme => 'fint',
+    		},
+        :categories => [{
+          :category => [
+            { :label => 'Quizzes' }
+
+
+          ]
+        }],
+    	:dataset =>@puntajesarreglo
+
+
+
+
+    	}
+    })
 
 
   end
@@ -206,83 +204,83 @@ class Maestro::DashboardController < ApplicationController
     checar
     @saludo = "Hola  #{session[:nombre]}"
 
-@codigo=params[:codigo]
-@quizz=Quizz.find_by(id: params[:quizz])
-@preguntas=PreguntaQuizz.where(quizz_id: @quizz)
-@cantidadpreguntas=PreguntaQuizz.where(quizz_id: @quizz.id)
-@cantidadpreguntas=@cantidadpreguntas.count
-@chart=Array.new
-Array.new (@cantidadpreguntas)
-for i in 0..@cantidadpreguntas-1
-@pregunta=Pregunta.find_by(id: @preguntas[i].pregunta_id)
-  @r1=@pregunta.respuesta1
-  @r2=@pregunta.respuesta2
-  @r3=@pregunta.respuesta3
-  @r4=@pregunta.respuesta4
-  @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 1)
-@v1=@respuestas.count
-@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 2)
-@v2=@respuestas.count
-@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 3)
-@v3=@respuestas.count
-@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 4)
-@v4=@respuestas.count
-@respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 5)
-@v5=@respuestas.count
-@maximo=[@v1,@v2,@v3,@v4,@v5].max
+    @codigo=params[:codigo]
+    @quizz=Quizz.find_by(id: params[:quizz])
+    @preguntas=PreguntaQuizz.where(quizz_id: @quizz)
+    @cantidadpreguntas=PreguntaQuizz.where(quizz_id: @quizz.id)
+    @cantidadpreguntas=@cantidadpreguntas.count
+    @chart=Array.new
+    Array.new (@cantidadpreguntas)
+    for i in 0..@cantidadpreguntas-1
+    @pregunta=Pregunta.find_by(id: @preguntas[i].pregunta_id)
+      @r1=@pregunta.respuesta1
+      @r2=@pregunta.respuesta2
+      @r3=@pregunta.respuesta3
+      @r4=@pregunta.respuesta4
+      @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 1)
+    @v1=@respuestas.count
+    @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 2)
+    @v2=@respuestas.count
+    @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 3)
+    @v3=@respuestas.count
+    @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 4)
+    @v4=@respuestas.count
+    @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 5)
+    @v5=@respuestas.count
+    @maximo=[@v1,@v2,@v3,@v4,@v5].max
 
-@titulo = "Respuestas de la pregunta #{@pregunta.texto}"
-@contenedor=i.to_s
-@chart[i]=Fusioncharts::Chart.new({
-:height => 370,
-:width => 530,
-:type => 'mscolumn2d',
-:renderAt => @contenedor,
+    @titulo = "Respuestas de la pregunta #{@pregunta.texto}"
+    @contenedor=i.to_s
+    @chart[i]=Fusioncharts::Chart.new({
+    :height => 370,
+    :width => 530,
+    :type => 'mscolumn2d',
+    :renderAt => @contenedor,
 
-:dataSource => {
-:chart => {
-  :caption => @titulo ,
+    :dataSource => {
+    :chart => {
+      :caption => @titulo ,
 
-  #:xAxisname => 'Respuestas',
-  :yAxisName => 'Alumnos',
+      #:xAxisname => 'Respuestas',
+      :yAxisName => 'Alumnos',
 
-  :showXAxisLine =>'1',
-  :yAxisValueDecimals => '0',
-    :xAxisLineColor => '#999999',
-    :divlineColor => '#999999',
-    :divLineDashed => '1',
-    :borderAlpha => '20',
-    :showYAxisValues => '1',
-    :yAxisMaxvalue => @maximo,
-    :borderThickness => "4",
-    :adjustDiv => '1',
-    :numDivLines => '0',
-    :showPlotBorder => '1',
-    :rotateValues => '0',
-  :theme => 'ocean',
-},
-:categories => [{
-  :category => [
-    { :label => 'Respuestas' }
+      :showXAxisLine =>'1',
+      :yAxisValueDecimals => '0',
+        :xAxisLineColor => '#999999',
+        :divlineColor => '#999999',
+        :divLineDashed => '1',
+        :borderAlpha => '20',
+        :showYAxisValues => '1',
+        :yAxisMaxvalue => @maximo,
+        :borderThickness => "4",
+        :adjustDiv => '1',
+        :numDivLines => '0',
+        :showPlotBorder => '1',
+        :rotateValues => '0',
+      :theme => 'ocean',
+    },
+    :categories => [{
+      :category => [
+        { :label => 'Respuestas' }
 
 
-  ]
-}],
-:dataset =>  [{
-  :seriesname => @r1,
-  :data =>  [
-    {
-      :link => maestro_path,
-            :value => @v1 }
-  ]},
-  {
-    :seriesname => @r2,
-    :data =>  [
+      ]
+    }],
+    :dataset =>  [{
+      :seriesname => @r1,
+      :data =>  [
+        {
+          :link => maestro_path,
+                :value => @v1 }
+      ]},
+      {
+        :seriesname => @r2,
+        :data =>  [
 
-        { :value => @v2 }
+            { :value => @v2 }
 
-    ]},
-    {
+        ]},
+        {
       :seriesname => @r3,
       :data =>  [
 
