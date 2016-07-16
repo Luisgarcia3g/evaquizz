@@ -70,8 +70,8 @@ class Alumno::DashboardController < ApplicationController
 
   end
   def esperar
-    @quizz=Grupoquizz.find_by(Codigo:params[:codigo]).first
-    @quizz=Quizz.find_by(id: @quizz.id)
+    #@quizz=Grupoquizzs.find_by(Codigo:params[:codigo]).first
+    @quizz=Quizz.find_by(id: params[:idq])
     @codigo=params[:codigo]
     Pusher.trigger('channel', 'registro', codigo: @codigo)
 
