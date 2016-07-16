@@ -22,7 +22,7 @@ class Maestro::DashboardController < ApplicationController
   def quizz
     @quizz = Quizz.find(params[:idq])
     @codigo = params[:codigo]
-    @gquizz = Grupoquizzs.find_by(Codigo: @codigo)
+    @gquizz = Grupoquizzs.find_by(codigo_id: @codigo)
     @gquizz.update_attribute(:iniciado, true)
     @index = params[:index]
     @index = @index.to_i
@@ -95,8 +95,8 @@ class Maestro::DashboardController < ApplicationController
 
 
     @grupo=Grupo.find_by(id: params[:grupo])
-    @grupoquizz=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
-    @cantidadquizzes=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true)
+    @grupoquizz=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
+    @cantidadquizzes=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true)
     @cantidadquizzes=@cantidadquizzes.count
     @puntajes=Puntaje.all
     @puntajes=@puntajes.pluck(:alumno).uniq
@@ -115,7 +115,7 @@ class Maestro::DashboardController < ApplicationController
     @saludo = "Hola  #{session[:nombre]}"
     @quizz = Quizz.find(params[:id])
     @grupo = Grupo.second
-    @grupoquizz=Grupoquizzs.find_by(Grupo: @grupo.id, Quizz: @quizz.id)
+    @grupoquizz=Grupoquizzs.find_by(grupo_id: @grupo.id, quizz_id: @quizz.id)
   end
 
   def siguiente

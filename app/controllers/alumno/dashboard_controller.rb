@@ -54,11 +54,11 @@ class Alumno::DashboardController < ApplicationController
   def validarCodigo
     @codigo = params[:dashboard][:codigo]
 
-    valido= Grupoquizzs.find_by(codigo: params[:dashboard][:codigo])
+    valido= Grupoquizzs.find_by(codigo_id: params[:dashboard][:codigo])
 
 
     if (valido)
-      @quizz=Quizz.find_by(id: valido.Quizz)
+      @quizz=Quizz.find_by(id: valido.quizz_id)
 
       redirect_to :action => :esperar, :idq => @quizz.id, :codigo =>  @codigo
 
@@ -81,6 +81,7 @@ class Alumno::DashboardController < ApplicationController
     @respuesta=5
     @aleatorio=rand(4)
     @quizz=Quizz.find_by(params[:idq])
+    p @quizz
     x = params[:index].to_i
     #@index=@index.to_i
     #@quizz.pregunta[]
