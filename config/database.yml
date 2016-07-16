@@ -39,7 +39,7 @@ default: &default
 #  port: 3306
 
 
-#production:
+production:
  adapter: mysql2
  encoding: utf8
  database: ebdb
