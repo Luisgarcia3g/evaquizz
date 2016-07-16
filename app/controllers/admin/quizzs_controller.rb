@@ -75,6 +75,8 @@ end
     @temas=Tema.all
   end
 
+
+  
   def create
     checar
     @quizz = Quizz.new(quizz_params)
