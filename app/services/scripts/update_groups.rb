@@ -19,8 +19,13 @@ class Scripts::UpdateGroups
     end
 
     for i in 0..@cantidadcursos-1
+      @grupo=Grupo.whwere(Nombre_grupo: @courses[i]["shortname"])
+      if (@grupo.exist?)
+        
+      else
       grupo = Grupo.create(Nombre_grupo: @courses[i]["shortname"])
 
+    end
 
     end
     # Resource.all.each do |resource|

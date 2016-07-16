@@ -23,7 +23,9 @@ class Admin::PreguntasController < ApplicationController
 
 
   end
+def filtrar
 
+end
   def desactivar
 
     @pregunta = Pregunta.find(params[:id])

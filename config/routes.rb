@@ -78,6 +78,7 @@ Rails.application.routes.draw do
     get 'pregunta/nueva', to: 'preguntas#new'
     get 'pregunta/', to: "preguntas#index"
     get "pregunta/:id" => "preguntas#show"
+    post "pregunta/", to: "pregunta#index"
 
 
 
