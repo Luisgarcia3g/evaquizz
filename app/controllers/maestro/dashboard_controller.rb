@@ -92,17 +92,14 @@ class Maestro::DashboardController < ApplicationController
 
 
   def grupo
-<<<<<<< HEAD
-@grupo=Grupo.find_by(id: params[:grupo])
-@grupoquizz=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
-@cantidadquizzes=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true)
-@cantidadquizzes=@cantidadquizzes.count
-@puntajes=Puntaje.all
-@puntajes=@puntajes.pluck(:alumno).uniq
-  @saludo = "Hola  #{session[:nombre]}"
-=======
+
+    @grupo=Grupo.find_by(id: params[:grupo])
+    @grupoquizz=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
+    @cantidadquizzes=Grupoquizzs.where(Grupo: @grupo.id, iniciado: true)
+    @cantidadquizzes=@cantidadquizzes.count
+    @puntajes=Puntaje.all
+    @puntajes=@puntajes.pluck(:alumno).uniq
     @saludo = "Hola  #{session[:nombre]}"
->>>>>>> c2b0c468356ffe5ec38021a61d5b25384a1b765a
     checar
   end
 
