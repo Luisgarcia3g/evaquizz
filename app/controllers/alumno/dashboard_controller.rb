@@ -73,7 +73,7 @@ class Alumno::DashboardController < ApplicationController
     #@quizz=Grupoquizzs.find_by(Codigo:params[:codigo]).first
     @quizz=Quizz.find_by(id: params[:idq])
     @codigo=params[:codigo]
-    Pusher.trigger('channel', 'registro', codigo: @codigo)
+    Pusher.trigger('channel', 'registro', codigo: @codigo.id, idq: @quizz.id)
 
   end
   def respuestas
@@ -83,14 +83,15 @@ class Alumno::DashboardController < ApplicationController
     @quizz=Quizz.find_by(params[:idq])
     @index=params[:index]
     @index=@index.to_i
-    @preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
+    #@quizz.pregunta[]
+    #@preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
 
-    if @preguntaquizz.count==@index
+    if @quizz.preguntas.count==@index
       redirect_to :action => :puntaje, :codigo => @codigo
-
     else
-      @pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
-      @index=@index+1
+      #@pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
+      @pregunta = @quizz.preguntas[@index].id
+      @index = @index + 1
     end
 
   end
