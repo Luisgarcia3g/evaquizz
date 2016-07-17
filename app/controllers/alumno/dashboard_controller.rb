@@ -80,20 +80,21 @@ class Alumno::DashboardController < ApplicationController
     @codigo=params[:Codigo]
     @respuesta=5
     @aleatorio=rand(4)
-    @quizz=Quizz.find_by(params[:idq])
+    @quizz=Quizz.find(params[:idq])
     p @quizz
-    x = params[:index].to_i
-    #@index=@index.to_i
+    #x = params[:index].to_i
+    @index=params[:index].to_i
     #@quizz.pregunta[]
     #@preguntaquizz=PreguntaQuizz.where(quizz_id: @quizz.id)
 
-    if @quizz.preguntas.count == x
+    if @quizz.preguntas.count == @index
       redirect_to :action => :puntaje, :codigo => @codigo
     else
       #@pregunta=Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
-      @pregunta = @quizz.preguntas[x]
-      x = x + 1
-      @x = x
+      @pregunta = @quizz.preguntas[@index]
+      @index = @index + 1
+      p "index --------->"
+      p @index
     end
 
   end

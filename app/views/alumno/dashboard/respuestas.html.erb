@@ -32,7 +32,7 @@
 
 
 <div align="center">
-
+<%= hidden_field_tag "index", @index %>
 <%if @aleatorio==1%>
 <button id="1" class="button4" onclick="elegir(1)"><%=@pregunta.respuesta1%></button>
 <br>

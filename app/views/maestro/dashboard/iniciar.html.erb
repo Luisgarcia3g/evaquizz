@@ -4,7 +4,7 @@
 <h1> Nombre del Quizz:</h1>
 <h1><%=@quizz.nombre  %> </h1>
 <h1> El código del quizz es: </h1>
-<h1 style="color:red;"><%=@grupoquizz.Codigo  %> </h1>
+<h1 style="color:red;"><%=@grupoquizz.codigo_id  %> </h1>
 
 <br>
 <span id="alumnos" style="color:black;font-weight:bold;font-size:30px"></span><br>
@@ -13,7 +13,7 @@
 
 
 <div align="center">
-  <%= link_to "<button class='button3'>Comenzar</button>".html_safe, maestro_quizz_path(:idq => @quizz.id, :index => 0, :codigo => @grupoquizz.Codigo) %>
+  <%= link_to "<button class='button3'>Comenzar</button>".html_safe, maestro_quizz_path(:idq => @quizz.id, :index => 0, :codigo => @grupoquizz.codigo_id) %>
 
 
 
@@ -26,9 +26,8 @@ encrypted: true
   var mensaje = pusher.subscribe('channel');
    mensaje.bind('registro', function(data) {
      alumnos=alumnos+1;
-     document.getElementById("alumnos").innerHTML="Alumnos que han entrado : "+alumnos; 
+     document.getElementById("alumnos").innerHTML="Alumnos que han entrado : "+alumnos;
 
-    //  window.location.href = "<%= maestro_quizz_path(:idq => @quizz.id, :index => 0, :codigo => @grupoquizz.Codigo)  %>"
    });
    </script>
 

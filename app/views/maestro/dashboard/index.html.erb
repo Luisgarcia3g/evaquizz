@@ -84,7 +84,7 @@ text-align: center;
 
 <%@quizz.each do |q| %>
 
-<%@grupoquizz=Grupoquizzs.where(Quizz: q.id)%>
+<%@grupoquizz=Grupoquizzs.where(quizz_id: q.id)%>
 <% @grupoquizz.each do |gp| %>
 
 <% if gp.iniciado? %>
@@ -100,12 +100,12 @@ text-align: center;
 <td><%= localize(gp.updated_at, :format => :long) %></td>
 <td>
 
-  <%=link_to image_tag("grafic.png", border: 0), {action: 'gestion', controller: 'dashboard', codigo:gp.Codigo, quizz: gp.Quizz}, {class: 'dock-item'}%>
+  <%=link_to image_tag("grafic.png", border: 0), {action: 'gestion', controller: 'dashboard', codigo:gp.codigo_id, quizz: gp.quizz_id}, {class: 'dock-item'}%>
 
 </td>
-<%@resultados=Resultado.where(Codigo: gp.Codigo) %>
+<%@resultados=Resultado.where(Codigo: gp.codigo_id) %>
 <%preguntas= @resultados.count%>
-<%@resultados=Resultado.where(Codigo: gp.Codigo, respuesta: 1) %>
+<%@resultados=Resultado.where(Codigo: gp.codigo_id, respuesta: 1) %>
 <%aciertos= @resultados.count%>
 
 <%aprobacion=((aciertos*1.0)/preguntas)*100 %>
