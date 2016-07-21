@@ -228,7 +228,7 @@ class Maestro::DashboardController < ApplicationController
     @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 5)
     @v5=@respuestas.count
     @maximo=[@v1,@v2,@v3,@v4,@v5].max
-
+@rcorrecta= "#{@r1} (Correcta)"
     @titulo = "Respuestas de la pregunta #{@pregunta.texto}"
     @contenedor=i.to_s
     @chart[i]=Fusioncharts::Chart.new({
@@ -267,7 +267,7 @@ class Maestro::DashboardController < ApplicationController
       ]
     }],
     :dataset =>  [{
-      :seriesname => @r1,
+      :seriesname => @rcorrecta,
       :data =>  [
         {
           :link => maestro_path,
@@ -327,7 +327,7 @@ class Maestro::DashboardController < ApplicationController
     @respuestas=Resultado.where(Codigo: @codigo, pregunta: @pregunta.id,respuesta: 5)
     @v5=@respuestas.count
     @maximo=[@v1,@v2,@v3,@v4,@v5].max
-
+    @rcorrecta= "#{@r1} (Correcta)"
     @titulo = "Respuestas de la pregunta #{@pregunta.texto}"
       @chart = Fusioncharts::Chart.new({
     :height => 370,
@@ -359,7 +359,7 @@ class Maestro::DashboardController < ApplicationController
         ]
       }],
       :dataset =>  [{
-        :seriesname => @r1,
+        :seriesname => @rcorrecta,
         :data =>  [
           { :value => @v1 }
         ]},
