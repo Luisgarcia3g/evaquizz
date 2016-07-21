@@ -51,6 +51,9 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap-tooltip-rails (0.1)
+      rails (>= 3.1)
+      thor
     bootstrap_form (2.4.0)
     builder (3.2.2)
     byebug (8.2.5)
@@ -214,6 +217,7 @@ DEPENDENCIES
   autoprefixer-rails
   bcrypt
   bootstrap-sass (~> 3.2.0)
+  bootstrap-tooltip-rails
   bootstrap_form
   byebug
   carrierwave

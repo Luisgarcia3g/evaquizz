@@ -67,7 +67,7 @@ text-align: center;
   <th>Tema</th>
   <th>Fecha de inicio</th>
   <th>Resultados</th>
-  <th>Nivel de Aprobación</th>
+  <th>Nivel de Aprobación <a href="#" rel="tooltip" title="Verde para calificaciones Buenas (>80), Naranja para regulares (60-80) y Rojo para malas (<60)"><font color="white">#</font></a></th>
     <th>Ver Quizz</th>
 
   </tr>
@@ -110,12 +110,12 @@ text-align: center;
 
 <%aprobacion=((aciertos*1.0)/preguntas)*100 %>
 
-<%if aprobacion>=90%>
-<td><font color="green" ><%=aprobacion%>%  </font></td>
-<%elsif aprobacion >=70%>
-<td><font color="orange" ><%=aprobacion%>%</font></td>
+<%if aprobacion>=80%>
+<td><font color="green" ><%=aprobacion.round(2)%>%  </font></td>
+<%elsif aprobacion >59%>
+<td><font color="orange" ><%=aprobacion.round(2)%>%</font></td>
 <%else%>
-<td><font color="red"><%=aprobacion%>% </font></td>
+<td><font color="red"><%=aprobacion.round(2)%>%  </font></td>
 
 
 
@@ -141,7 +141,11 @@ text-align: center;
 </tbody>
 </table>
 
-
+<script>
+$(function(){
+  $("a[rel='tooltip']").tooltip();
+})
+</script>
 
 
 

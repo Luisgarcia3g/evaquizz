@@ -14,7 +14,13 @@ class Pregunta < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def link_imagen
-    "/" + self.image.store_dir.to_s + "/" + self.image.path.split("/").last.to_s
+  begin
+      "/" + self.image.store_dir.to_s + "/" + self.image.path.split("/").last.to_s
+
+    rescue
+
+    end
+
   end
 
 end

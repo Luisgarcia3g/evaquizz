@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require_tree .
 //= require data-confirm-modal
-
+//= require bootstrap/bootstrap-tooltip
 
 //= require_tree .
 
