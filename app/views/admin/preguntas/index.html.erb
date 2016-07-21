@@ -5,8 +5,11 @@
   <br>
   <br>
 
-  
+<%=form_tag("pregunta", method: "get") do%>
+<%=select_tag(:tid, options_from_collection_for_select(@temas, "id", "nombretema"), :prompt => "Todas")%>
+<%= submit_tag("Filtrar") %>
 
+      <%end%>
   <table class="GeneratedTable", border="1" >
     <col width="170">
     <col width="105">

@@ -82,7 +82,7 @@ class Maestro::DashboardController < ApplicationController
 
   def index
     @saludo = "Hola  #{session[:nombre]}"
-    @grupo = Grupo.where(maestro: session[:nombre]).first
+    @grupo = Grupo.where(maestro: 'maestro1').first
     @temario = Temario.active.all
     @temas = Tema.active.all
     @grupoquizz = Grupoquizzs.where(Grupo: @grupo.id)

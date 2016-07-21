@@ -39,7 +39,14 @@ end
 
 def show
     @saludo = "Hola  #{session[:nombre]}"
+
+      if (params[:id].nil?)
+
+        redirect_to :action => :index
+      else
   @admin = Admin.find(params[:id])
+
+end
 end
 
 def new

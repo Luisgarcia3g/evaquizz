@@ -1,20 +1,44 @@
 class WelcomeController < ApplicationController
 
+def servicio
+
+  host = 'http://evafisica.com/learn'
+
+  configuration          = Moodle::Api::Configuration.new
+  configuration.host     = host
+  configuration.username = 'luis'
+  configuration.password = 'Luis2016#'
+  configuration.service  = 'eva-prac-2016'
+
+
+  token =  Moodle::Api::TokenGenerator.new(configuration).call
+Moodle::Api.configure({host: host, token: token })
+  session[:tokenusuario]=token
+
+  params = { 'criteria[0][key]' => 'fullname', 'criteria[0][value]' => '%%' }
+      @users = Moodle::Api.core_user_get_users(params)
+    @users=@users.values[0]
+    @contador=@users.length
+
+end
+
   def validar
     @admins=Admin.all
     @usuario = params[:welcome][:usuarios]
 
-    session[:nombre]=@usuario
+    session[:nombre]=nil
     @contraseña = params[:welcome][:contraseñas]
     @tokencreado=nil
     session[:rol]=nil
     session[:tokencreado]=nil
     admin= Admin.find_by(name: params[:welcome][:usuarios])
     if (admin && admin.authenticate(params[:welcome][:contraseñas]))
+      session[:nombre]=@usuario
       redirect_to :admin
       session[:rol]=3
       session[:tokenusuario]=10
     else
+
       host = 'http://evafisica.com/learn'
 
       configuration          = Moodle::Api::Configuration.new
@@ -22,27 +46,29 @@ class WelcomeController < ApplicationController
       configuration.username = @usuario
       configuration.password = @contraseña
       configuration.service  = 'eva-prac-2016'
-      p configuration
+
 
       token =  Moodle::Api::TokenGenerator.new(configuration).call
-
+    Moodle::Api.configure({host: host, token: token })
       session[:tokenusuario]=token
-      Moodle::Api.configure({host: host, token: token })
+
+      params = { 'criteria[0][key]' => 'email', 'criteria[0][value]' => '%%' }
+          @users = Moodle::Api.core_user_get_users(params)
 
       params = { 'criteria[0][key]' => 'username', 'criteria[0][value]' => configuration.username }
       @user = Moodle::Api.core_user_get_users(params)
-      p @user
+
 
       @userid=@user.values[0]
       @userid=@userid[0]
-      @usernomnbre= @user.values[0]
-        #  @usernomnbre= @usernombre.values[0]
-    #  session[:nombre]=   @usernomnbre.values[0]
+
+
       @userid=@userid.values[0]
 
       params = { 'userid' => @userid }
       @courses = Moodle::Api.core_enrol_get_users_courses(params)
-
+      #@courses = Moodle::Api.core_course_get_courses()
+        #@courses = Moodle::Api.core_course_get_courses()
 
       @cantidadcursos=@courses.length
 
@@ -54,7 +80,7 @@ class WelcomeController < ApplicationController
       Array.new(@cantidadcursos)
       #@otro= Array.new
       #Array.new(@cantidadcursos)
-      @rol=0
+      @rol=2
 
       for i in 0..@cantidadcursos-1
         @cursos[i]=@courses[i].values[0]
@@ -70,11 +96,8 @@ class WelcomeController < ApplicationController
 
           if (@indice[0].values[2]=="teacher")
             if(@course_users[x].values[0]==@userid)
+
                 @rol=1
-              
-                session[:continent] ||= {}
-
-
 
             end
           end
@@ -83,12 +106,29 @@ class WelcomeController < ApplicationController
 
       if (@rol==1)
         session[:rol]=1
+        @userionomnbre= @user.values[0]
+  @userionomnbre=@userionomnbre[0]
+  @userionomnbre=@userionomnbre.values[2]
+  @userionomnbre=@userionomnbre.to_s
+         session[:nombre]=@userionomnbre
         redirect_to :maestro
         # gid: (session[:cursos][0])
 
-      else
+      elsif(@rol==2)
         session[:rol]=2
-        redirect_to :alumno
+        @userionomnbre= @user.values[0]
+
+  @userionomnbre=@userionomnbre[0]
+
+  @userionomnbre=@userionomnbre.values[2]
+
+  @userionomnbre=@userionomnbre.to_s
+       @userionomnbre=@userionomnbre[6, 50]
+     session[:rol]=2
+
+     session[:nombre]=@userionomnbre
+
+       redirect_to :alumno
       end
 
 

@@ -6,6 +6,10 @@ class Scripts::UpdateGroups
 
   def call
     # create non-erasable folders for lessons and side-quests
+
+
+  
+
     params = { 'criteria[0][key]' => 'courseid', 'criteria[0][value]' => '%%' }
     @courses = Moodle::Api.core_enrol_get_enrolled_users(params)
     @cantidadcursos = @courses.length
@@ -21,7 +25,7 @@ class Scripts::UpdateGroups
     for i in 0..@cantidadcursos-1
       @grupo=Grupo.whwere(Nombre_grupo: @courses[i]["shortname"])
       if (@grupo.exist?)
-        
+
       else
       grupo = Grupo.create(Nombre_grupo: @courses[i]["shortname"])
 

@@ -24,6 +24,8 @@ class Admin::PreguntasController < ApplicationController
 
   end
 def filtrar
+@tema=Tema.find_by(id: params[:temaid])
+
 
 end
   def desactivar
@@ -46,7 +48,15 @@ end
 
     checar
     @saludo = "Hola  #{session[:nombre]}"
+    @temas=Tema.active.all
+    if (params[:tid]=="")
+
     @preguntas = Pregunta.active.all.paginate(page: params[:page], per_page: 10).order('texto ASC')
+    p  @preguntas
+  else
+      @preguntas = Pregunta.active.where(temaid: params[:tid]).paginate(page: params[:page], per_page: 10).order('texto ASC')
+
+  end
   end
 
   def new
@@ -95,6 +105,9 @@ end
   end
 
   private
+  def filtrar_params
+    params.require(:filtrar).permit(:temaid)
+  end
   def pregunta_params
     checar
     params.require(:pregunta).permit(:image, :texto, :temaid,  :respuesta1,:respuesta2, :respuesta3, :respuesta4, :tiempo)
