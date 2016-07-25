@@ -6,8 +6,8 @@ def servicio
 
   configuration          = Moodle::Api::Configuration.new
   configuration.host     = host
-  configuration.username = 'luis'
-  configuration.password = 'Luis2016#'
+  configuration.username = 'kendra'
+  configuration.password = 'Kendra2016#'
   configuration.service  = 'eva-prac-2016'
 
 

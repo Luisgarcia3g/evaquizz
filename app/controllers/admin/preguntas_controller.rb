@@ -52,13 +52,13 @@ end
     if (params[:tid]=="")
 
     @preguntas = Pregunta.active.all.paginate(page: params[:page], per_page: 10).order('texto ASC')
-
+@filtro=0
   elsif (params[:tid]==nil)
     @preguntas = Pregunta.active.all.paginate(page: params[:page], per_page: 10).order('texto ASC')
-
+@filtro=0
   else
       @preguntas = Pregunta.active.where(temaid: params[:tid]).paginate(page: params[:page], per_page: 10).order('texto ASC')
-
+@filtro=params[:tid]
   end
   end
 
