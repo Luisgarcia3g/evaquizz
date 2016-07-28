@@ -8,7 +8,7 @@
    <col width="130">
     <col width="130">
 <td>
-<%= image_tag(@pregunta.link_imagen), size: "300" %>
+  <%= image_tag (@pregunta.link_imagen), size: "300" %>
 </td>
 <td style="background:white">
 <span id="timer" style="color:red;font-weight:bold;font-size:50px"></span><br>
@@ -24,7 +24,11 @@
   <%= link_to "<button class='button3'>Continuar</button>".html_safe, maestro_mostrargrafica_path(:idq => @quizz.id, :index => @index, :codigo => @codigo,:pregunta => @pregunta.id) %>
 
 </div>
-
+<script type="text/javascript">
+   if(window.location.href.substr(-2) !== "?r") {
+      window.location = window.location.href + "?r";
+    }
+</script>
     <script>
 var con=0;
     var pusher2 = new Pusher('75159ef1c6a366266edb', {

@@ -108,6 +108,11 @@ class Alumno::DashboardController < ApplicationController
     @index=@index.to_i
     @codigo=params[:codigo]
     @res=params[:respuesta]
+    respuestadada=Resultado.where(Codigo:  @codigo,Alumno: session[:nombre],pregunta: @pregunta.id  )
+    if(respuestadada.exists?)
+
+
+    else
     if(@res==@pregunta.respuesta1)
       @resultado=Resultado.create(Codigo: @codigo, Alumno: session[:nombre],respuesta: 1, pregunta: @pregunta.id  )
 
@@ -126,7 +131,7 @@ elsif (@res==@pregunta.respuesta4)
 else
   @resultado=Resultado.create(Codigo: @codigo, Alumno: session[:nombre],respuesta: 5, pregunta: @pregunta.id  )
 
-
+end
 end
 end
 def puntaje
