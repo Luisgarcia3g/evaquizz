@@ -136,6 +136,7 @@ end
 end
 def puntaje
   @codigo=params[:Codigo]
+  @grupo=Grupoquizzs.find_by(codigo_id: params[:Codigo])
   @alumno=session[:nombre]
   @puntaje=Resultado.where(Codigo: @codigo)
   @puntaje=@puntaje.where(Alumno: @alumno)
@@ -146,7 +147,7 @@ def puntaje
   @califa=(@score*1.0)/@puntaje.count
   @califa=@califa*100
 
-  @puntajealumno=Puntaje.create(codigo: @codigo, alumno:@alumno, puntaje: @califa)
+  @puntajealumno=Puntaje.create(codigo: @codigo, alumno:@alumno, puntaje: @califa, grupo_id: @grupo.grupo_id)
 end
 
 
