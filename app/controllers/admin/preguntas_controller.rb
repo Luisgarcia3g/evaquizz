@@ -26,7 +26,6 @@ class Admin::PreguntasController < ApplicationController
 def filtrar
 @tema=Tema.find_by(id: params[:temaid])
 
-
 end
   def desactivar
 

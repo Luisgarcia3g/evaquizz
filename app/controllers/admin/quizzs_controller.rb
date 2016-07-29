@@ -76,7 +76,7 @@ end
   end
 
 
-  
+
   def create
     checar
     @quizz = Quizz.new(quizz_params)
@@ -87,7 +87,7 @@ end
 
 
           @grupos.each do |g|
-                @codigo= SecureRandom.hex(3)
+            @codigo= SecureRandom.hex(3)
             grupoquizz=Grupoquizzs.new(Grupo: g.id, Quizz: @quizz.id,Codigo: @codigo,  iniciado: false,  )
             grupoquizz.save
 

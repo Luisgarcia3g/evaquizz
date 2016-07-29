@@ -82,25 +82,49 @@ class Maestro::DashboardController < ApplicationController
 
   def index
     @saludo = "Hola  #{session[:nombre]}"
-    @grupo = Grupo.where(maestro: 'maestro1').first
-    @temario = Temario.active.all
-    @temas = Tema.active.all
-    @grupoquizz = Grupoquizzs.where(Grupo: @grupo.id)
-    #  @resultados=Resultado.where(Codigo: @grupoquizz.Codigo)
+
+    if (params[:gid]==nil)
+          @grupos=Grupo.where(maestro: session[:nombre])
+          @grupo = Grupo.where(maestro: session[:nombre]).first
+          @temario = Temario.active.all
+          @temas = Tema.active.all
+          @grupoquizz = Grupoquizzs.where(Grupo: @grupo.id)
+    @filtro=0
+    else
+            @grupos=Grupo.where(maestro: session[:nombre])
+          @grupo = Grupo.where(id: params[:gid]).first
+          @temario = Temario.active.all
+          @temas = Tema.active.all
+          @grupoquizz = Grupoquizzs.where(Grupo: @grupo.id)
+          @filtro=params[:gid]
+    end
+
+
     checar
   end
 
 
   def grupo
-
-
-    @grupo=Grupo.find_by(id: params[:grupo])
-    @grupoquizz=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
-    @cantidadquizzes=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true)
-    @cantidadquizzes=@cantidadquizzes.count
-    @puntajes=Puntaje.all
-    @puntajes=@puntajes.pluck(:alumno).uniq
     @saludo = "Hola  #{session[:nombre]}"
+
+
+              @grupos=Grupo.where(maestro: session[:nombre])
+
+              @grupo=Grupo.find_by(id: params[:grupo])
+              @grupoquizz=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
+              @cantidadquizzes=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true)
+              @cantidadquizzes=@cantidadquizzes.count
+              @puntajes=Puntaje.all
+              @puntajes=@puntajes.pluck(:alumno).uniq
+
+              @filtro=params[:grupo]
+
+                @promedios=Puntaje.all
+
+
+
+
+
 
     checar
   end
@@ -128,7 +152,7 @@ class Maestro::DashboardController < ApplicationController
   def grafica
     @saludo = "Hola  #{session[:nombre]}"
       @alumno=params[:alumno]
-      @grupo=Grupo.where(params[:grupo]).first
+      @grupo=Grupo.find_by(id: params[:grupo])
     @puntajes=Puntaje.where(alumno: @alumno).order(:updated_at => 'ASC')
     @quizzes=@puntajes.count
     @contador=1

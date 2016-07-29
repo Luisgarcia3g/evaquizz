@@ -33,19 +33,17 @@ text-align: center;
 </style>
 
 <div>
-  <%= form_for :dashboard, :url => { :action => :filtrar} do |f| %>
+
 
 <table border="0">
 <tr>
   <td>
-      <%= f.label "Grupo", :size => 100 %>
+    <%=form_tag("grupo", method: "get") do%>
+    <%=label_tag("Curso")%>
+    <%=select_tag(:grupo, options_from_collection_for_select(@grupos, "id", "Nombre_grupo",@filtro))%>
+    <%= submit_tag("Elegir") %>
 
-        <%= f.select(:temarioid,Temario.all.map{ |te| [ te.nombretemario, te.id ] }) %>
-  <%= f.submit "Filtrar" %>
-
-
-
-  <% end %>
+          <%end%>
 </td>
 <td>
   <%= link_to "<button class='button2'>Ver Temario</button>".html_safe, maestro_path %>
@@ -57,6 +55,8 @@ text-align: center;
   <br>
   <br>
 <!-- HTML Code -->
+<%@promedio=0%>
+<%@promediogeneral=0%>
 <table class="GeneratedTable">
   <thead>
     <tr>
@@ -71,6 +71,7 @@ text-align: center;
     <%contador=contador+1%>
     <%end%>
       <%end%>
+      <th>Promedio </th>
       <th>Grafica </th>
     </tr>
     </thead>
@@ -80,7 +81,7 @@ text-align: center;
 <%=pun%>
 </td>
 <%@grupoquizz.each do |gq|%>
-<%@puntajequizz=Puntaje.where(codigo: gq.Codigo, alumno: pun)%>
+<%@puntajequizz=Puntaje.where(codigo: gq.codigo_id, alumno: pun)%>
 <%if @puntajequizz.blank?%>
 
 <td>
@@ -90,11 +91,18 @@ N/A
 <%@puntajequizz.each do |pq|%>
 
 <td>
-<%=pq.puntaje%>
+<%=pq.puntaje.round(2)%>
+<%@promedio=@promedio+pq.puntaje%>
 </td>
 
 
 <%end%>
+<td>
+<%@promedio=(@promedio*1.0)/@puntajequizz.count%>
+<%=@promedio.round(2)%>
+<%@promediogeneral=@promediogeneral+@promedio%>
+</td>
+<%@promedio=0%>
 <%end%>
 <%end%>
 <td>
@@ -102,15 +110,25 @@ N/A
 </td>
 </tr>
 <% end %>
+<tr>
+<td>
+Promedios Generales
 
+</td>
+<%@grupoquizz.each do |gq|%>
+
+<%@promedios=Puntaje.where(codigo: gq.codigo_id)%>
+<td>
+  <%=@promedios.average(:puntaje).round(2)%>
+</td>
+
+
+<%end%>
+<td>
+<%=(@promediogeneral=(@promediogeneral*1.0)/@puntajes.count).round(2)%>
+</td>
+</tr>
 
 
 
 </table>
-
-
-
-
-<!-- Codes by HTML.am -->
-
-<!-- CSS Code -->
