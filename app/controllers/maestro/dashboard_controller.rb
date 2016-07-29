@@ -111,10 +111,12 @@ class Maestro::DashboardController < ApplicationController
               @grupos=Grupo.where(maestro: session[:nombre])
 
               @grupo=Grupo.find_by(id: params[:grupo])
-              @grupoquizz=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true).order(:updated_at => 'DESC')
+              @grupoquizz=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true).order(:updated_at => 'ASC')
               @cantidadquizzes=Grupoquizzs.where(grupo_id: @grupo.id, iniciado: true)
               @cantidadquizzes=@cantidadquizzes.count
-              @puntajes=Puntaje.all
+
+
+              @puntajes=Puntaje.where(grupo_id: params[:grupo])
               @puntajes=@puntajes.pluck(:alumno).uniq
 
               @filtro=params[:grupo]
@@ -138,7 +140,7 @@ class Maestro::DashboardController < ApplicationController
     checar
     @saludo = "Hola  #{session[:nombre]}"
     @quizz = Quizz.find(params[:id])
-    @grupo = Grupo.second
+    @grupo = Grupo.find_by(id: params[:gid])
     @grupoquizz=Grupoquizzs.find_by(grupo_id: @grupo.id, quizz_id: @quizz.id)
   end
 
@@ -227,7 +229,7 @@ class Maestro::DashboardController < ApplicationController
   def gestion
     checar
     @saludo = "Hola  #{session[:nombre]}"
-
+    @grupo=Grupo.find(params[:gid])
     @codigo=params[:codigo]
     @quizz=Quizz.find_by(id: params[:quizz])
     @preguntas=PreguntaQuizz.where(quizz_id: @quizz)

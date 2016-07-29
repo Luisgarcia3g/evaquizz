@@ -46,7 +46,7 @@ text-align: center;
           <%end%>
 </td>
 <td>
-  <%= link_to "<button class='button2'>Ver Temario</button>".html_safe, maestro_path %>
+  <%= link_to "<button class='button2'>Ver Temario</button>".html_safe, maestro_path(gid: @grupo.id) %>
 </td>
 </tr>
 </table>
@@ -61,14 +61,14 @@ text-align: center;
   <thead>
     <tr>
     <th>Alumnos</th>
-    <%contador=1%>
+    <%@contador=1%>
     <%@grupoquizz.each do |e|%>
 <%if e.iniciado==true%>
     <th>
-      Quizz <%=contador%>
+      Quizz <%=@contador%>
     </th>
 
-    <%contador=contador+1%>
+    <%@contador=@contador+1%>
     <%end%>
       <%end%>
       <th>Promedio </th>
@@ -76,39 +76,44 @@ text-align: center;
     </tr>
     </thead>
 <tr>
+
+
 <%@puntajes.each do |pun| %>
 <td>
+<%@promedio=0%>
 <%=pun%>
 </td>
+
 <%@grupoquizz.each do |gq|%>
-<%@puntajequizz=Puntaje.where(codigo: gq.codigo_id, alumno: pun)%>
+
+
+<%@puntajequizz=Puntaje.where(codigo: gq.codigo_id, alumno: pun).first%>
 <%if @puntajequizz.blank?%>
 
 <td>
 N/A
 </td>
 <%else%>
-<%@puntajequizz.each do |pq|%>
+
 
 <td>
-<%=pq.puntaje.round(2)%>
-<%@promedio=@promedio+pq.puntaje%>
+
+<%=@puntajequizz.puntaje.round(2)%>
+<%@promedio=@promedio+@puntajequizz.puntaje%>
 </td>
 
-
+<%end%>
 <%end%>
 <td>
-<%@promedio=(@promedio*1.0)/@puntajequizz.count%>
+<%@promedio=(@promedio*1.0)/(@contador-1)%>
 <%=@promedio.round(2)%>
 <%@promediogeneral=@promediogeneral+@promedio%>
 </td>
-<%@promedio=0%>
-<%end%>
-<%end%>
 <td>
 <%= link_to 'Ver Grafica',controller: "dashboard", action: "grafica", alumno: pun, grupo: @grupo %>
 </td>
 </tr>
+
 <% end %>
 <tr>
 <td>
