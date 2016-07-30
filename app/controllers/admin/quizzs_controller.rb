@@ -88,7 +88,7 @@ end
 
           @grupos.each do |g|
             @codigo= SecureRandom.hex(3)
-            grupoquizz=Grupoquizzs.new(Grupo: g.id, Quizz: @quizz.id,Codigo: @codigo,  iniciado: false,  )
+            grupoquizz=Grupoquizzs.new(grupo_id: g.id, quizz_id: @quizz.id,codigo_id: @codigo,  iniciado: false,  )
             grupoquizz.save
 
 
