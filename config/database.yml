@@ -41,15 +41,15 @@ default: &default
 
 
 production:
-  <<: *default
-    database: sql9152529
-#  adapter: mysql2
-#  encoding: utf8
-#  database: ebdb
-#  username: evaclickerdb
-#  password: EvaClicker2016
-#  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
-#  port: 3306
+  adapter: mysql2
+  pool: 5
+  encoding: utf8
+  database: sql9152529
+  username: sql9152529
+  password: sVRhcxduhi
+  host: sql9.freesqldatabase.com
+  port: 3306
+
 
 development:
   <<: *default
