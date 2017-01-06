@@ -39,7 +39,7 @@ end
   def validar
     @admins=Admin.all
     @usuario = params[:welcome][:usuarios]
-
+#vamos a ver
     session[:nombre]=nil
     @contraseña = params[:welcome][:contraseñas]
     @tokencreado=nil

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-
+#gemas
 #gem 'carrierwave'
 gem 'bootstrap_form'
 gem 'bootstrap-tooltip-rails'
