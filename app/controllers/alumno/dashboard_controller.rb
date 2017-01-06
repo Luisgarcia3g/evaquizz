@@ -73,7 +73,7 @@ class Alumno::DashboardController < ApplicationController
     #@quizz=Grupoquizzs.find_by(Codigo:params[:codigo]).first
     @quizz=Quizz.find_by(id: params[:idq])
     @codigo=params[:codigo]
-    Pusher.trigger('channel', 'registro', codigo: @codigo)
+    Pusher.trigger(@codigo, 'registro', codigo: @codigo)
 
   end
   def respuestas
@@ -100,7 +100,7 @@ class Alumno::DashboardController < ApplicationController
   end
 
   def enviada
-    Pusher.trigger('channel', 'contestados', codigo: @codigo)
+    Pusher.trigger(@codigo, 'contestados', codigo: @codigo)
 
     @quizz=Quizz.find_by(id: params[:idq])
     @pregunta=Pregunta.find_by(id: params[:pregunta])

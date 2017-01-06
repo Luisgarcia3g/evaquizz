@@ -32,7 +32,7 @@ class Maestro::DashboardController < ApplicationController
       redirect_to  maestro_finalquizz_path
     else
       @pregunta = Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
-      Pusher.trigger('channel', 'pregunta', codigo: @codigo)
+      Pusher.trigger(@codigo, 'pregunta', codigo: @codigo)
       @tiempo = (@pregunta.tiempo)+1
       @index = @index+1;
     end
@@ -40,7 +40,7 @@ class Maestro::DashboardController < ApplicationController
 
   def finalquizz
     @saludo = "Hola  #{session[:nombre]}"
-    Pusher.trigger('channel', 'finquizz', codigo: @codigo)
+    Pusher.trigger(@codigo, 'finquizz', codigo: @codigo)
   end
 
   def logout
@@ -147,7 +147,7 @@ class Maestro::DashboardController < ApplicationController
   def siguiente
     checar
     @codigo= SecureRandom.hex(3)
-    Pusher.trigger('channel', 'event', codigo: @codigo)
+    Pusher.trigger(@codigo, 'event', codigo: @codigo)
     render nothing: true
   end
 

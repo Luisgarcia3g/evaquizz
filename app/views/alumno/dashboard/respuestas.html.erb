@@ -172,7 +172,7 @@ window.location.href = direccion;
 var pusher = new Pusher('75159ef1c6a366266edb', {
 encrypted: true
 });
-  var mensaje = pusher.subscribe('channel');
+  var mensaje = pusher.subscribe("<%=@codigo%>");
    mensaje.bind('cerrar', function(data) {
  enviar();
    });

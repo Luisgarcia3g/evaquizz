@@ -1,7 +1,7 @@
 class Admin::AdminsController < ApplicationController
   layout "admin"
   def checar
-    if (session[:tokenusuario]==nil)
+  if (session[:tokenusuario]==nil)
 
 
           redirect_to '/welcome'
@@ -12,7 +12,7 @@ class Admin::AdminsController < ApplicationController
         redirect_to :maestro
 
       elsif (session[:rol]==2)
-        redirect_to :alumno
+      redirect_to :alumno
 
 
 

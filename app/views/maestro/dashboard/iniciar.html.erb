@@ -28,7 +28,7 @@ var alumnos=0;
 var pusher = new Pusher('75159ef1c6a366266edb', {
 encrypted: true
 });
-  var mensaje = pusher.subscribe('channel');
+  var mensaje = pusher.subscribe("<%=@codigo%>");
    mensaje.bind('registro', function(data) {
      alumnos=alumnos+1;
      document.getElementById("alumnos").innerHTML="Alumnos que han entrado : "+alumnos;

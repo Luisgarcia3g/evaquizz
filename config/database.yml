@@ -20,45 +20,46 @@ default: &default
 #   <<: *default
 #   database: db/test.sqlite3
 #
-#
-# default: &default
-#    adapter: mysql2
-#    encoding: utf8
-#    pool: 5
-#    username: root
-#    password: darkphyros
-#    socket: /tmp/mysql.sock
+#ESTA SI JALA DE MANERA LOCAL
+#default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: 5
+#   username: root
+#   password:
+#   socket: /tmp/mysql.sock
 
-# default:
+default: &default
+  adapter: mysql2
+  pool: 5
+  encoding: utf8
+  database: sql9152529
+  username: sql9152529
+  password: sVRhcxduhi
+  host: sql9.freesqldatabase.com
+  port: 3306
+
+
+#production:
 #  adapter: mysql2
 #  encoding: utf8
-#  database: evaquiz_development
-#  username: root
-#  password: darkphyros
+#  database: ebdb
+#  username: evaclickerdb
+#  password: EvaClicker2016
 #  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
 #  port: 3306
 
-
-production:
- adapter: mysql2
- encoding: utf8
- database: ebdb
- username: evaclickerdb
- password: EvaClicker2016
- host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
- port: 3306
-
 development:
-  # <<: *default
-  # database: evaquiz_development
+  <<: *default
+  database: sql9152529
 #development:
- adapter: mysql2
- encoding: utf8
- database: ebdb
- username: evaclickerdb
- password: EvaClicker2016
- host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
- port: 3306
+#  adapter: mysql2
+#  encoding: utf8
+#  database: ebdb
+#  username: evaclickerdb
+#  password: EvaClicker2016
+#  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
+#  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

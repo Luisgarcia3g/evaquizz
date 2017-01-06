@@ -6,19 +6,33 @@ def servicio
 
   configuration          = Moodle::Api::Configuration.new
   configuration.host     = host
-  configuration.username = 'kendra'
-  configuration.password = 'Kendra2016#'
+  configuration.username = 'maestrouni'
+  configuration.password = 'MaestroUNI1#'
   configuration.service  = 'eva-prac-2016'
-
-
   token =  Moodle::Api::TokenGenerator.new(configuration).call
+  #Find authenthicated user
 Moodle::Api.configure({host: host, token: token })
-  session[:tokenusuario]=token
+params = { 'criteria[0][key]' => 'username', 'criteria[0][value]' => configuration.username }
+@user = Moodle::Api.core_user_get_users(params)
+@userid=@user.values[0]
+@userid=@userid[0]
 
-  params = { 'criteria[0][key]' => 'fullname', 'criteria[0][value]' => '%%' }
-      @users = Moodle::Api.core_user_get_users(params)
-    @users=@users.values[0]
-    @contador=@users.length
+
+@userid=@userid.values[0]
+
+
+  #List courses of a user
+    params = { 'userid' => @userid }
+    @courses = Moodle::Api.core_enrol_get_users_courses(params)
+
+
+    params = { 'courseid' => '24' }
+       @course_users = Moodle::Api.core_enrol_get_enrolled_users(params)
+       @temarios=Temario.active.all
+    #@courses=@courses[0]
+    #@courses=@courses.values[1]
+#@courses= @courses.slice(0..(@courses.index(' -')))
+
 
 end
 
@@ -32,6 +46,8 @@ end
     session[:rol]=nil
     session[:tokencreado]=nil
     admin= Admin.find_by(name: params[:welcome][:usuarios])
+
+
     if (admin && admin.authenticate(params[:welcome][:contraseñas]))
       session[:nombre]=@usuario
       redirect_to :admin
