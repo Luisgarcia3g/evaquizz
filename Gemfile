@@ -40,7 +40,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'moodle-api'
 #gem 'pry'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
