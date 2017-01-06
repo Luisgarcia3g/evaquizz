@@ -48,7 +48,7 @@ end
     admin= Admin.find_by(name: params[:welcome][:usuarios])
 
 
-    if (true)
+    if (admin && admin.authenticate(params[:welcome][:contraseñas]))
       session[:nombre]=@usuario
       redirect_to :admin
       session[:rol]=3
