@@ -33,9 +33,9 @@ default: &default
   adapter: mysql2
   pool: 5
   encoding: utf8
-  database: sql9152529
-  username: sql9152529
-  password: sVRhcxduhi
+  database: sql9153857
+  username: sql9153857
+  password: tTCdWxHhIC
   host: sql9.freesqldatabase.com
   port: 3306
 
@@ -44,16 +44,16 @@ production:
   adapter: mysql2
   pool: 5
   encoding: utf8
-  database: sql9152529
-  username: sql9152529
-  password: sVRhcxduhi
+  database: sql9153857
+  username: sql9153857
+  password: tTCdWxHhIC
   host: sql9.freesqldatabase.com
   port: 3306
 
 
 development:
   <<: *default
-  database: sql9152529
+  database: sql9153857
 #development:
 #  adapter: mysql2
 #  encoding: utf8
@@ -62,7 +62,6 @@ development:
 #  password: EvaClicker2016
 #  host: aa1k8i4oinj54ge.cw6s7sxpb2an.us-west-2.rds.amazonaws.com
 #  port: 3306
-
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
