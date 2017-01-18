@@ -29,7 +29,7 @@ class Maestro::DashboardController < ApplicationController
     @preguntaquizz = PreguntaQuizz.where(quizz_id: @quizz.id)
 
     if @preguntaquizz.count == @index
-      redirect_to  maestro_finalquizz_path
+      redirect_to  maestro_finalquizz_path(:codigo =>   @codigo)
     else
       @pregunta = Pregunta.find_by!(id: @preguntaquizz[@index].pregunta_id)
       Pusher.trigger(@codigo, 'pregunta', codigo: @codigo)
@@ -40,6 +40,7 @@ class Maestro::DashboardController < ApplicationController
 
   def finalquizz
     @saludo = "Hola  #{session[:nombre]}"
+    @codigo = params[:codigo]
     Pusher.trigger(@codigo, 'finquizz', codigo: @codigo)
   end
 
@@ -142,6 +143,7 @@ class Maestro::DashboardController < ApplicationController
     @quizz = Quizz.find(params[:id])
     @grupo = Grupo.find_by(id: params[:gid])
     @grupoquizz=Grupoquizzs.find_by(grupo_id: @grupo.id, quizz_id: @quizz.id)
+
   end
 
   def siguiente

@@ -100,13 +100,14 @@ class Alumno::DashboardController < ApplicationController
   end
 
   def enviada
-    Pusher.trigger(@codigo, 'contestados', codigo: @codigo)
+
 
     @quizz=Quizz.find_by(id: params[:idq])
     @pregunta=Pregunta.find_by(id: params[:pregunta])
     @index=params[:index]
     @index=@index.to_i
     @codigo=params[:codigo]
+      Pusher.trigger(@codigo,'contestados', codigo: @codigo)
     @res=params[:respuesta]
     respuestadada=Resultado.where(Codigo:  @codigo,Alumno: session[:nombre],pregunta: @pregunta.id  )
     if(respuestadada.exists?)

@@ -1,4 +1,8 @@
 <style>
+input[type="submit"]
+{
+border: none;
+}
 
 * {
 box-sizing: border-box;
@@ -9,7 +13,7 @@ box-sizing: border-box;
 }
 body {
 font-family: Arial;
-background-color: #3498DB;
+background-color: #FFCCFF;
 padding: 50px;
 }
 .login {
@@ -17,7 +21,7 @@ margin: 20px auto;
 width: 300px;
 }
 .login-screen {
-background-color: #FFF;
+background-color: #FFCCFF;
 padding: 20px;
 border-radius: 5px
 }
@@ -36,8 +40,9 @@ margin-bottom: 10px;
 
 input {
 text-align: center;
-background-color: #ECF0F1;
-border: 2px solid transparent;
+background-color: #FFCCFF;
+border: 2px solid;
+border-color: #022E4E;
 border-radius: 3px;
 font-size: 16px;
 font-weight: 200;
@@ -47,7 +52,7 @@ transition: border .5s;
 }
 
 input:focus {
-border: 2px solid #3498DB;
+border: 2px solid #000000;
 box-shadow: none;
 }
 
@@ -90,7 +95,7 @@ box-shadow: none;
    		<div class="login-screen">
    			<div class="app-title">
    				<h1>Bienvenido</h1>
-          <img src="logo_nuevo.png" >
+          <img src="logo.png" height="200" width="300" >
 					<br>
 					     <div class="notice"><%= flash[:notice] %></div>
 
@@ -111,7 +116,7 @@ box-shadow: none;
               </p>
 
               <p>
-                <%= f.submit "Entrar" %>
+                <%= f.submit "", :type => :image, :src => "click.png", :width => "55",:height => "175"  %>
               </p>
 
               <% end %>
