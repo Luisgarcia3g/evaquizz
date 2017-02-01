@@ -15,8 +15,8 @@ class Pregunta < ActiveRecord::Base
 
   def link_imagen
   begin
-    
-      "/" + self.image.store_dir.to_s + "/" + self.image.path.split("/").last.to_s
+
+    "/" + self.image.store_dir.to_s + "/" + self.image.path.split("/").last.to_s
 
     rescue
 

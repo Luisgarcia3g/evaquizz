@@ -33,10 +33,10 @@ default: &default
   adapter: mysql2
   pool: 5
   encoding: utf8
-  database: sql9153857
-  username: sql9153857
-  password: tTCdWxHhIC
-  host: sql9.freesqldatabase.com
+  database: evaclicker
+  username: luis3g
+  password: darkphyros
+  host: db4free.net
   port: 3306
 
 
@@ -44,16 +44,16 @@ production:
   adapter: mysql2
   pool: 5
   encoding: utf8
-  database: sql9153857
-  username: sql9153857
-  password: tTCdWxHhIC
-  host: sql9.freesqldatabase.com
+  database: evaclicker
+  username: luis3g
+  password: darkphyros
+  host: db4free.net
   port: 3306
 
 
 development:
   <<: *default
-  database: sql9153857
+  database: evaclicker
 #development:
 #  adapter: mysql2
 #  encoding: utf8
